@@ -1,14 +1,25 @@
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
+const config = require('./config');
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
+const db = {};
+
+const sequelize = new Sequelize(
+  config.database.DB_NAME,
+  config.database.DB_USERNAME,
+  config.database.DB_PASSWORD,
+  {
+    host: config.database.DB_HOST,
     dialect: 'mssql',
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
-})
+    dialectOptions: {
+      //  ConnectionError: Server requires encryption, set 'encrypt' config option to true
+      options: {
+        encrypt: true,
+      },
+    },
+  }
+);
 
-module.exports = sequelize
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;

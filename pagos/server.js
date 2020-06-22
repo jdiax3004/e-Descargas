@@ -1,22 +1,36 @@
-const express = require("express")
-const morgan = require("morgan")
-const path = require("path")
-const passport = require("passport")
-const session = require("express-session")
-const cors = require('cors')
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const db = require('./db');
 
+// Importar Rutas
+const tarjetasRoutes = require('./routes/tarjetas');
+const easypayRoutes = require('./routes/easypay');
 
-// server settings
-app.set("port", process.env.PORT || 3000)
+const app = express();
 
-// middlewares
-app.use(cors())
-app.use(morgan("dev"))
-app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
+// Rutas
+app.use('/tarjetas', tarjetasRoutes);
+app.use('/easypay', easypayRoutes);
 
-// routes
-// app.use(process.env.API_PATH, require("./routes/ingredient.route"))
+// Escuchar peticiones
+app.listen(3001, () =>
+  console.log(
+    'Express server corriendo en el puerto 3001: \x1b[32m%s\x1b[0m',
+    'Online!'
+  )
+);
 
-module.exports = app
+// Conexcion BD
+db.sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Se ha conectado correctamente a la Base de Datos: Pagos.');
+  })
+  .catch((err) => {
+    console.error('Hubo un error al conectar a la Base de Datos:', err);
+  });
+
+module.exports = app;
