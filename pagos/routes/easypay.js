@@ -11,14 +11,16 @@ app.post('/', (req, res) => {
   if (!numeroCuenta) {
     return res.status(400).json({
       ok: false,
-      mensaje: 'No se especifico el número de cuenta',
+      mensaje: 'Error al momento de realizar la transacción',
+      errors: 'No se especifico el número de cuenta',
     });
   }
 
   if (!monto) {
     return res.status(400).json({
       ok: false,
-      mensaje: 'No se especifico el monto',
+      mensaje: 'Error al momento de realizar la transacción',
+      errors: 'No se especifico el monto',
     });
   }
 
@@ -28,27 +30,39 @@ app.post('/', (req, res) => {
     })
     .then((data) => {
       // console.log(data[0]); -> BUG
+
+      if (!data[0][0]) {
+        return res.status(401).json({
+          ok: false,
+          mensaje: 'No fue posible realizar la transacción',
+          errors: 'No existe una cuenta con el número ' + numeroCuenta,
+        });
+      }
+
       if (
         contrasena !== data[0][0].Contrasenna ||
         codigo !== data[0][0].Codigo_Seguridad
       ) {
         return res.status(401).json({
           ok: false,
-          mensaje: 'Credenciales inválidas',
+          mensaje: 'Error de autenticación',
+          errors: 'Credenciales inválidas',
         });
       }
 
       if (monto > data[0][0].Fondos) {
         return res.status(400).json({
           ok: false,
-          mensaje: 'Sin suficientes fondos',
+          mensaje: 'No fue posible realizar la transacción',
+          errors: 'Sin suficientes fondos',
         });
       }
 
-      if (isNaN(monto)) {
+      if (isNaN(monto) || Math.sign(monto) === -1) {
         return res.status(400).json({
           ok: false,
-          mensaje: 'El monto ingresado no es correcto',
+          mensaje: 'No fue posible realizar la transacción',
+          errors: 'El valor ' + monto + ' no es un monto válido',
         });
       }
 
@@ -60,7 +74,7 @@ app.post('/', (req, res) => {
           }
         )
         .then((data) => {
-          res.status(200).json({
+          return res.status(200).json({
             ok: true,
             mensaje: 'Transferencia realizada con éxito',
           });

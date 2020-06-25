@@ -1,10 +1,14 @@
-USE master;
+USE MASTER;
+
+-- CREACION BASE DE DATOS
 
 CREATE DATABASE Pagos;
 GO
 
 USE Pagos;
 GO
+
+-- CREACION DE TABLAS
 
 CREATE TABLE Tarjetas (
     Id INT IDENTITY NOT NULL,
@@ -25,6 +29,8 @@ CREATE TABLE Easypay (
 	Fondos NUMERIC(18,2) NULL
 );
 GO
+
+-- CREACION DE SP
 
 CREATE OR ALTER PROC dbo.ObtenerTarjeta
   @Numero AS NVARCHAR(100)
@@ -58,10 +64,33 @@ AS
 	UPDATE dbo.Easypay
 	SET Fondos -= @Monto
 	WHERE Numero_Cuenta = @Numero;
+	RETURN 1
 GO
 
-EXEC dbo.ObtenerTarjeta @Numero = 'FR29 1809 2966 263I IBBV R6GJ G92'
+CREATE OR ALTER PROC dbo.DescontarSaldoTarjeta
+  @Numero AS NVARCHAR(100),
+  @Monto AS NUMERIC(18,2),
+  @EsDebito AS INT = 1
+AS
+
+	IF @EsDebito = 1
+		UPDATE dbo.Tarjetas
+		SET Fondos -= @Monto
+		WHERE Numero = @Numero;
+	ELSE
+		UPDATE dbo.Tarjetas
+		SET Limite -= @Monto
+		WHERE Numero = @Numero;
+	
+	RETURN 1
+GO
+
+-- PRUEBAS DE SP
+
+EXEC dbo.ObtenerTarjeta @Numero = 'LU63 323E LZVK 6TYV ZKFQ'
 
 EXEC dbo.ObtenerCuentaEasyPay @Numero = 4911163511712886087
 
 EXEC dbo.DescontarSaldoCuentaEasyPay @Numero = 4911163511712886087, @Monto = 500
+
+EXEC dbo.DescontarSaldoTarjeta @Numero = 'BE77 8173 0898 3059', @Monto = 100000
