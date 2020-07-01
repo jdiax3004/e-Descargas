@@ -1,14 +1,12 @@
 const db =  require('../db')
-const { reemplazarStringStoreProcedure } = require('../utils/string.utils')
+const { storeProcedure } = require('./base-servicio')
 
 let servicio = {}
 
 servicio.insertar = async (objeto) => {
     try {
         // TODO: generer consecutivos ejemplo: objeto.Codigo = consecutiovos.generar()
-        const data = await db.query(`dbo.InsertarMusica ${reemplazarStringStoreProcedure(objeto)}`, { 
-            replacements: objeto 
-        })
+        const data = await storeProcedure('InsertarMusica', objeto)
         // TODO: guardar registro en la bitacora
         // TODO: devolver el objeto creado
     } catch(error) {
@@ -17,11 +15,11 @@ servicio.insertar = async (objeto) => {
 }
 
 servicio.modificar = async (objeto) => {
-    // TODO: generador de consecutivos
     try {
-        await db.query(`dbo.ModificarMusica ${reemplazarStringStoreProcedure(objeto)}`, { 
-            replacements: objeto  
-        })
+        // TODO: generer consecutivos ejemplo: objeto.Codigo = consecutiovos.generar()
+        const data = await storeProcedure('ModificarMusica', objeto)
+        // TODO: guardar registro en la bitacora
+        // TODO: devolver el objeto creado
 
     } catch(error) {
         // TODO: hacer logueo del error
