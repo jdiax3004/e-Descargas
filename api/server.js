@@ -23,6 +23,12 @@ app.use(multer({dest: path.join(__dirname, '..', 'public/upload/temp')}).single(
 // app.use(express.static(path.join(__dirname, "..", "public")))
 
 // routes
-// app.use(process.env.API_PATH, require("./routes/ingredient.route"))
+app.use(process.env.API_PATH, require("./routes/musica.ruta"))
+
+// handle erros
+app.use((err, req, res, next) => {
+    // TODO: log error
+    return res.status(501).json({ errors: err.message })
+})
 
 module.exports = app

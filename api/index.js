@@ -1,7 +1,8 @@
 const dotenv = require('dotenv')
+dotenv.config()
 const app = require('./server')
 const db = require('./db')
-dotenv.config()
+
 
 // db connection
 db.authenticate().then(() => {

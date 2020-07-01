@@ -156,4 +156,3 @@ CREATE TABLE Consecutivos (
 	Rango_Inicio INT NOT NULL,
 	Rango_Final INT NOT NULL
 );
-
