@@ -18,7 +18,7 @@ servicio.storeProcedure = async (nombre, parametros) => {
 
     const data = await db.query(`dbo.${nombre} ${reemplazarStringStoreProcedure(parametros)}`, opts)
 
-    return data
+    return data && data[0].length == 1 ? data[0][0] : data[0]
 }
 
 module.exports = servicio

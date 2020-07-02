@@ -6,6 +6,7 @@ const passport = require("passport")
 const session = require("express-session")
 const cors = require('cors')
 const app = express()
+const errorLogger = require('./log/error.log')
 
 
 // server settings
@@ -27,8 +28,8 @@ app.use(process.env.API_PATH, require("./routes/musica.ruta"))
 
 // handle erros
 app.use((err, req, res, next) => {
-    // TODO: log error
-    return res.status(501).json({ errors: err.message })
+    errorLogger.log(err)
+    return res.status(501).json({ success: false, errors: err.message })
 })
 
 module.exports = app
