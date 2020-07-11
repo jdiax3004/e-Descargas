@@ -6,6 +6,7 @@ const passport = require("passport")
 const session = require("express-session")
 const cors = require('cors')
 const app = express()
+const errorLogger = require('./log/error.log')
 
 
 // server settings
@@ -23,6 +24,12 @@ app.use(multer({dest: path.join(__dirname, '..', 'public/upload/temp')}).single(
 // app.use(express.static(path.join(__dirname, "..", "public")))
 
 // routes
-// app.use(process.env.API_PATH, require("./routes/ingredient.route"))
+app.use(process.env.API_PATH, require("./routes/musica.ruta"))
+
+// handle erros
+app.use((err, req, res, next) => {
+    errorLogger.log(err)
+    return res.status(501).json({ success: false, errors: err.message })
+})
 
 module.exports = app
