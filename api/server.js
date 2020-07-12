@@ -25,6 +25,7 @@ app.use(multer({dest: path.join(__dirname, '..', 'public/upload/temp')}).single(
 
 // routes
 app.use(process.env.API_PATH, require("./routes/musica.ruta"))
+app.use(process.env.API_PATH, require("./routes/libro.ruta"))
 
 // handle erros
 app.use((err, req, res, next) => {
