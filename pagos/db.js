@@ -1,14 +1,13 @@
 const Sequelize = require('sequelize');
-const config = require('./config');
 
 const db = {};
 
 const sequelize = new Sequelize(
-  config.database.DB_NAME,
-  config.database.DB_USERNAME,
-  config.database.DB_PASSWORD,
+  process.env.DB_NAME,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
   {
-    host: config.database.DB_HOST,
+    host: process.env.DB_HOST,
     dialect: 'mssql',
     dialectOptions: {
       //  ConnectionError: Server requires encryption, set 'encrypt' config option to true

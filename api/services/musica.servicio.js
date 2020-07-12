@@ -1,5 +1,5 @@
 const db =  require('../db')
-const { storeProcedure } = require('./base-servicio')
+const { storeProcedure } = require('../utils/db.utils')
 const errorLogger = require('../log/error.log')
 const bitacora = require('../log/bitacora.log')
 
