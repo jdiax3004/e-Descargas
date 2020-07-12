@@ -1,14 +1,3 @@
-USE MASTER;
-
--- CREACION BASE DE DATOS
-
-CREATE DATABASE e-Descargas;
-GO
-
-USE e-Descargas;
-
-
-GO
 -- CREACION DE TABLAS
 
 CREATE TABLE Roles (
