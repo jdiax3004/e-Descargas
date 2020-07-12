@@ -1,5 +1,5 @@
 const db =  require('../db')
-const { reemplazarStringStoreProcedure } = require('../utils/string.utils')
+const { reemplazarStringStoreProcedure } = require('./string.utils')
 
 let servicio = {}
 

@@ -1,4 +1,4 @@
-const { storeProcedure } = require('../services/base-servicio')
+const { storeProcedure } = require('../utils/db.utils')
 const errorLogger = require('./error.log')
 
 let bitacora = {}
