@@ -1,5 +1,5 @@
-const { storeProcedure } = require('../services/base-servicio')
-const logError = require('./error.log')
+const { storeProcedure } = require('../utils/db.utils')
+const errorLogger = require('./error.log')
 
 let bitacora = {}
 
@@ -17,7 +17,7 @@ bitacora.log = (tipo, objeto) => {
         Detalle_Registro: JSON.stringify(objeto)
     }
 
-    storeProcedure('InsertarBitacora', obj).catch(logError)
+    storeProcedure('InsertarBitacora', obj).catch(errorLogger.log)
 }
 
 

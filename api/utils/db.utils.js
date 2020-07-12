@@ -1,5 +1,5 @@
 const db =  require('../db')
-const { reemplazarStringStoreProcedure } = require('../utils/string.utils')
+const { reemplazarStringStoreProcedure } = require('./string.utils')
 
 let servicio = {}
 
@@ -16,7 +16,7 @@ servicio.storeProcedure = async (nombre, parametros) => {
         opts.replacements = parametros 
     }
 
-    const data = await db.query(`dbo.${nombre} ${reemplazarStringStoreProcedure(parametros)}`, opts)
+    const data = await db.query(`dbo.${nombre} ${reemplazarStringStoreProcedure(parametros)}`, opts).catch(err => { throw err })
 
     return data && data[0].length == 1 ? data[0][0] : data[0]
 }
