@@ -20,7 +20,7 @@ servicio.storeProcedure = async (nombre, parametros) => {
         for (let property in parametros) {
             if (parametros.hasOwnProperty(property)) {
                 let value = parametros[property]
-                parametrosEncrytados[property] = typeof(value) === 'string' && !property.includes('Codigo') ? encrypt(value) : value
+                parametrosEncrytados[property] = !property.includes('Id') && !property.includes('Codigo') ? encrypt(value) : value
             }         
         }
 
@@ -48,7 +48,7 @@ function desencriptarObjeto(objeto) {
     for (let property in objeto) {
         if (objeto.hasOwnProperty(property)) {
             let value = objeto[property]
-            objeto[property] = typeof(value) === 'string' && !property.includes('Codigo') ? decrypt(value) : value
+            objeto[property] = !property.includes('Id') && !property.includes('Codigo') ? decrypt(value) : value
         }         
     }
     return objeto
