@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-tittle">
+              Bitàcora
+          </h3>
+          <hr>
+          <h4>Filtros</h4>
+          <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <input id="checkbox1" type="checkbox">
+                        <label for="checkbox1"> Usuarios</label>
+                    </div>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <input id="checkbox2" type="checkbox">
+                        <label for="checkbox2"> Fecha</label>
+                    </div>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <input id="checkbox3" type="checkbox">
+                        <label for="checkbox3"> Tipo</label>
+                    </div>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+          <hr>
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Codigo registro</th>
+                    <th>Descripcion</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr [routerLink]="['/consultarBitacora/1']">
+                    <td>01</td>
+                    <td>
+                        Star wars
+                    </td>
+                    <td class="text-nowrap">
+                        Insercion de objeto de pago
+                    </td>
+                    <td>Ver mas...</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>

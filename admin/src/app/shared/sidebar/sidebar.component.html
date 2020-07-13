@@ -19,18 +19,28 @@
           >
           <ul aria-expanded="false" class="collapse">
             <li><a href="javascript:void()">My Profile </a></li>
-            <li><a href="javascript:void()">My Balance</a></li>
-            <li><a href="javascript:void()">Inbox</a></li>
-            <li>
-              <a [routerLink]="['/account-settings']" routerLinkActive="active"
-                >Account Setting</a
-              >
-            </li>
             <li><a [routerLink]="['/login']">Logout</a></li>
           </ul>
         </li>
         <li class="nav-devider"></li>
-        <li class="nav-small-cap">PERSONAL</li>
+        <li>
+          <a
+            class="has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i class="mdi mdi-lock"></i><span class="hide-menu"
+              >Seguridad
+              <span class="label label-rouded label-themecolor pull-right"
+                >4</span
+              ></span
+            ></a
+          >
+          <ul aria-expanded="false" class="collapse">
+            <li><a [routerLink]="['/crearUsuario']">Crear Usuarios </a></li>
+            <li><a [routerLink]="['/asignarRol']">Asignar Roles</a></li>
+            <li><a [routerLink]="['/cambiarContrasena']">Cambiar contraseña</a></li>
+          </ul>
+        </li>
         <li>
           <a
             class="has-arrow waves-effect waves-dark"
@@ -38,17 +48,37 @@
             aria-expanded="false"
             ><i class="mdi mdi-gauge"></i
             ><span class="hide-menu"
-              >Dashboard
+              >Administraciòn
               <span class="label label-rouded label-themecolor pull-right"
                 >4</span
               ></span
             ></a
           >
           <ul aria-expanded="false" class="collapse">
-            <li><a href="index.html">Minimal </a></li>
-            <li><a href="index2.html">Analytical</a></li>
-            <li><a href="index3.html">Demographical</a></li>
-            <li><a href="index4.html">Modern</a></li>
+            <li><a [routerLink]="['/consecutivos']">Consecutivos </a></li>
+            <li><a [routerLink]="['/parametros']">Parametros</a></li>
+            <li><a [routerLink]="['/peliculas']">Pelìculas</a></li>
+            <li><a [routerLink]="['/libros']">Libros</a></li>
+            <li><a [routerLink]="['/musica']">Mùsica</a></li>
+          </ul>
+        </li>
+        <li>
+          <a
+            class="has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i class="mdi mdi-magnify"></i><span class="hide-menu"
+              >Consultas
+              <span class="label label-rouded label-themecolor pull-right"
+                >4</span
+              ></span
+            ></a
+          >
+          <ul aria-expanded="false" class="collapse">
+            <li><a [routerLink]="['/bitacora']">Bitàcora</a></li>
+            <li><a [routerLink]="['/transacciones']">Transacciones</a></li>
+            <li><a [routerLink]="['/descargas']">Descargas</a></li>
+            <li><a [routerLink]="['/errores']">Errores</a></li>
           </ul>
         </li>
       </ul>
