@@ -30,7 +30,8 @@ servicio.storeProcedure = async (nombre, parametros) => {
     const data = await db.query(`dbo.${nombre} ${reemplazarStringStoreProcedure(parametros)}`, opts).catch(err => { throw err })
 
     if(data && data[0].length == 1) {
-        return desencriptarObjeto(data[0][0])
+        let item = desencriptarObjeto(data[0][0])
+        return nombre.includes('Obtener') && (!parametros || (!parametros.Codigo && !parametros.Id)) ? [item] : item // TODO: esto es una idiotes
     } else {
         data[0].forEach(item => {
             item = desencriptarObjeto(item)

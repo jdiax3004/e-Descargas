@@ -11,7 +11,7 @@ logger.log = (error) => {
     let obj = {
         Mensaje:      error.message,
         Descripcion:  error.stack,
-        Codigo_Error: -1, // TODO: como vamos a saber el codigo? podriamos reemplazarlo por severidad? o ambiente?
+        Codigo_Error: error.code || -1,
         Fecha:        new Date()
     }
 

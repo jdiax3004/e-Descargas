@@ -203,7 +203,7 @@ CREATE TABLE Tarjetas
 		IDENTITY NOT NULL PRIMARY KEY,
 	Id_Usuario INT
 		NOT NULL FOREIGN KEY REFERENCES Usuarios(Id),
-	Numero NUMERIC(20)
+	Numero NVARCHAR(255)
 		NOT NULL UNIQUE,
 	CVV INT
 		NOT NULL,
@@ -253,8 +253,8 @@ CREATE TABLE Consecutivos
 		NOT NULL,
 	Prefijo NVARCHAR(255)
 		NULL,
-	Rango_Inicio INT
+	Rango_Inicio NVARCHAR(255)
 		NOT NULL,
-	Rango_Final INT
+	Rango_Final NVARCHAR(255)
 		NOT NULL
 );

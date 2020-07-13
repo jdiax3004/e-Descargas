@@ -5,7 +5,7 @@ const servicio = require('../services/musica.servicio')
 
 router.get('/musica', async (req, res, next) => {
     try {
-        const data = await servicio.obtener()
+        const data = await servicio.obtener(req.query)
 
         return res.json({ success: true, data })
     } catch (error) {

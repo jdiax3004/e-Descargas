@@ -1,11 +1,12 @@
-const db =  require('../db')
 const { storeProcedure } = require('../utils/db.utils')
-const errorLogger = require('../log/error.log')
+const { filtrar } = require('../utils/array.utils')
 const bitacora = require('../log/bitacora.log')
 
 let servicio = {};
 
-servicio.obtener = async () => {
+servicio.obtener = async (filtros) => {
+  let result = await storeProcedure("ObtenerLibro")
+  if(filtros) result = filtrar(result, filtros)
   return await storeProcedure("ObtenerLibro");
 };
 

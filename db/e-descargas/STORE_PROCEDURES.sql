@@ -29,7 +29,6 @@ GO
 
 
 -- Musica
-
 GO
 CREATE OR ALTER PROC dbo.ObtenerMusica
   @Codigo AS NVARCHAR(255) = NULL
@@ -199,6 +198,7 @@ GO
 
 
 -- Bitacora 
+
 GO
 CREATE OR ALTER PROC dbo.InsertarBitacora
   @Id_Usuario AS INT,
@@ -212,3 +212,58 @@ AS
   VALUES (@Id_Usuario, @Codigo_Registro, @Tipo, @Descripcion, @Detalle_Registro, @Fecha);
 GO
 
+-- Consecutivos
+GO
+CREATE OR ALTER PROC dbo.ObtenerConsecutivo
+  @Id AS INT = NULL
+AS
+  IF @Id IS NULL
+  BEGIN
+    SELECT * FROM Consecutivos;
+  END
+  ELSE
+  BEGIN
+    SELECT * 
+    FROM Consecutivos 
+    WHERE Id = @Id;
+  END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.InsertarConsecutivo
+  @Descripcion AS NVARCHAR(255),
+  @Consecutivo AS NVARCHAR(255),
+  @Posee_Prefijo AS NVARCHAR(255),
+  @Prefijo AS NVARCHAR(255),
+  @Rango_Inicio NVARCHAR(255),
+  @Rango_Final NVARCHAR(255)
+AS
+	INSERT INTO Consecutivos
+  VALUES (@Descripcion, @Consecutivo, @Posee_Prefijo, @Prefijo, @Rango_Inicio, @Rango_Final);
+  SELECT * FROM Consecutivos WHERE Id = SCOPE_IDENTITY();
+GO
+
+GO
+CREATE OR ALTER PROC dbo.ModificarConsecutivo
+  @Id AS INT,
+  @Descripcion AS INT = null,
+  @Consecutivo AS INT = null,
+  @Posee_Prefijo AS NVARCHAR(255) = null,
+  @Prefijo AS NVARCHAR(255) = null,
+  @Rango_Inicio AS NVARCHAR(255) = null,
+  @Rango_Final AS NVARCHAR(255) = null
+AS
+BEGIN
+SET NOCOUNT ON
+	UPDATE Consecutivos
+    SET 
+        Descripcion = isNull(@Descripcion,Descripcion), 
+        Consecutivo = isNull(@Consecutivo,Consecutivo), 
+        Posee_Prefijo = isNull(@Posee_Prefijo, Posee_Prefijo),
+        Prefijo = isNull(@Prefijo, Prefijo),
+        Rango_Inicio = isNull(@Rango_Inicio, Rango_Inicio),
+        Rango_Final = isNull(@Rango_Final, Rango_Final)
+    WHERE Id = @Id;
+    SELECT * FROM Consecutivos WHERE Id = @Id;
+END
+GO
