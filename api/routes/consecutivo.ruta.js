@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const servicio = require('../services/musica.servicio')
+const servicio = require('../services/consecutivo.servicio')
 
-router.get('/musica', async (req, res, next) => {
+router.get('/consecutivos', async (req, res, next) => {
     try {
         const data = await servicio.obtener(req.query)
 
@@ -11,7 +11,7 @@ router.get('/musica', async (req, res, next) => {
     }
 })
 
-router.get('/musica/:codigo', async (req, res, next) => {
+router.get('/consecutivos/:codigo', async (req, res, next) => {
     try {
         const data = await servicio.obtenerUno(req.params.codigo)
         return res.json({ success: true, data })
@@ -20,7 +20,7 @@ router.get('/musica/:codigo', async (req, res, next) => {
     }
 })
 
-router.post('/musica', async (req, res, next) => {
+router.post('/consecutivos', async (req, res, next) => {
     try {
         const data = await servicio.insertar(req.body)
         return res.json({ success: true, data })
@@ -29,7 +29,7 @@ router.post('/musica', async (req, res, next) => {
     }
 })
 
-router.put('/musica', async (req, res, next) => {
+router.put('/consecutivos', async (req, res, next) => {
     try {
         const data = await servicio.modificar(req.body)
         return res.json({ success: true, data })
@@ -38,7 +38,7 @@ router.put('/musica', async (req, res, next) => {
     }
 })
 
-router.delete('/musica/:codigo', async (req, res, next) => {
+router.delete('/consecutivos/:codigo', async (req, res, next) => {
     try {
         const data = await servicio.eliminar(req.params.codigo)
         return res.json({ success: data })

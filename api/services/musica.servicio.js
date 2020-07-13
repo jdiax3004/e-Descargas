@@ -1,6 +1,7 @@
 const { storeProcedure } = require('../utils/db.utils')
 const { filtrar } = require('../utils/array.utils')
 const bitacora = require('../log/bitacora.log')
+const consecutivo = require('./consecutivo.servicio')
 
 let servicio = {}
 
@@ -16,7 +17,7 @@ servicio.obtenerUno = async (codigo) => {
 }
 
 servicio.insertar = async (objeto) => {
-  // TODO: generer consecutivos ejemplo: objeto.Codigo = consecutiovos.generar()
+  objeto.Codigo = await consecutivo.generar(consecutivo.MUSICA)
   const data = await storeProcedure("InsertarMusica", objeto)
   bitacora.log(bitacora.INSERTAR, data)
   return data

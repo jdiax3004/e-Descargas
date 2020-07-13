@@ -246,8 +246,8 @@ GO
 GO
 CREATE OR ALTER PROC dbo.ModificarConsecutivo
   @Id AS INT,
-  @Descripcion AS INT = null,
-  @Consecutivo AS INT = null,
+  @Descripcion AS NVARCHAR(255) = null,
+  @Consecutivo AS NVARCHAR(255) = null,
   @Posee_Prefijo AS NVARCHAR(255) = null,
   @Prefijo AS NVARCHAR(255) = null,
   @Rango_Inicio AS NVARCHAR(255) = null,
@@ -266,4 +266,13 @@ SET NOCOUNT ON
     WHERE Id = @Id;
     SELECT * FROM Consecutivos WHERE Id = @Id;
 END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarConsecutivo
+  @Id AS INT
+AS
+    DELETE FROM Consecutivos 
+    WHERE 
+      Id = @Id;
 GO
