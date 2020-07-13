@@ -35,9 +35,7 @@ AS
   VALUES (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Tipo_Interpretacion, @Pais, @Disquera, @Disco, @Compositor, @Archivo_Descarga, @Archivo_Previsualizacion);
   SELECT * FROM Musica WHERE Codigo = @Codigo;
 GO
-GO
-EXEC sp_refresh_parameter_encryption 'dbo.InsertarMusica'
-GO
+
 
 GO
 CREATE OR ALTER PROC dbo.ModificarMusica
