@@ -5,7 +5,8 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, pr
     dialect: 'mssql',
     dialectOptions: {
         options: {
-          encrypt: true
+            trustServerCertificate: false,
+            encrypt: true
         }
     },
     pool: {
