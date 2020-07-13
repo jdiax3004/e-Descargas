@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-tittle">
+              Pelìculas
+          </h3>
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th class="text-nowrap">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>
+                        Star wars
+                    </td>
+                    <td class="text-nowrap">
+                        <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                        <a href="#" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" [routerLink]="['/crearPelicula/nueva']">Nueva Pelìcula</button>
+        </div>
+    </div>
+</div>

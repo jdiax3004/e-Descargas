@@ -1,3 +1,33 @@
+-- Roles
+GO
+CREATE OR ALTER PROC dbo.InsertarRol
+  @Rol NVARCHAR(50)
+AS
+	INSERT INTO Roles
+  VALUES (@Rol);
+  SELECT * FROM Roles WHERE Id = SCOPE_IDENTITY();
+GO
+
+-- Usuarios
+GO
+CREATE OR ALTER PROC dbo.InsertarUsuario
+  @Id_Rol AS INT,
+  @Usuario AS NVARCHAR(50),
+  @Nombre AS NVARCHAR(50),
+  @Primer_Apellido AS NVARCHAR(50),
+  @Segundo_Apellido AS NVARCHAR(50),
+  @Correo AS NVARCHAR(50),
+  @Contrasenna AS NVARCHAR(500),
+  @Pregunta_Seguridad AS NVARCHAR(255),
+  @Respuesta_Seguridad AS NVARCHAR(255)
+AS
+	INSERT INTO Usuarios
+  VALUES (@Id_Rol, @Usuario, @Nombre, @Primer_Apellido, @Segundo_Apellido, @Correo, @Contrasenna, @Pregunta_Seguridad, @Respuesta_Seguridad);
+  SELECT * FROM Usuarios WHERE Id = SCOPE_IDENTITY();
+GO
+
+
+
 -- Musica
 
 GO
@@ -154,7 +184,7 @@ GO
 GO
 CREATE OR ALTER PROC dbo.InsertarError
   @Mensaje AS NVARCHAR(50),
-  @Descripcion AS NTEXT,
+  @Descripcion AS NVARCHAR(1000),
   @Codigo_Error AS NVARCHAR(30)
 AS
 	INSERT INTO Errores
@@ -169,7 +199,7 @@ CREATE OR ALTER PROC dbo.InsertarBitacora
   @Codigo_Registro AS NVARCHAR(50),
   @Tipo AS NVARCHAR(50),
   @Descripcion AS NVARCHAR(500),
-  @Detalle_Registro AS NTEXT
+  @Detalle_Registro AS NVARCHAR(1000)
 AS
 	INSERT INTO Bitacora
   VALUES (@Id_Usuario, @Codigo_Registro, @Tipo, @Descripcion, @Detalle_Registro, GETDATE());

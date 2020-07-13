@@ -10,7 +10,9 @@ let servicio = {}
  * @param {Object} parametros (opcional) parámetros del store procedure.
  */
 servicio.storeProcedure = async (nombre, parametros) => {
-    let opts = {}
+    let opts = {
+        raw: false
+    }
 
     if(parametros) {
         opts.replacements = parametros 
