@@ -16,7 +16,7 @@ servicio.obtenerUno = async (codigo) => {
 };
 
 servicio.insertar = async (objeto) => {
-  objeto.Codigo = await consecutivo.generar(consecutivo.MUSICA)
+  objeto.Codigo = await consecutivo.generar(consecutivo.LIBRO)
   const data = await storeProcedure("InsertarLibro", objeto);
   bitacora.log(bitacora.INSERTAR, data);
   return data;
