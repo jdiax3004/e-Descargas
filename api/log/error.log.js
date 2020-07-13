@@ -11,7 +11,8 @@ logger.log = (error) => {
     let obj = {
         Mensaje:      error.message,
         Descripcion:  error.stack,
-        Codigo_Error: -1 // TODO: como vamos a saber el codigo? podriamos reemplazarlo por severidad? o ambiente?
+        Codigo_Error: -1, // TODO: como vamos a saber el codigo? podriamos reemplazarlo por severidad? o ambiente?
+        Fecha:        new Date()
     }
 
     if(process.env.NODE_ENV === 'development') console.log(error)

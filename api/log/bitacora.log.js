@@ -14,7 +14,8 @@ bitacora.log = (tipo, objeto) => {
         Codigo_Registro:  objeto.Codigo,
         Tipo:             tipo,
         Descripcion:      `${tipo} `,
-        Detalle_Registro: JSON.stringify(objeto)
+        Detalle_Registro: JSON.stringify(objeto),
+        Fecha:            new Date()
     }
 
     storeProcedure('InsertarBitacora', obj).catch(errorLogger.log)
