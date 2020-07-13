@@ -1,7 +1,7 @@
 -- Roles
 GO
 CREATE OR ALTER PROC dbo.InsertarRol
-  @Rol NVARCHAR(50)
+  @Rol NVARCHAR(255)
 AS
 	INSERT INTO Roles
   VALUES (@Rol);
@@ -12,12 +12,12 @@ GO
 GO
 CREATE OR ALTER PROC dbo.InsertarUsuario
   @Id_Rol AS INT,
-  @Usuario AS NVARCHAR(50),
-  @Nombre AS NVARCHAR(50),
-  @Primer_Apellido AS NVARCHAR(50),
-  @Segundo_Apellido AS NVARCHAR(50),
-  @Correo AS NVARCHAR(50),
-  @Contrasenna AS NVARCHAR(500),
+  @Usuario AS NVARCHAR(255),
+  @Nombre AS NVARCHAR(255),
+  @Primer_Apellido AS NVARCHAR(255),
+  @Segundo_Apellido AS NVARCHAR(255),
+  @Correo AS NVARCHAR(255),
+  @Contrasenna AS NVARCHAR(255),
   @Pregunta_Seguridad AS NVARCHAR(255),
   @Respuesta_Seguridad AS NVARCHAR(255)
 AS
@@ -32,7 +32,7 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.ObtenerMusica
-  @Codigo AS NVARCHAR(50) = NULL
+  @Codigo AS NVARCHAR(255) = NULL
 AS
   IF @Codigo IS NULL
   BEGIN
@@ -48,16 +48,16 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.InsertarMusica
-  @Codigo AS NVARCHAR(50),
+  @Codigo AS NVARCHAR(255),
   @Id_Genero AS INT,
   @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(50),
-  @Anno AS INT,
-  @Tipo_Interpretacion AS NVARCHAR(50),
-  @Pais AS NVARCHAR(50),
-  @Disquera AS NVARCHAR(50),
-  @Disco AS NVARCHAR(50),
-  @Compositor AS NVARCHAR(50),
+  @Nombre AS NVARCHAR(255),
+  @Anno AS NVARCHAR(255),
+  @Tipo_Interpretacion AS NVARCHAR(255),
+  @Pais AS NVARCHAR(255),
+  @Disquera AS NVARCHAR(255),
+  @Disco AS NVARCHAR(255),
+  @Compositor AS NVARCHAR(255),
   @Archivo_Descarga AS NVARCHAR(255),
   @Archivo_Previsualizacion AS NVARCHAR(255)
 AS
@@ -69,39 +69,44 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.ModificarMusica
-  @Codigo AS NVARCHAR(50),
-  @Id_Genero AS INT,
-  @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(50),
-  @Anno AS INT,
-  @Tipo_Interpretacion AS NVARCHAR(50),
-  @Pais AS NVARCHAR(50),
-  @Disquera AS NVARCHAR(50),
-  @Disco AS NVARCHAR(50),
-  @Compositor AS NVARCHAR(50),
-  @Archivo_Descarga AS NVARCHAR(255),
-  @Archivo_Previsualizacion AS NVARCHAR(255)
+  @Codigo AS NVARCHAR(255) ,
+  @Id_Genero AS INT = null,
+  @Id_Idioma AS INT = null,
+  @Nombre AS NVARCHAR(255) = null,
+  @Anno AS NVARCHAR(255) = null,
+  @Tipo_Interpretacion AS NVARCHAR(255) = null,
+  @Pais AS NVARCHAR(255) = null,
+  @Disquera AS NVARCHAR(255) = null,
+  @Disco AS NVARCHAR(255) = null,
+  @Compositor AS NVARCHAR(255) = null,
+  @Archivo_Descarga AS NVARCHAR(255) = null,
+  @Archivo_Previsualizacion AS NVARCHAR(255) = null
+
 AS
+BEGIN
+SET NOCOUNT ON
+
 	UPDATE Musica
     SET 
-        Id_Genero = @Id_Genero, 
-        Id_Idioma = @Id_Idioma, 
-        Nombre = @Nombre, 
-        Anno = @Anno, 
-        Tipo_Interpretacion = @Tipo_Interpretacion, 
-        Pais = @Pais, 
-        Disquera = @Disquera, 
-        Disco = @Disco, 
-        Compositor = @Compositor, 
-        Archivo_Descarga = @Archivo_Descarga, 
-        Archivo_Previsualizacion = @Archivo_Previsualizacion
+        Id_Genero = isNull(@Id_Genero,Id_Genero), 
+        Id_Idioma = isNull(@Id_Idioma,Id_Idioma), 
+        Nombre = isNull(@Nombre, Nombre),
+        Anno = isNull(@Anno, Anno),
+        Tipo_Interpretacion = isNull(@Tipo_Interpretacion, Tipo_Interpretacion),
+        Pais = isNull(@Pais, Pais),
+        Disquera = isNull(@Disquera, Disquera),
+        Disco = isNull(@Disco, Disco),
+        Compositor = isNull(@Compositor, Compositor),
+        Archivo_Descarga = isNull(@Archivo_Descarga, Archivo_Descarga),
+        Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
     SELECT * FROM Musica WHERE Codigo = @Codigo;
+END
 GO
 
 GO
 CREATE OR ALTER PROC dbo.EliminarMusica
-  @Codigo AS NVARCHAR(50)
+  @Codigo AS NVARCHAR(255)
 AS
     DELETE FROM Musica 
     WHERE 
@@ -112,7 +117,7 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.ObtenerLibro
-  @Codigo AS NVARCHAR(50) = NULL
+  @Codigo AS NVARCHAR(255) = NULL
 AS
   IF @Codigo IS NULL
   BEGIN
@@ -128,13 +133,13 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.InsertarLibro
-  @Codigo AS NVARCHAR(50),
+  @Codigo AS NVARCHAR(255),
   @Id_Genero AS INT,
   @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(50),
-  @Anno AS INT,
+  @Nombre AS NVARCHAR(255),
+  @Anno AS NVARCHAR(255),
   @Autores AS NVARCHAR(255),
-  @Editorial AS NVARCHAR(100),
+  @Editorial AS NVARCHAR(255),
   @Archivo_Descarga AS NVARCHAR(255),
   @Archivo_Previsualizacion AS NVARCHAR(255)
 AS
@@ -145,13 +150,13 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.ModificarLibro
-  @Codigo AS NVARCHAR(50),
+  @Codigo AS NVARCHAR(255),
   @Id_Genero AS INT,
   @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(50),
-  @Anno AS INT,
+  @Nombre AS NVARCHAR(255),
+  @Anno AS NVARCHAR(255),
   @Autores AS NVARCHAR(255),
-  @Editorial AS NVARCHAR(100),
+  @Editorial AS NVARCHAR(255),
   @Archivo_Descarga AS NVARCHAR(255),
   @Archivo_Previsualizacion AS NVARCHAR(255)
 AS
@@ -171,7 +176,7 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.EliminarLibro
-  @Codigo AS NVARCHAR(50)
+  @Codigo AS NVARCHAR(255)
 AS
     DELETE FROM Libros 
     WHERE 
@@ -183,12 +188,13 @@ GO
 -- Errores
 GO
 CREATE OR ALTER PROC dbo.InsertarError
-  @Mensaje AS NVARCHAR(50),
-  @Descripcion AS NVARCHAR(1000),
-  @Codigo_Error AS NVARCHAR(30)
+  @Mensaje AS NVARCHAR(255),
+  @Descripcion AS NVARCHAR(255),
+  @Codigo_Error AS NVARCHAR(255),
+  @Fecha AS NVARCHAR(255)
 AS
 	INSERT INTO Errores
-  VALUES (@Mensaje, @Descripcion, @Codigo_Error, GETDATE());
+  VALUES (@Mensaje, @Descripcion, @Codigo_Error, @Fecha);
 GO
 
 
@@ -196,12 +202,13 @@ GO
 GO
 CREATE OR ALTER PROC dbo.InsertarBitacora
   @Id_Usuario AS INT,
-  @Codigo_Registro AS NVARCHAR(50),
-  @Tipo AS NVARCHAR(50),
-  @Descripcion AS NVARCHAR(500),
-  @Detalle_Registro AS NVARCHAR(1000)
+  @Codigo_Registro AS NVARCHAR(255),
+  @Tipo AS NVARCHAR(255),
+  @Descripcion AS NVARCHAR(255),
+  @Detalle_Registro AS NVARCHAR(255),
+  @Fecha NVARCHAR(255)
 AS
 	INSERT INTO Bitacora
-  VALUES (@Id_Usuario, @Codigo_Registro, @Tipo, @Descripcion, @Detalle_Registro, GETDATE());
+  VALUES (@Id_Usuario, @Codigo_Registro, @Tipo, @Descripcion, @Detalle_Registro, @Fecha);
 GO
 

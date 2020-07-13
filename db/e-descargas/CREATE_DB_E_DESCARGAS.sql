@@ -1,27 +1,29 @@
 -- CREACION DE TABLAS
 
-CREATE TABLE Roles (
-    Id INT 
+CREATE TABLE Roles
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Rol NVARCHAR(50)
+	Rol NVARCHAR(255)
 		NOT NULL
 );
 
 
-CREATE TABLE Usuarios (
-    Id INT
+CREATE TABLE Usuarios
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Id_Rol INT
+	Id_Rol INT
 		NULL FOREIGN KEY REFERENCES Roles(Id),
-    Usuario NVARCHAR(50)
+	Usuario NVARCHAR(255)
 		NOT NULL UNIQUE,
-    Nombre NVARCHAR(50)
+	Nombre NVARCHAR(255)
 		NULL,
-	Primer_Apellido NVARCHAR(50)
+	Primer_Apellido NVARCHAR(255)
 		NULL,
-	Segundo_Apellido NVARCHAR(50)
+	Segundo_Apellido NVARCHAR(255)
 		NULL,
-    Correo NVARCHAR(50)
+	Correo NVARCHAR(255)
 		NOT NULL,
 	Contrasenna NVARCHAR(500)
 		NOT NULL,
@@ -31,54 +33,62 @@ CREATE TABLE Usuarios (
 		NOT NULL
 );
 
-CREATE TABLE Idiomas (
-    Id INT
+CREATE TABLE Idiomas
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Idioma NVARCHAR(50)
+	Idioma NVARCHAR(255)
 		NOT NULL,
 );
 
-CREATE TABLE Generos_Peliculas (
-    Id INT
+CREATE TABLE Generos_Peliculas
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Genero NVARCHAR(50)
+	Genero NVARCHAR(255)
 		NOT NULL,
 );
 
-CREATE TABLE Peliculas (
-    Codigo NVARCHAR(50)
+CREATE TABLE Peliculas
+(
+	Codigo NVARCHAR(255)
 		NOT NULL PRIMARY KEY,
-    Id_Genero INT
+	Id_Genero INT
 		NOT NULL FOREIGN KEY REFERENCES Generos_Peliculas(Id),
 	Id_Idioma INT
 		NOT NULL FOREIGN KEY REFERENCES Idiomas(Id),
-    Nombre NVARCHAR(50)
+	Nombre NVARCHAR(255)
 		NULL,
 	Anno INT
-		NULL,l
-	Actores NVARCHAR(255)
 		NULL,
-	Archivo_Descarga NVARCHAR(255)
+	Actores
+		NVARCHAR(255)
+		NULL,
+	Archivo_Descarga
+		NVARCHAR(255)
 		NOT NULL,
-    Archivo_Previsualizacion NVARCHAR(255)
+	Archivo_Previsualizacion
+		NVARCHAR(255)
 		NOT NULL
 );
 
-CREATE TABLE Generos_Libros (
-    Id INT
+CREATE TABLE Generos_Libros
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Genero NVARCHAR(50)
+	Genero NVARCHAR(255)
 		NOT NULL,
 );
 
-CREATE TABLE Libros (
-    Codigo NVARCHAR(50)
+CREATE TABLE Libros
+(
+	Codigo NVARCHAR(255)
 		NOT NULL PRIMARY KEY,
-    Id_Genero INT
+	Id_Genero INT
 		NULL FOREIGN KEY REFERENCES Generos_Libros(Id),
 	Id_Idioma INT
 		NULL FOREIGN KEY REFERENCES Idiomas(Id),
-    Nombre NVARCHAR(50)
+	Nombre NVARCHAR(255)
 		NULL,
 	Anno INT
 		NULL,
@@ -88,126 +98,130 @@ CREATE TABLE Libros (
 		NULL,
 	Archivo_Descarga NVARCHAR(255)
 		NOT NULL,
-    Archivo_Previsualizacion NVARCHAR(255)
+	Archivo_Previsualizacion NVARCHAR(255)
 		NOT NULL
 );
 
-CREATE TABLE Generos_Musica (
-    Id INT IDENTITY
+CREATE TABLE Generos_Musica
+(
+	Id INT IDENTITY
 		NOT NULL PRIMARY KEY,
-    Genero VARBINARY(500)
+	Genero NVARCHAR(255)
 		NOT NULL,
 );
 
 
-CREATE TABLE Musica (
-    Codigo VARBINARY(500)
+CREATE TABLE Musica
+(
+	Codigo NVARCHAR(255)
 		NOT NULL PRIMARY KEY,
-    Id_Genero INT
+	Id_Genero INT
 		NULL FOREIGN KEY REFERENCES Generos_Musica(Id),
 	Id_Idioma INT
 		NULL FOREIGN KEY REFERENCES Idiomas(Id),
-    Nombre VARBINARY(500)
+	Nombre NVARCHAR(255)
 		NULL,
-	Anno VARBINARY(500)
+	Anno NVARCHAR(255)
 		NULL,
-	Tipo_Interpretacion VARBINARY(500)
+	Tipo_Interpretacion NVARCHAR(255)
 		NULL,
-	Pais VARBINARY(500)
+	Pais NVARCHAR(255)
 		NULL,
-	Disquera VARBINARY(500)
+	Disquera NVARCHAR(255)
 		NULL,
-	Disco VARBINARY(500)
+	Disco NVARCHAR(255)
 		NULL,
-	Compositor VARBINARY(500)
+	Compositor NVARCHAR(255)
 		NULL,
-	Archivo_Descarga VARBINARY(500)
+	Archivo_Descarga NVARCHAR(255)
 		NOT NULL,
-    Archivo_Previsualizacion VARBINARY(500)
+	Archivo_Previsualizacion NVARCHAR(255)
 		NOT NULL
 );
 
-CREATE TABLE Bitacora (
-    Id INT IDENTITY
+CREATE TABLE Bitacora
+(
+	Id INT IDENTITY
 		NOT NULL PRIMARY KEY,
-    Id_Usuario INT
+	Id_Usuario INT
 		NULL FOREIGN KEY REFERENCES Usuarios(Id),
-	Codigo_Registro NVARCHAR(50)
+	Codigo_Registro NVARCHAR(255)
 		NOT NULL,
-	Tipo NVARCHAR(50)
+	Tipo NVARCHAR(255)
 		NOT NULL,
 	Descripcion NVARCHAR(500)
 		NOT NULL,
 	Detalle_Registro NVARCHAR(1000)
 		NOT NULL,
-	Fecha DATETIME
+	Fecha NVARCHAR(255)
 		NOT NULL
-		-- DEFAULT GETDATE()
 );
 
-CREATE TABLE Transacciones (
-    Id INT
+CREATE TABLE Transacciones
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-	Tipo_Pago NVARCHAR(50)
+	Tipo_Pago NVARCHAR(255)
 		NOT NULL,
-    Monto DECIMAL
+	Monto DECIMAL
 		NOT NULL,
-	Fecha DATETIME
+	Fecha NVARCHAR(255)
 		NOT NULL
-		--DEFAULT GETDATE()
 );
 
-CREATE TABLE Descargas (
-    Id INT
+CREATE TABLE Descargas
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-	Genero NVARCHAR(50)
+	Genero NVARCHAR(255)
 		NOT NULL,
-    Tipo NVARCHAR(50)
+	Tipo NVARCHAR(255)
 		NOT NULL,
-	Codigo_Referencia NVARCHAR(50)
+	Codigo_Referencia NVARCHAR(255)
 		NOT NULL,
-	Fecha DATETIME
+	Fecha NVARCHAR(255)
 		NOT NULL
-		--DEFAULT GETDATE()
 );
 
-CREATE TABLE Errores (
-    Id INT
+CREATE TABLE Errores
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-	Mensaje NVARCHAR(50)
+	Mensaje NVARCHAR(255)
 		NOT NULL,
-    Descripcion NVARCHAR(1000)
+	Descripcion NVARCHAR(1000)
 		NOT NULL,
 	Codigo_Error NVARCHAR(30)
 		NOT NULL,
-	Fecha DATETIME
+	Fecha NVARCHAR(255)
 		NOT NULL
-		--DEFAULT GETDATE()
 );
 
-CREATE TABLE Tarjetas (
-    Id INT
+CREATE TABLE Tarjetas
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
 	Id_Usuario INT
 		NOT NULL FOREIGN KEY REFERENCES Usuarios(Id),
-    Numero NUMERIC(20)
+	Numero NUMERIC(20)
 		NOT NULL UNIQUE,
-    CVV INT
+	CVV INT
 		NOT NULL,
-    Tipo NVARCHAR(20)
+	Tipo NVARCHAR(20)
 		NOT NULL,
-    Mes_Expiracion NUMERIC(18,0)
+	Mes_Expiracion NVARCHAR(255)
 		NOT NULL,
-	Anno_Expiracion NUMERIC(18,0)
+	Anno_Expiracion NVARCHAR(255)
 		NOT NULL,
 );
 
-CREATE TABLE EasyPay (
-    Id INT
+CREATE TABLE EasyPay
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Id_Usuario INT
+	Id_Usuario INT
 		NOT NULL FOREIGN KEY REFERENCES Usuarios(Id),
-    Numero_Cuenta  NUMERIC(20) 
+	Numero_Cuenta NVARCHAR(500)
 		NOT NULL,
 	Codigo_Seguridad INT
 		NOT NULL,
@@ -215,25 +229,27 @@ CREATE TABLE EasyPay (
 		NOT NULL
 );
 
-CREATE TABLE Parametros (
-    Id INT 
+CREATE TABLE Parametros
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Codigo NVARCHAR(100)
+	Codigo NVARCHAR(100)
 		NOT NULL,
-    Descripcion NVARCHAR(255)
+	Descripcion NVARCHAR(255)
 		NULL,
-    Valor NVARCHAR(1000)
+	Valor NVARCHAR(1000)
 		NOT NULL
 );
 
-CREATE TABLE Consecutivos (
-    Id INT 
+CREATE TABLE Consecutivos
+(
+	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-    Descripcion NVARCHAR(255)
+	Descripcion NVARCHAR(255)
 		NULL,
 	Consecutivo NVARCHAR(255)
 		NOT NULL,
-	Posee_Prefijo BIT
+	Posee_Prefijo NVARCHAR(255)
 		NOT NULL,
 	Prefijo NVARCHAR(255)
 		NULL,
