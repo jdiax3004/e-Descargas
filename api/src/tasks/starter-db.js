@@ -11,7 +11,7 @@ async function exec() {
     //await crearRoles()
     //await crearUsuarios()
     //await crearIdiomas()
-    await crearGenerosMusica()
+    //await crearGenerosMusica()
 
 }
 
@@ -21,6 +21,15 @@ async function crearConsecutivos() {
         Consecutivo: null,
         Posee_Prefijo: true,
         Prefijo: "US_",
+        Rango_Inicio: 1,
+        Rango_Final: 10000
+    })
+
+    await consecutivo.insertar({
+        Descripcion: consecutivo.TRANSACCION,
+        Consecutivo: null,
+        Posee_Prefijo: true,
+        Prefijo: "PAG_",
         Rango_Inicio: 1,
         Rango_Final: 10000
     })

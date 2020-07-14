@@ -300,69 +300,55 @@ GO
 
 -- Transacciones
 GO
-CREATE OR ALTER PROC dbo.ObtenerLibro
+CREATE OR ALTER PROC dbo.ObtenerTransaccion
   @Codigo AS NVARCHAR(255) = NULL
 AS
   IF @Codigo IS NULL
   BEGIN
-    SELECT * FROM Libros;
+    SELECT * FROM Transacciones;
   END
   ELSE
   BEGIN
     SELECT * 
-    FROM Libros 
+    FROM Transacciones 
     WHERE Codigo = @Codigo;
   END
 GO
 
 GO
-CREATE OR ALTER PROC dbo.InsertarLibro
+CREATE OR ALTER PROC dbo.InsertarTransaccion
   @Codigo AS NVARCHAR(255),
-  @Id_Genero AS INT,
-  @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(255),
-  @Anno AS NVARCHAR(255),
-  @Autores AS NVARCHAR(255),
-  @Editorial AS NVARCHAR(255),
-  @Archivo_Descarga AS NVARCHAR(255),
-  @Archivo_Previsualizacion AS NVARCHAR(255)
+  @Tipo_Pago AS NVARCHAR(255),
+  @Monto AS NVARCHAR(255),
+  @Fecha AS NVARCHAR(255)
 AS
-	INSERT INTO Libros
-  VALUES (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Autores, @Editorial, @Archivo_Descarga, @Archivo_Previsualizacion);
-  SELECT * FROM Libros WHERE Codigo = @Codigo;
+	INSERT INTO Transacciones
+  VALUES (@Codigo, @Tipo_Pago, @Monto, @Fecha);
+  SELECT * FROM Transacciones WHERE Codigo = @Codigo;
 GO
 
 GO
-CREATE OR ALTER PROC dbo.ModificarLibro
+CREATE OR ALTER PROC dbo.ModificarTransaccion
   @Codigo AS NVARCHAR(255),
-  @Id_Genero AS INT,
-  @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(255),
-  @Anno AS NVARCHAR(255),
-  @Autores AS NVARCHAR(255),
-  @Editorial AS NVARCHAR(255),
-  @Archivo_Descarga AS NVARCHAR(255),
-  @Archivo_Previsualizacion AS NVARCHAR(255)
+  @Tipo_Pago AS NVARCHAR(255),
+  @Monto AS NVARCHAR(255),
+  @Fecha AS NVARCHAR(255)
 AS
-	UPDATE Libros
+	UPDATE Transacciones
     SET 
-        Id_Genero = @Id_Genero, 
-        Id_Idioma = @Id_Idioma, 
-        Nombre = @Nombre, 
-        Anno = @Anno, 
-        Autores = @Autores,
-        Editorial = @Editorial,
-        Archivo_Descarga = @Archivo_Descarga, 
-        Archivo_Previsualizacion = @Archivo_Previsualizacion
+        Codigo = @Codigo, 
+        Tipo_Pago = @Tipo_Pago, 
+        Monto = @Monto, 
+        Fecha = @Fecha
     WHERE Codigo = @Codigo;
-    SELECT * FROM Libros WHERE Codigo = @Codigo;
+    SELECT * FROM Transacciones WHERE Codigo = @Codigo;
 GO
 
 GO
-CREATE OR ALTER PROC dbo.EliminarLibro
+CREATE OR ALTER PROC dbo.EliminarTransaccion
   @Codigo AS NVARCHAR(255)
 AS
-    DELETE FROM Libros 
+    DELETE FROM Transacciones 
     WHERE 
       Codigo = @Codigo;
 GO
