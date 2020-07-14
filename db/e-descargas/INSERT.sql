@@ -8,4 +8,4 @@ INSERT INTO Idiomas VALUES ('Español');
 INSERT INTO Generos_Musica VALUES ('Bachata');
 
 -- Usuario admin
-INSERT INTO Usuarios VALUES (1, 'admin', 'Admin', 'Istrador', 'Vargas', 'admin@mail.com', '123', 'Hola', 'Adios');
+INSERT INTO Usuarios VALUES ('US_1', 1, 'admin', 'Admin', 'Istrador', 'Vargas', 'admin@mail.com', '123', 'Hola', 'Adios');

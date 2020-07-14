@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "task:db": "node src/tasks/starter-db.js" 
   },
   "repository": "https://github.com/jdiax3004/e-Descargas.git",
   "license": "MIT",

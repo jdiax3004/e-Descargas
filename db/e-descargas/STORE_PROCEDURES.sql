@@ -8,9 +8,30 @@ AS
   SELECT * FROM Roles WHERE Id = SCOPE_IDENTITY();
 GO
 
+-- Idiomas
+GO
+CREATE OR ALTER PROC dbo.InsertarIdioma
+  @Idioma NVARCHAR(255)
+AS
+	INSERT INTO Idiomas
+  VALUES (@Idioma);
+  SELECT * FROM Idiomas WHERE Id = SCOPE_IDENTITY();
+GO
+
+-- Generos Musica
+GO
+CREATE OR ALTER PROC dbo.InsertarGeneroMusica
+  @Genero NVARCHAR(255)
+AS
+	INSERT INTO Generos_Musica
+  VALUES (@Genero);
+  SELECT * FROM Generos_Musica WHERE Id = SCOPE_IDENTITY();
+GO
+
 -- Usuarios
 GO
 CREATE OR ALTER PROC dbo.InsertarUsuario
+  @Codigo AS NVARCHAR(255),
   @Id_Rol AS INT,
   @Usuario AS NVARCHAR(255),
   @Nombre AS NVARCHAR(255),
@@ -22,8 +43,8 @@ CREATE OR ALTER PROC dbo.InsertarUsuario
   @Respuesta_Seguridad AS NVARCHAR(255)
 AS
 	INSERT INTO Usuarios
-  VALUES (@Id_Rol, @Usuario, @Nombre, @Primer_Apellido, @Segundo_Apellido, @Correo, @Contrasenna, @Pregunta_Seguridad, @Respuesta_Seguridad);
-  SELECT * FROM Usuarios WHERE Id = SCOPE_IDENTITY();
+  VALUES (@Codigo, @Id_Rol, @Usuario, @Nombre, @Primer_Apellido, @Segundo_Apellido, @Correo, @Contrasenna, @Pregunta_Seguridad, @Respuesta_Seguridad);
+  SELECT * FROM Usuarios WHERE Codigo = @Codigo;
 GO
 
 
@@ -201,7 +222,7 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.InsertarBitacora
-  @Id_Usuario AS INT,
+  @Codigo_Usuario AS NVARCHAR(255),
   @Codigo_Registro AS NVARCHAR(255),
   @Tipo AS NVARCHAR(255),
   @Descripcion AS NVARCHAR(255),
@@ -209,7 +230,7 @@ CREATE OR ALTER PROC dbo.InsertarBitacora
   @Fecha NVARCHAR(255)
 AS
 	INSERT INTO Bitacora
-  VALUES (@Id_Usuario, @Codigo_Registro, @Tipo, @Descripcion, @Detalle_Registro, @Fecha);
+  VALUES (@Codigo_Usuario, @Codigo_Registro, @Tipo, @Descripcion, @Detalle_Registro, @Fecha);
 GO
 
 -- Consecutivos
@@ -275,4 +296,73 @@ AS
     DELETE FROM Consecutivos 
     WHERE 
       Id = @Id;
+GO
+
+-- Transacciones
+GO
+CREATE OR ALTER PROC dbo.ObtenerLibro
+  @Codigo AS NVARCHAR(255) = NULL
+AS
+  IF @Codigo IS NULL
+  BEGIN
+    SELECT * FROM Libros;
+  END
+  ELSE
+  BEGIN
+    SELECT * 
+    FROM Libros 
+    WHERE Codigo = @Codigo;
+  END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.InsertarLibro
+  @Codigo AS NVARCHAR(255),
+  @Id_Genero AS INT,
+  @Id_Idioma AS INT,
+  @Nombre AS NVARCHAR(255),
+  @Anno AS NVARCHAR(255),
+  @Autores AS NVARCHAR(255),
+  @Editorial AS NVARCHAR(255),
+  @Archivo_Descarga AS NVARCHAR(255),
+  @Archivo_Previsualizacion AS NVARCHAR(255)
+AS
+	INSERT INTO Libros
+  VALUES (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Autores, @Editorial, @Archivo_Descarga, @Archivo_Previsualizacion);
+  SELECT * FROM Libros WHERE Codigo = @Codigo;
+GO
+
+GO
+CREATE OR ALTER PROC dbo.ModificarLibro
+  @Codigo AS NVARCHAR(255),
+  @Id_Genero AS INT,
+  @Id_Idioma AS INT,
+  @Nombre AS NVARCHAR(255),
+  @Anno AS NVARCHAR(255),
+  @Autores AS NVARCHAR(255),
+  @Editorial AS NVARCHAR(255),
+  @Archivo_Descarga AS NVARCHAR(255),
+  @Archivo_Previsualizacion AS NVARCHAR(255)
+AS
+	UPDATE Libros
+    SET 
+        Id_Genero = @Id_Genero, 
+        Id_Idioma = @Id_Idioma, 
+        Nombre = @Nombre, 
+        Anno = @Anno, 
+        Autores = @Autores,
+        Editorial = @Editorial,
+        Archivo_Descarga = @Archivo_Descarga, 
+        Archivo_Previsualizacion = @Archivo_Previsualizacion
+    WHERE Codigo = @Codigo;
+    SELECT * FROM Libros WHERE Codigo = @Codigo;
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarLibro
+  @Codigo AS NVARCHAR(255)
+AS
+    DELETE FROM Libros 
+    WHERE 
+      Codigo = @Codigo;
 GO

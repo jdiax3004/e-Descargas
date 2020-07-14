@@ -11,9 +11,9 @@ router.get('/consecutivos', async (req, res, next) => {
     }
 })
 
-router.get('/consecutivos/:codigo', async (req, res, next) => {
+router.get('/consecutivos/:Id', async (req, res, next) => {
     try {
-        const data = await servicio.obtenerUno(req.params.codigo)
+        const data = await servicio.obtenerUno(req.params.Id)
         return res.json({ success: true, data })
     } catch (error) {
         next(error)
@@ -38,9 +38,9 @@ router.put('/consecutivos', async (req, res, next) => {
     }
 })
 
-router.delete('/consecutivos/:codigo', async (req, res, next) => {
+router.delete('/consecutivos/:Id', async (req, res, next) => {
     try {
-        const data = await servicio.eliminar(req.params.codigo)
+        const data = await servicio.eliminar(req.params.Id)
         return res.json({ success: data })
     } catch (error) {
         next(error)
