@@ -90,11 +90,11 @@ CREATE TABLE Libros
 		NULL FOREIGN KEY REFERENCES Idiomas(Id),
 	Nombre NVARCHAR(255)
 		NULL,
-	Anno INT
+	Anno NVARCHAR(255)
 		NULL,
 	Autores NVARCHAR(255)
 		NULL,
-	Editorial NVARCHAR(100)
+	Editorial NVARCHAR(255)
 		NULL,
 	Archivo_Descarga NVARCHAR(255)
 		NOT NULL,

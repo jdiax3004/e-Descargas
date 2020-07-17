@@ -1,8 +1,7 @@
 const router = require('express').Router()
-const servicio = require('../services/libro.servicio')
+const servicio = require('../services/peliculas.servicio')
 
-
-router.get('/libro', async (req, res, next) => {
+router.get('/peliculas', async (req, res, next) => {
     try {
         const data = await servicio.obtener(req.query)
 
@@ -12,7 +11,7 @@ router.get('/libro', async (req, res, next) => {
     }
 })
 
-router.get('/libro/:codigo', async (req, res, next) => {
+router.get('/peliculas/:codigo', async (req, res, next) => {
     try {
         const data = await servicio.obtenerUno(req.params.codigo)
         return res.json({ success: true, data })
@@ -21,7 +20,7 @@ router.get('/libro/:codigo', async (req, res, next) => {
     }
 })
 
-router.post('/libro', async (req, res, next) => {
+router.post('/peliculas', async (req, res, next) => {
     try {
         const data = await servicio.insertar(req.body)
         return res.json({ success: true, data })
@@ -30,7 +29,7 @@ router.post('/libro', async (req, res, next) => {
     }
 })
 
-router.put('/libro', async (req, res, next) => {
+router.put('/peliculas', async (req, res, next) => {
     try {
         const data = await servicio.modificar(req.body)
         return res.json({ success: true, data })
@@ -39,7 +38,7 @@ router.put('/libro', async (req, res, next) => {
     }
 })
 
-router.delete('/libro/:codigo', async (req, res, next) => {
+router.delete('/peliculas/:codigo', async (req, res, next) => {
     try {
         const data = await servicio.eliminar(req.params.codigo)
         return res.json({ success: data })
@@ -48,4 +47,5 @@ router.delete('/libro/:codigo', async (req, res, next) => {
     }
 })
 
-module.exports = router;
+
+module.exports = router
