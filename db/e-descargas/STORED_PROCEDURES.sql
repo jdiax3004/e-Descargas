@@ -193,20 +193,20 @@ GO
 GO
 CREATE OR ALTER PROC dbo.ModificarLibro
   @Codigo AS NVARCHAR(255),
-  @Id_Genero AS INT,
-  @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(255),
-  @Anno AS NVARCHAR(255),
-  @Autores AS NVARCHAR(255),
-  @Editorial AS NVARCHAR(255),
-  @Archivo_Descarga AS NVARCHAR(255),
-  @Archivo_Previsualizacion AS NVARCHAR(255)
+  @Id_Genero AS INT= null,
+  @Id_Idioma AS INT= null,
+  @Nombre AS NVARCHAR(255)= null,
+  @Anno AS NVARCHAR(255)= null,
+  @Autores AS NVARCHAR(255)= null,
+  @Editorial AS NVARCHAR(255)= null,
+  @Archivo_Descarga AS NVARCHAR(255)= null,
+  @Archivo_Previsualizacion AS NVARCHAR(255)= null
 
 AS
 BEGIN
   SET NOCOUNT ON
 
-  UPDATE Libro
+  UPDATE Libros
     SET 
         Id_Genero = isNull(@Id_Genero,Id_Genero), 
         Id_Idioma = isNull(@Id_Idioma,Id_Idioma), 
@@ -218,7 +218,7 @@ BEGIN
         Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
   SELECT *
-  FROM Libro
+  FROM Libros
   WHERE Codigo = @Codigo;
 END
 GO
@@ -273,13 +273,13 @@ GO
 GO
 CREATE OR ALTER PROC dbo.ModificarPeliculas
   @Codigo AS NVARCHAR(255),
-  @Id_Genero AS INT,
-  @Id_Idioma AS INT,
-  @Nombre AS NVARCHAR(255),
-  @Anno AS NVARCHAR(255),
-  @Actores AS NVARCHAR(255),
-  @Archivo_Descarga AS NVARCHAR(255),
-  @Archivo_Previsualizacion AS NVARCHAR(255)
+  @Id_Genero AS INT= null,
+  @Id_Idioma AS INT= null,
+  @Nombre AS NVARCHAR(255)= null,
+  @Anno AS NVARCHAR(255)= null,
+  @Actores AS NVARCHAR(255)= null,
+  @Archivo_Descarga AS NVARCHAR(255)= null,
+  @Archivo_Previsualizacion AS NVARCHAR(255)= null
 AS
 BEGIN
   SET NOCOUNT ON
