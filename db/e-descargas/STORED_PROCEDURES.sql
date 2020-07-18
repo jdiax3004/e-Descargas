@@ -60,6 +60,48 @@ WHERE Codigo = @Codigo;
 GO
 
 
+GO
+CREATE OR ALTER PROC dbo.ModificarUsuario
+  @Codigo AS NVARCHAR(255),
+  @Id_Rol AS INT = null,
+  @Usuario AS NVARCHAR(255)= null,
+  @Nombre AS NVARCHAR(255)= null,
+  @Primer_Apellido AS NVARCHAR(255)= null,
+  @Segundo_Apellido AS NVARCHAR(255)= null,
+  @Correo AS NVARCHAR(255)= null,
+  @Contrasenna AS NVARCHAR(255)= null,
+  @Pregunta_Seguridad AS NVARCHAR(255)= null,
+  @Respuesta_Seguridad AS NVARCHAR(255)= null
+AS
+BEGIN
+  SET NOCOUNT ON
+
+  UPDATE Usuarios
+    SET 
+        Id_Rol = isNull(@Id_Rol,Id_Rol), 
+        Usuario = isNull(@Usuario,Usuario), 
+        Nombre = isNull(@Nombre, Nombre),
+        Primer_Apellido = isNull(@Primer_Apellido, Primer_Apellido),
+        Segundo_Apellido = isNull(@Segundo_Apellido, Segundo_Apellido),
+        Correo = isNull(@Correo, Correo),
+        Contrasenna = isNull(@Contrasenna, Contrasenna),
+        Pregunta_Seguridad = isNull(@Pregunta_Seguridad, Pregunta_Seguridad),
+        Respuesta_Seguridad = isNull(@Respuesta_Seguridad, Respuesta_Seguridad)
+    WHERE Codigo = @Codigo;
+  SELECT *
+  FROM Usuarios
+  WHERE Codigo = @Codigo;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarUsuario
+  @Codigo AS NVARCHAR(255)
+AS
+DELETE FROM Usuarios 
+    WHERE 
+      Codigo = @Codigo;
+GO
 
 -- Musica
 GO
