@@ -1,0 +1,16 @@
+{
+  "name": "e-descargas",
+  "version": "1.0.0",
+  "description": "e-Descargas Angular Utils",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jose Ulloa",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "^10.0.4",
+    "@angular/core": "^10.0.4",
+    "rxjs": "^6.6.0",
+    "sweetalert2": "^9.17.0"
+  }
+}
