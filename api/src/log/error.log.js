@@ -1,4 +1,4 @@
-const { storeProcedure } = require('../utils/db.utils')
+const { storeProcedure } = require("utils/db.utils")({ db: require('../db') })
 
 let logger = {}
 
