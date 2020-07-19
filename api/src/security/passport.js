@@ -1,5 +1,6 @@
 const LocalStrategy = require("passport-local").Strategy;
 const usuarios = require("../services/usuarios.servicio");
+
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy(
