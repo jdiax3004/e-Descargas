@@ -25,7 +25,7 @@ module.exports = ({ db }) => {
       for (let property in parametros) {
         if (parametros.hasOwnProperty(property)) {
           let value = parametros[property]
-          parametrosEncrytados[property] = !property.includes('Id') && !property.includes('Codigo') ? encrypt(value) : value
+          parametrosEncrytados[property] = debeEncriptarse(property) ? encrypt(value) : value
         }
       }
 
@@ -54,10 +54,19 @@ module.exports = ({ db }) => {
     for (let property in objeto) {
       if (objeto.hasOwnProperty(property)) {
         let value = objeto[property]
-        objeto[property] = !property.includes('Id') && !property.includes('Codigo') ? decrypt(value) : value
+        objeto[property] = debeEncriptarse(property) ? decrypt(value) : value
       }
     }
     return objeto
+  }
+
+  /**
+   * Indica si la columna deberia encriptarse o no.
+   * 
+   * @param {string} propiedad nombre de la columna.
+   */
+  function debeEncriptarse(propiedad) {
+    return !propiedad.includes('Id_') && !propiedad.includes('Codigo_') && propiedad != 'Id' && propiedad != 'Codigo'
   }
 
   return servicio

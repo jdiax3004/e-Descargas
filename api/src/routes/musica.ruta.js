@@ -5,7 +5,7 @@ router.get('/musica', async (req, res, next) => {
     try {
         const data = await servicio.obtener(req.query)
 
-        return res.json({ success: true, data })
+        return res.json(data)
     } catch (error) {
         next(error)
     }
@@ -14,7 +14,7 @@ router.get('/musica', async (req, res, next) => {
 router.get('/musica/:codigo', async (req, res, next) => {
     try {
         const data = await servicio.obtenerUno(req.params.codigo)
-        return res.json({ success: true, data })
+        return res.json(data)
     } catch (error) {
         next(error)
     }
@@ -23,7 +23,7 @@ router.get('/musica/:codigo', async (req, res, next) => {
 router.post('/musica', async (req, res, next) => {
     try {
         const data = await servicio.insertar(req.body)
-        return res.json({ success: true, data })
+        return res.json(data)
     } catch (error) {
         next(error)
     }
@@ -32,7 +32,7 @@ router.post('/musica', async (req, res, next) => {
 router.put('/musica', async (req, res, next) => {
     try {
         const data = await servicio.modificar(req.body)
-        return res.json({ success: true, data })
+        return res.json(data)
     } catch (error) {
         next(error)
     }

@@ -9,9 +9,9 @@ async function exec() {
   await db.authenticate();
 
   //await crearConsecutivos();
-  //await crearRoles();
-  //await crearUsuarios();
-  //await crearIdiomas();
+//await crearRoles();
+ //await crearUsuarios();
+  await crearIdiomas();
   //await crearGenerosMusica();
   //await crearGenerosLibros();
   //await crearGenerosPeliculas();
