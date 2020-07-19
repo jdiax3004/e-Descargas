@@ -28,6 +28,8 @@ app.use(process.env.API_PATH, require("./routes/consecutivo.ruta"))
 app.use(process.env.API_PATH, require("./routes/musica.ruta"))
 app.use(process.env.API_PATH, require("./routes/libro.ruta"))
 app.use(process.env.API_PATH, require("./routes/peliculas.ruta"))
+app.use(process.env.API_PATH, require("./routes/transaccion.ruta"))
+app.use(process.env.API_PATH, require("./routes/usuarios.ruta"))
 
 
 // handle erros

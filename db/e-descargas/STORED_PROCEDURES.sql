@@ -37,7 +37,53 @@ FROM Generos_Musica
 WHERE Id = SCOPE_IDENTITY();
 GO
 
+-- Generos Libros
+GO
+CREATE OR ALTER PROC dbo.InsertarGeneroLibros
+  @Genero NVARCHAR(255)
+AS
+INSERT INTO Generos_Libros
+VALUES
+  (@Genero);
+SELECT *
+FROM Generos_Libros
+WHERE Id = SCOPE_IDENTITY();
+GO
+
+-- Generos Libros
+GO
+CREATE OR ALTER PROC dbo.InsertarGeneroPeliculas
+  @Genero NVARCHAR(255)
+AS
+INSERT INTO Generos_Peliculas
+VALUES
+  (@Genero);
+SELECT *
+FROM Generos_Peliculas
+WHERE Id = SCOPE_IDENTITY();
+GO
+
+
+
 -- Usuarios
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerUsuario
+  @Codigo AS NVARCHAR(255) = NULL
+AS
+IF @Codigo IS NULL
+  BEGIN
+  SELECT *
+  FROM Usuarios;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Usuarios
+  WHERE Codigo = @Codigo;
+END
+GO
+
 GO
 CREATE OR ALTER PROC dbo.InsertarUsuario
   @Codigo AS NVARCHAR(255),
@@ -59,6 +105,7 @@ FROM Usuarios
 WHERE Codigo = @Codigo;
 GO
 
+SELECT * FROM USUARIOS;
 
 GO
 CREATE OR ALTER PROC dbo.ModificarUsuario
