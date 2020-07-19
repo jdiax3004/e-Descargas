@@ -1,5 +1,5 @@
-const { storeProcedure } = require('../utils/db.utils')
-const { filtrar } = require('../utils/array.utils')
+const { storeProcedure } = require("utils/db.utils")({ db: require('../db') });
+const { filtrar } = require("utils/array.utils");
 const bitacora = require('../log/bitacora.log')
 const consecutivo = require('./consecutivo.servicio')
 
