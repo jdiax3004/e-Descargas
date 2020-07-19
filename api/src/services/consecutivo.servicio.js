@@ -4,7 +4,7 @@ const bitacora = require("../log/bitacora.log");
 
 let servicio = {};
 
-// tipos de consecutivos
+// Tipos de Consecutivos
 servicio.LIBRO = "Libro";
 servicio.MUSICA = "Musica";
 servicio.USUARIO = "Usuario";

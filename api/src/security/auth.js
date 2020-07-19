@@ -4,6 +4,6 @@ module.exports = {
         if(req.isAuthenticated()){
             return next();
         }
-        res.send("No auth")
+        res.send("Usuario no autenticado")
     }
 }

@@ -9,12 +9,13 @@ const cors = require("cors");
 const app = express();
 const errorLogger = require("./log/error.log");
 
+//Configuración Passport
 require("./security/passport")(passport);
 
-// server settings
+// Configuración Servidor
 app.set("port", process.env.PORT || 3000);
 
-// middlewares
+// Middleware
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
@@ -41,18 +42,17 @@ app.use(
   )
 );
 
-// static files
-// app.use(express.static(path.join(__dirname, "..", "public")))
-
-// routes
+// Rutas
 app.use(process.env.API_PATH, require("./routes/consecutivo.ruta"));
 app.use(process.env.API_PATH, require("./routes/musica.ruta"));
 app.use(process.env.API_PATH, require("./routes/libro.ruta"));
 app.use(process.env.API_PATH, require("./routes/peliculas.ruta"));
 app.use(process.env.API_PATH, require("./routes/transaccion.ruta"));
 app.use(process.env.API_PATH, require("./routes/usuarios.ruta"));
+app.use(process.env.API_PATH, require("./routes/parametros.ruta"));
 
-// handle erros
+
+// Manejo de Errores
 app.use((err, req, res, next) => {
   errorLogger.log(err);
   return res.status(501).json({ success: false, errors: err.message });

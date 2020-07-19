@@ -50,7 +50,7 @@ FROM Generos_Libros
 WHERE Id = SCOPE_IDENTITY();
 GO
 
--- Generos Libros
+-- Generos Peliculas
 GO
 CREATE OR ALTER PROC dbo.InsertarGeneroPeliculas
   @Genero NVARCHAR(255)
@@ -62,8 +62,6 @@ SELECT *
 FROM Generos_Peliculas
 WHERE Id = SCOPE_IDENTITY();
 GO
-
-
 
 -- Usuarios
 
@@ -105,7 +103,6 @@ FROM Usuarios
 WHERE Codigo = @Codigo;
 GO
 
-SELECT * FROM USUARIOS;
 
 GO
 CREATE OR ALTER PROC dbo.ModificarUsuario
@@ -400,7 +397,6 @@ DELETE FROM Peliculas
 GO
 
 
-
 -- Errores
 GO
 CREATE OR ALTER PROC dbo.InsertarError
@@ -561,4 +557,68 @@ AS
 DELETE FROM Transacciones 
     WHERE 
       Codigo = @Codigo;
+GO
+
+-- Parametros
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerParametros
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Parametros;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Parametros
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.InsertarParametros
+  @Nombre AS NVARCHAR(100),
+  @Descripcion NVARCHAR(255),
+  @Valor AS NVARCHAR(1000)
+AS
+INSERT INTO Parametros
+VALUES
+  (@Nombre,@Descripcion,@Valor);
+SELECT *
+FROM Parametros
+WHERE Id = SCOPE_IDENTITY();
+GO
+
+
+GO
+CREATE OR ALTER PROC dbo.ModificarParametros
+  @Id AS INT,
+  @Nombre AS NVARCHAR(100) = null,
+  @Descripcion NVARCHAR(255) = null,
+  @Valor AS NVARCHAR(1000) = null
+AS
+BEGIN
+  SET NOCOUNT ON
+  UPDATE Parametros
+    SET 
+        Nombre = isNull(@Nombre,Nombre), 
+        Descripcion = isNull(@Descripcion,Descripcion), 
+        Valor = isNull(@Valor, Valor)
+    WHERE Id = @Id;
+  SELECT *
+  FROM Parametros
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarParametros
+  @Id AS INT
+AS
+DELETE FROM Parametros 
+    WHERE 
+      @Id = @Id;
 GO

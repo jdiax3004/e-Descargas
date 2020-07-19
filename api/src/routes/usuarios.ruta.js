@@ -34,7 +34,6 @@ router.get("/usuarios/actual", (req, res) => {
 router.get("/usuarios", async (req, res, next) => {
   try {
     const data = await servicio.obtener(req.query);
-
     return res.json({ success: true, data });
   } catch (error) {
     next(error);

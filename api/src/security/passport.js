@@ -10,10 +10,10 @@ module.exports = function (passport) {
       function (username, password, done) {
         usuarios.obtener({ Usuario: username }).then((user) => {
           if (!user) {
-            return done(null, false, { message: "Incorrect username." });
+            return done(null, false, { message: "Usuario Incorrecto" });
           }
           if (user[0].Contrasenna != password) {
-            return done(null, false, { message: "Incorrect password." });
+            return done(null, false, { message: "Contraseña Incorrecta" });
           }
           return done(null, user);
         });
