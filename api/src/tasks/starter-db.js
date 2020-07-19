@@ -12,9 +12,9 @@ async function exec() {
 //await crearRoles();
  //await crearUsuarios();
   await crearIdiomas();
-  await crearGenerosMusica();
-  await crearGenerosLibros();
-  await crearGenerosPeliculas();
+  //await crearGenerosMusica();
+  //await crearGenerosLibros();
+  //await crearGenerosPeliculas();
 }
 
 async function crearConsecutivos() {
