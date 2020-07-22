@@ -5,5 +5,13 @@ module.exports = {
             return next();
         }
         res.status(401).json({ error: "Usuario no autenticado" })
+    },
+
+    isAuth: (rol,req,res,next) => {
+        if(rol.includes(req.user[0].Id_Rol)) {
+            return next();
+        }
+        res.send("Usuario no autorizado")
     }
+    
 }
