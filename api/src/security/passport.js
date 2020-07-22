@@ -10,11 +10,11 @@ module.exports = function (passport) {
       },
       function (username, password, done) {
         usuarios.obtener({ Usuario: username }).then((users) => {
-          let users = user[0];
+          let user = users[0];
           if (!user) {
             return done(null, false, { message: "Usuario Incorrecto" });
           }
-          if (users.Contrasenna != password) {
+          if (user.Contrasenna != password) {
             return done(null, false, { message: "Contraseña Incorrecta" });
           }
           return done(null, user);
@@ -24,7 +24,7 @@ module.exports = function (passport) {
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user[0].Codigo);
+    done(null, user.Codigo);
   });
 
   passport.deserializeUser((id, done) => {

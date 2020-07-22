@@ -21,10 +21,13 @@ import { CrearPeliculaComponent } from './crear-pelicula/crear-pelicula.componen
 import { CrearLibroComponent } from './crear-libro/crear-libro.component';
 import { CrearCancionComponent } from './crear-cancion/crear-cancion.component';
 import { ConsultaBitacoraComponent } from './consulta-bitacora/consulta-bitacora.component';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [PagesComponent, DashboardComponent, CrearUsuarioComponent, AsignarRolesComponent, CambiarContrasenaComponent, ConsecutivosComponent, ParametrosComponent, PeliculasComponent, LibrosComponent, MusicaComponent, BitacoraComponent, TransaccionesComponent, DescargasComponent, ErroresComponent, CrearPeliculaComponent, CrearLibroComponent, CrearCancionComponent, ConsultaBitacoraComponent],
-  imports: [CommonModule, SharedModule, PAGES_ROUTES],
+  imports: [CommonModule, SharedModule, PAGES_ROUTES, HttpClientModule],
   exports: [DashboardComponent],
+  providers: [AuthGuardService]
 })
 export class PagesModule {}

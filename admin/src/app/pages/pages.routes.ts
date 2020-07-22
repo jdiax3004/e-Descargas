@@ -33,13 +33,13 @@ const pagesRoutes: Routes = [
       {
         path: "crearUsuario",
         component: CrearUsuarioComponent,
-        data: { titulo: "Crear usuario", Id_Rol: ADMINISTRADOR },
+        data: { titulo: "Crear usuario", Id_Rol: [ADMINISTRADOR] },
         canActivate: [AuthGuard]
       },
       {
         path: "asignarRol",
         component: AsignarRolesComponent,
-        data: { titulo: "Asignar Roles", Id_Rol: ADMINISTRADOR },
+        data: { titulo: "Asignar Roles", Id_Rol: [ADMINISTRADOR] },
         canActivate: [AuthGuard]
       },
       {
