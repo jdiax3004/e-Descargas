@@ -9,11 +9,12 @@ module.exports = function (passport) {
         passwordField: "Contrasenna",
       },
       function (username, password, done) {
-        usuarios.obtener({ Usuario: username }).then((user) => {
+        usuarios.obtener({ Usuario: username }).then((users) => {
+          let users = user[0];
           if (!user) {
             return done(null, false, { message: "Usuario Incorrecto" });
           }
-          if (user[0].Contrasenna != password) {
+          if (users.Contrasenna != password) {
             return done(null, false, { message: "Contraseña Incorrecta" });
           }
           return done(null, user);
