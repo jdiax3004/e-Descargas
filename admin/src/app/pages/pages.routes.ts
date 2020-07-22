@@ -24,11 +24,13 @@ const pagesRoutes: Routes = [
   {
     path: "",
     component: PagesComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: "dashboard",
         component: DashboardComponent,
-        data: { titulo: "Dashboard" },
+        data: { titulo: "Dashboard", Id_Rol: [ADMINISTRADOR] },
+        canActivate: [AuthGuard]
       },
       {
         path: "crearUsuario",

@@ -5,48 +5,66 @@
           <h3 class="card-tittle">
               Crear Usuario
           </h3>
-          <form>
+          <form #form="ngForm" (ngSubmit)="submit()">
             <div class="col-md-12 ">
                 <div class="form-group">
                     <label>Usuario</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="Usuario" [(ngModel)]="objeto.Usuario">
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" name="Nombre" [(ngModel)]="objeto.Nombre">
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <div class="form-group">
+                    <label>Primer apellido</label>
+                    <input type="text" class="form-control" name="Primer_apellido" [(ngModel)]="objeto.Primer_apellido">
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <div class="form-group">
+                    <label>Segundo apellido</label>
+                    <input type="text" class="form-control" name="Segundo_apellido" [(ngModel)]="objeto.Segundo_apellido">
                 </div>
             </div>
             <div class="col-md-12 ">
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="text" class="form-control">
+                    <input type="password" class="form-control" name="Contrasenna" [(ngModel)]="objeto.Contrasenna">
                 </div>
             </div>
             <div class="col-md-12 ">
                 <div class="form-group">
                     <label>Confirmar contraseña</label>
-                    <input type="text" class="form-control">
+                    <input type="password" class="form-control" name="confirmarContrasenna" [(ngModel)]="confirmarContrasenna">
                 </div>
             </div>
             <div class="col-md-12 ">
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control">
+                    <input type="email" class="form-control" class="form-control" name="Correo" [(ngModel)]="objeto.Correo">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Pregunta seguridad</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Pregunta_Seguridad" [(ngModel)]="objeto.Pregunta_Seguridad">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Respuesta Seguridad</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Respuesta_Seguridad" [(ngModel)]="objeto.Respuesta_Seguridad">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+                    <button type="submit" class="btn btn-success" (click)="submit()"> <i class="fa fa-check"></i> Guardar</button>
                     <button type="button" class="btn btn-inverse">Cancelar</button>
                 </div>
             </div>

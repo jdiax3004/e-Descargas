@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class UsuarioService extends CRUDService<Usuario> {
 
   constructor(private http: HttpClient) {
-    super(http, '/users');
+    super(http, '/usuarios');
   }
 
   login(Usuario: string, Contrasenna: string) {
@@ -21,9 +21,7 @@ export class UsuarioService extends CRUDService<Usuario> {
   }
 
   logout() {
-    return this.http.get(`${environment.apiUrl}/logout`, {
-      withCredentials: true
-    });
+    return this.http.get(`${environment.apiUrl}/logout`);
   }
 
   actual() {

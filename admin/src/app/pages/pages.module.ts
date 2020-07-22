@@ -23,10 +23,11 @@ import { CrearCancionComponent } from './crear-cancion/crear-cancion.component';
 import { ConsultaBitacoraComponent } from './consulta-bitacora/consulta-bitacora.component';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PagesComponent, DashboardComponent, CrearUsuarioComponent, AsignarRolesComponent, CambiarContrasenaComponent, ConsecutivosComponent, ParametrosComponent, PeliculasComponent, LibrosComponent, MusicaComponent, BitacoraComponent, TransaccionesComponent, DescargasComponent, ErroresComponent, CrearPeliculaComponent, CrearLibroComponent, CrearCancionComponent, ConsultaBitacoraComponent],
-  imports: [CommonModule, SharedModule, PAGES_ROUTES, HttpClientModule],
+  imports: [CommonModule, SharedModule, PAGES_ROUTES, HttpClientModule, FormsModule],
   exports: [DashboardComponent],
   providers: [AuthGuardService]
 })

@@ -64,9 +64,10 @@ export class AuthService {
 
   logout() {
     this.usuarioService.logout().subscribe(data => {
+      console.log('oica')
       this.actual = null
       deleteCookie('connect.sid')
-      this.router.navigate([''])
+      this.router.navigate(['login'])
     }, error => this.alert.handleError(error))
     
   }

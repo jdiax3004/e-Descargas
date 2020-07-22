@@ -12,10 +12,13 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
+router.get("/logout", (req, res, next) => {
   try {
     req.logout();
-    return res.status(200).send(true);
+    req.session.destroy((err) => {
+      next(err);
+    });
+    return res.json(true);
   } catch (error) {
     next(error);
   }
@@ -23,7 +26,6 @@ router.get("/logout", (req, res) => {
 
 router.get("/actual", (req, res) => {
   try {
-    console.log('pene', req.user)
     return res.json(req.user);
   } catch (error) {
     next(error);
