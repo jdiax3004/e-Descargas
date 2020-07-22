@@ -7,8 +7,8 @@ module.exports = {
         res.status(401).json({ error: "Usuario no autenticado" })
     },
 
-    isAuth: (rol,req,res,next) => {
-        if(rol.includes(req.user[0].Id_Rol)) {
+    isAuth: (roles, req,res,next) => {
+        if(roles.includes(req.user[0].Id_Rol)) {
             return next();
         }
         res.send("Usuario no autorizado")

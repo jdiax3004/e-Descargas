@@ -16,7 +16,10 @@ require("./security/passport")(passport);
 app.set("port", process.env.PORT || 3000);
 
 // Middleware
-app.use(cors());
+app.use(cors({ 
+  origin: ["http://localhost:4200", "http://127.0.0.1:4200", "https://fonts.gstatic.com"],
+  credentials: true
+}));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser(process.env.SESSION_SECRET));
@@ -55,7 +58,7 @@ app.use(process.env.API_PATH, require("./routes/parametros.ruta"));
 // Manejo de Errores
 app.use((err, req, res, next) => {
   errorLogger.log(err);
-  return res.status(501).json({ success: false, errors: err.message });
+  return res.status(501).json({ success: false, message: err.message });
 });
 
 module.exports = app;

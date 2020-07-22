@@ -9,6 +9,9 @@ import { APP_ROUTES } from "./app.routes";
 import { PagesModule } from "./pages/pages.module";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { LoginGuardService } from './services/login-guard.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     PagesModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LoginGuardService, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

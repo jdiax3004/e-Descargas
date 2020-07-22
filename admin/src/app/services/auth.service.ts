@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
-import { AlertService } from './alert.service'
 import { environment } from 'src/environments/environment'
 import { Router } from '@angular/router'
 import { deleteCookie } from '../utils/cookie.util'
 import { UsuarioService } from './usuario.service'
 import { Usuario } from '../models/usuario'
+import { AlertService } from './alert.service'
 
 @Injectable({
   providedIn: 'root'
@@ -29,21 +29,21 @@ export class AuthService {
 
   }
 
-  isAuth(rol?: number): boolean {
+  isAuth(roles?: number[]): boolean {
     if (this.actual) {
-      if (rol) return this.actual.Id_Rol == rol
+      if (roles) return roles.includes(this.actual.Id_Rol)
       return true
     }
     return false
   }
 
   goHome() {
-    this.router.navigate([''])
+    this.router.navigate(['dashboard'])
   }
 
-  login(email: string, password: string) {
+  login(usuario: string, contrasenna: string) {
     this.alert.showLoading()
-    this.usuarioService.login(email, password).subscribe((data: any) => {
+    this.usuarioService.login(usuario, contrasenna).subscribe((data: any) => {
       if (data) {
         this.actual = data
         this.alert.hideLoading(`Bienvenido ${this.actual.Nombre}!`)
@@ -64,7 +64,6 @@ export class AuthService {
 
   logout() {
     this.usuarioService.logout().subscribe(data => {
-      console.log(data)
       this.actual = null
       deleteCookie('connect.sid')
       this.router.navigate([''])

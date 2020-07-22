@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: "app-login",
@@ -7,11 +8,12 @@ import { FormGroup } from "@angular/forms";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit() {}
 
   ingresar(form: FormGroup) {
-    console.log(form.value);
+    const { Usuario, Contrasenna } = form.value
+    this.auth.login(Usuario, Contrasenna)
   }
 }
