@@ -17,6 +17,8 @@ import { CrearPeliculaComponent } from './crear-pelicula/crear-pelicula.componen
 import { CrearLibroComponent } from './crear-libro/crear-libro.component';
 import { CrearCancionComponent } from './crear-cancion/crear-cancion.component';
 import { ConsultaBitacoraComponent } from './consulta-bitacora/consulta-bitacora.component';
+import { AuthGuardService as AuthGuard } from '../services/auth-guard.service'
+import { ADMINISTRADOR } from '../constants/roles-usuarios';
 
 const pagesRoutes: Routes = [
   {
@@ -31,12 +33,14 @@ const pagesRoutes: Routes = [
       {
         path: "crearUsuario",
         component: CrearUsuarioComponent,
-        data: { titulo: "Crear usuario" },
+        data: { titulo: "Crear usuario", Id_Rol: ADMINISTRADOR },
+        canActivate: [AuthGuard]
       },
       {
         path: "asignarRol",
         component: AsignarRolesComponent,
-        data: { titulo: "Asignar Roles" },
+        data: { titulo: "Asignar Roles", Id_Rol: ADMINISTRADOR },
+        canActivate: [AuthGuard]
       },
       {
         path: "cambiarContrasena",

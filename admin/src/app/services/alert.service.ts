@@ -1,74 +1,94 @@
-import { Injectable } from '@angular/core'
-import { UserService } from './user.service'
-import { AlertService } from './alert.service'
-import { environment } from 'src/environments/environment'
-import { Router } from '@angular/router'
-import { deleteCookie } from '../utils/cookie.util'
-import { Usuario } from '../models/usuario'
+import { Injectable } from '@angular/core';
+import Swal, { SweetAlertIcon, SweetAlertOptions } from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  constructor(private userService: UserService, private router: Router, private alert: AlertService) { }
-  auth_cookie = 'connect.sid'
-  cookie_id = 'uid'
+export class AlertService {
 
-  public current: Usuario
+  constructor() { }
 
-  getCurent() {
-    return new Promise((resolve, reject) => {
-      this.userService.current().subscribe((data: any) => {
-        this.current = data ? data: null;
-        resolve()
-      })
-    })
-
+  /**
+   * Display a custom sweet alert dialog.
+   * @param options sweet alert options
+   */
+  show(options: SweetAlertOptions) {
+    return Swal.fire(options);
   }
 
-  isAuth(role?: string): boolean {
-    if (this.current) {
-      if (role) return this.current.type == role
-      return true
-    }
-    return false
+  /**
+   * Display a success sweet alert dialog.
+   * @param text message.
+   */
+  success(text: string) {
+    this.show({title: 'Completado!', text, icon: 'success'});
   }
 
-  goHome() {
-    if (this.isAuth('ADMIN'))
-      this.router.navigate(['admin'])
-    else if (this.isAuth('CLIENT'))
-      this.router.navigate([''])
+  /**
+   * Display an error sweet alert dialog.
+   * @param text message.
+   */
+  error(text: string) {
+    this.show({title: 'Error', text, icon: 'error'});
   }
 
-  login(email: string, password: string) {
-    this.alert.showLoading()
-    this.userService.login(email, password).subscribe((data: any) => {
-      if (data) {
-        this.current = data
-        this.alert.hideLoading(`Bienvenido ${this.current.name}!`)
-        this.goHome()
+    /**
+   * Display an error sweet alert dialog.
+   * @param text message.
+   */
+  handleError(error: any) {
+    console.log(error)
+    this.error(error.error.message || 'Ha ocurrido un problema.');
+  }
+
+  /**
+   * Show a pre confirmation modal and then excecute a promise, wait until resolve.
+   * 
+   * @param title text of title.
+   * @param text content of modal.
+   * @param callback action to excecute.
+   * @param success optional callback on success.
+   * @param fail optional callback on fail.
+   */
+  preConfirmLoading(title: string, text: string, callback, success?: Function, fail?: Function) {
+    this.show({
+      title, 
+      text,
+      icon: 'warning',
+      showCancelButton: true, 
+      showLoaderOnConfirm: true,
+      confirmButtonText: 'Continuar',
+      confirmButtonColor: '#00C853',
+      cancelButtonColor: '#e63010',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+      preConfirm: async (result) => {
+        if(result) {
+          return callback().then((result) => {
+            if(success) return success();
+            return this.success(result);
+          }).catch(error => {
+            if(fail) return fail();
+            return this.error(error || 'Ha ocurrido un problema :(');
+          })
+        } else console.log('picha')
       }
-    }, error => {
-      console.log(error.status)
-      if (error.status == 400)
-        this.alert.error('Por favor complete los datos.')
-      else if (error.status == 401)
-        this.alert.error('Usuario o contraseña incorrecta.')
-      else {
-        this.alert.handleError(error)
-        if (!environment.production) console.log(error)
-      }
     })
   }
 
-  logout() {
-    this.userService.logout().subscribe(data => {
-      console.log(data)
-      this.current = null
-      deleteCookie('connect.sid')
-      this.router.navigate([''])
-    }, error => this.alert.handleError(error))
-    
+  showLoading() {
+    Swal.fire({
+      title: 'Cargando',
+    })
+    Swal.showLoading();
+  }
+
+  hideLoading(title?: string) {
+    Swal.fire({
+      title: title || 'Completado!',
+      confirmButtonText: 'Aceptar'
+    })
+    Swal.hideLoading();
   }
 }

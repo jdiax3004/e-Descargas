@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
-import { AlertService } from './alert.service'
 import { environment } from 'src/environments/environment'
 import { Router } from '@angular/router'
 import { deleteCookie } from '../utils/cookie.util'
 import { UsuarioService } from './usuario.service'
 import { Usuario } from '../models/usuario'
+import { AlertService } from './alert.service'
 
 @Injectable({
   providedIn: 'root'
