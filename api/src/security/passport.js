@@ -28,8 +28,8 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser((id, done) => {
-    usuarios.obtenerUno({ Codigo: id }).then((err, user) => {
-      done(err, user);
+    usuarios.obtenerUno(id).then((user) => {
+      done(null, user);
     });
   });
 };

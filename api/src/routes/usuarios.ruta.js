@@ -23,6 +23,7 @@ router.get("/logout", (req, res) => {
 
 router.get("/actual", (req, res) => {
   try {
+    console.log('pene', req.user)
     return res.json(req.user);
   } catch (error) {
     next(error);
