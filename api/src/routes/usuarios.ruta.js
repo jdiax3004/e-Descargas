@@ -21,7 +21,7 @@ router.get("/logout", (req, res) => {
   }
 });
 
-router.get("/usuarios/actual", (req, res) => {
+router.get("/actual", (req, res) => {
   try {
     return res.json(req.user);
   } catch (error) {
