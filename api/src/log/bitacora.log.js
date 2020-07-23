@@ -1,4 +1,4 @@
-const { storeProcedure } = require('../utils/db.utils')
+const { storeProcedure } = require("utils/db.utils")({ db: require('../db') })
 const errorLogger = require('./error.log')
 
 let bitacora = {}
@@ -8,9 +8,11 @@ bitacora.INSERTAR  = 'Insertar'
 bitacora.MODIFICAR = 'Modificar'
 bitacora.ELIMINAR  = 'Eliminar'
 
-bitacora.log = (tipo, objeto) => {
+bitacora.log = (tipo, objeto, usuario) => {
+    let Codigo_Usuario = usuario && usuario.Codigo ? usuario.Codigo : 'US_1'
+
     let obj = {
-        Codigo_Usuario:   'US_1', // TODO: hay que buscar una forma de obtener el usuario logueado
+        Codigo_Usuario,
         Codigo_Registro:  objeto.Codigo || objeto.Id,
         Tipo:             tipo,
         Descripcion:      `${tipo} `,

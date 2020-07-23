@@ -8,15 +8,12 @@ CREATE TABLE Roles
 		NOT NULL
 );
 
-
 CREATE TABLE Usuarios
 (
 	Codigo NVARCHAR(255)
 		NOT NULL PRIMARY KEY,
-	Id_Rol INT
-		NULL FOREIGN KEY REFERENCES Roles(Id),
 	Usuario NVARCHAR(255)
-		NOT NULL UNIQUE,
+		NULL,
 	Nombre NVARCHAR(255)
 		NULL,
 	Primer_Apellido NVARCHAR(255)
@@ -31,6 +28,15 @@ CREATE TABLE Usuarios
 		NOT NULL,
 	Respuesta_Seguridad NVARCHAR(255)
 		NOT NULL
+);
+
+CREATE TABLE Roles_Usuarios
+(
+	Id_Rol INT
+		NOT NULL FOREIGN KEY REFERENCES Roles(Id),
+	Codigo_Usuario NVARCHAR(255)
+		NOT NULL FOREIGN KEY REFERENCES Usuarios(Codigo),
+	PRIMARY KEY (Id_Rol, Codigo_Usuario)
 );
 
 CREATE TABLE Idiomas
@@ -233,7 +239,7 @@ CREATE TABLE Parametros
 (
 	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-	Codigo NVARCHAR(100)
+	Nombre NVARCHAR(100)
 		NOT NULL,
 	Descripcion NVARCHAR(255)
 		NULL,
