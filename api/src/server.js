@@ -57,6 +57,9 @@ app.use(process.env.API_PATH, require("./routes/genero-pelicula.ruta"));
 app.use(process.env.API_PATH, require("./routes/genero-libro.ruta"));
 app.use(process.env.API_PATH, require("./routes/idiomas.ruta"));
 app.use(process.env.API_PATH, require("./routes/descargas.ruta"));
+app.use(process.env.API_PATH, require("./routes/bitacora.ruta"));
+app.use(process.env.API_PATH, require("./routes/errores.ruta"));
+
 
 
 // Manejo de Errores

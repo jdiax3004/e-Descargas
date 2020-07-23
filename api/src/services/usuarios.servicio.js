@@ -16,30 +16,36 @@ servicio.obtener = async (filtros) => {
 };
 
 servicio.obtenerUno = async (codigo) => {
-  let data = await storeProcedure("ObtenerUsuario", { Codigo: codigo })
-  data.Id_Roles = await rolUsuarioServicio.obtenerRoles(codigo)
-  return data 
-}
+  let data = await storeProcedure("ObtenerUsuario", { Codigo: codigo });
+  data.Id_Roles = await rolUsuarioServicio.obtenerRoles(codigo);
+  return data;
+};
 
 servicio.insertar = async (objeto, usuario) => {
-  let roles = [];
-  if (objeto.Id_Roles) {
-    roles = objeto.Id_Roles;
-    delete objeto.Id_Roles;
+  var result = (await servicio.obtener({ Usuario: objeto.Usuario }))[0];
+
+  if (result) {
+    throw new Error("Usuario ya existente")
+  } else {
+    let roles = [];
+    if (objeto.Id_Roles) {
+      roles = objeto.Id_Roles;
+      delete objeto.Id_Roles;
+    }
+
+    objeto.Codigo = await consecutivo.generar(consecutivo.USUARIO);
+    const data = await storeProcedure("InsertarUsuario", objeto);
+    bitacora.log(bitacora.INSERTAR, data, usuario);
+
+    for (let Id_Rol of roles) {
+      await rolUsuarioServicio.insertar({
+        Id_Rol,
+        Codigo_Usuario: objeto.Codigo,
+      });
+    }
+
+    return data;
   }
-
-  objeto.Codigo = await consecutivo.generar(consecutivo.USUARIO);
-  const data = await storeProcedure("InsertarUsuario", objeto);
-  bitacora.log(bitacora.INSERTAR, data, usuario);
-
-  for (let Id_Rol of roles) {
-    await rolUsuarioServicio.insertar({
-      Id_Rol,
-      Codigo_Usuario: objeto.Codigo,
-    });
-  }
-
-  return data;
 };
 
 servicio.modificar = async (objeto, usuario) => {
@@ -77,8 +83,6 @@ servicio.contrasenna = async (objeto) => {
       Codigo: objeto.Codigo,
     })
   )[0];
-  console.log(objeto);
-  console.log(result);
 
   if (
     objeto.Pregunta_Seguridad == result.Pregunta_Seguridad &&
