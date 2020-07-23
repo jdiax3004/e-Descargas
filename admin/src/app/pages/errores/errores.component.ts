@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ErroresService } from 'src/app/services/errores.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { Error } from 'src/app/models/error';
 
 @Component({
   selector: 'app-errores',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErroresComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:ErroresService, private alert: AlertService) { }
 
+  objetos: Error[] = [];
   ngOnInit() {
+    this.cargar();
+  }
+  cargar() {
+    this.service.obtener().subscribe(data => {
+      this.objetos = data;
+    })
   }
 
 }

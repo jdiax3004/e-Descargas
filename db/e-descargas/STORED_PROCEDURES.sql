@@ -536,8 +536,8 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.InsertarError
-  @Mensaje AS NVARCHAR(255),
-  @Descripcion AS NVARCHAR(255),
+  @Mensaje AS NVARCHAR(4000),
+  @Descripcion AS NVARCHAR(4000),
   @Codigo_Error AS NVARCHAR(255),
   @Fecha AS NVARCHAR(255)
 AS
@@ -550,12 +550,46 @@ GO
 -- Bitacora 
 
 GO
+CREATE OR ALTER PROC dbo.ObtenerBitacora
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Bitacora;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Bitacora
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerErrores
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Errores;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Errores
+  WHERE Id = @Id;
+END
+GO
+
+GO
 CREATE OR ALTER PROC dbo.InsertarBitacora
   @Codigo_Usuario AS NVARCHAR(255),
   @Codigo_Registro AS NVARCHAR(255),
   @Tipo AS NVARCHAR(255),
-  @Descripcion AS NVARCHAR(255),
-  @Detalle_Registro AS NVARCHAR(255),
+  @Descripcion AS NVARCHAR(max),
+  @Detalle_Registro AS NVARCHAR(4000),
   @Fecha NVARCHAR(255)
 AS
 INSERT INTO Bitacora

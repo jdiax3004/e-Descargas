@@ -4,6 +4,7 @@ const db = require("../db");
 const { storeProcedure } = require("utils/db.utils")({ db: require("../db") });
 const consecutivo = require("../services/consecutivo.servicio");
 const usuarios = require("../services/usuarios.servicio");
+const parametros = require("../services/parametros.servicio");
 
 async function exec() {
   await db.authenticate();
@@ -15,6 +16,7 @@ async function exec() {
   await crearGenerosMusica();
   await crearGenerosLibros();
   await crearGenerosPeliculas();
+  await crearParametros();
 }
 
 async function crearConsecutivos() {
@@ -112,6 +114,7 @@ async function crearIdiomas() {
   });
 }
 
+
 async function crearGenerosMusica() {
   await storeProcedure("InsertarGeneroMusica", {
     Genero: "Rock",
@@ -183,6 +186,39 @@ async function crearGenerosPeliculas() {
   });
   await storeProcedure("InsertarGeneroPeliculas", {
     Genero: "Comedia",
+  });
+}
+
+async function crearParametros() {
+  await parametros.insertar({
+    Nombre: "Archivo_Visualizacion_Libros",
+    Descripcion: "Ruta de almacenamiento previsualizacion libros pdf",
+    Valor: "/visualizacion/libros"
+  });
+  await parametros.insertar({
+    Nombre: "Archivo_Descarga_Libros",
+    Descripcion: "Ruta almacenamiento libros pdf",
+    Valor: "/descargas/libros"
+  });
+  await parametros.insertar({
+    Nombre: "Archivo_Visualizacion_Peliculas",
+    Descripcion: "Ruta de almacenamiento previsualizacion peliculas",
+    Valor: "/visualizacion/peliculas"
+  });
+  await parametros.insertar({
+    Nombre: "Archivo_Descarga_Peliculas",
+    Descripcion: "Ruta almacenamiento peliculas",
+    Valor: "/descargas/peliculas"
+  });
+  await parametros.insertar({
+    Nombre: "Archivo_Visualizacion_Musica",
+    Descripcion: "Ruta de almacenamiento previsualizacion musica",
+    Valor: "/visualizacion/musica"
+  });
+  await parametros.insertar({
+    Nombre: "Archivo_Descarga_Musica",
+    Descripcion: "Ruta almacenamiento musica",
+    Valor: "/descargas/musica"
   });
 }
 

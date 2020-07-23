@@ -27,18 +27,18 @@
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Numero error</th>
+                    <th>Numero Error</th>
                     <th>Mensaje</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>01</td>
+                <tr *ngFor="let objeto of objetos">
+                    <td>{{ objeto.Fecha }}</td>
                     <td>
-                        Star wars
+                        {{ objeto.Id }}
                     </td>
                     <td class="text-nowrap">
-                        Insercion de objeto de pago
+                        {{ objeto.Mensaje }}
                     </td>
                 </tr>
             </tbody>

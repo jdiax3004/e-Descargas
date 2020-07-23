@@ -3,7 +3,7 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-tittle">
-              Bitàcora
+              Bitácora
           </h3>
           <hr>
           <h4>Filtros</h4>
@@ -41,21 +41,21 @@
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Codigo registro</th>
+                    <th>Codigo Registro</th>
                     <th>Descripcion</th>
                     <th>Link</th>
                 </tr>
             </thead>
             <tbody>
-                <tr [routerLink]="['/consultarBitacora/1']">
-                    <td>01</td>
+                <tr [routerLink]="['/consultarBitacora/1']" *ngFor="let objeto of objetos">
+                    <td>{{ objeto.Fecha }}</td>
                     <td>
-                        Star wars
+                        {{ objeto.Codigo_Registro}}
                     </td>
                     <td class="text-nowrap">
-                        Insercion de objeto de pago
+                        {{ objeto.Descripcion }}
                     </td>
-                    <td>Ver mas...</td>
+                    <td><a>Ver mas...</a></td>
                 </tr>
             </tbody>
         </table>
