@@ -29,4 +29,31 @@ export class UsuarioService extends CRUDService<Usuario> {
       withCredentials: true
     });
   }
+
+  recoverPassword(username: string) {
+    return this.http.get(`${environment.apiUrl}/recuperar-contrasenna?Usuario=${username}`, {
+      withCredentials: true
+    });
+  }
+
+  enviarRespuestaSeguridad(codigo:string, pregunta: string, respuesta: string) {
+    return this.http.post(`${environment.apiUrl}/recuperar-contrasenna`,{
+      Codigo: codigo,
+      Pregunta_Seguridad: pregunta,
+      Respuesta_Seguridad: respuesta
+    } 
+    ,{
+      withCredentials: true
+    });
+  }
+
+  cambiarPass(codigo: string, password: string) {
+    return this.http.put(`${environment.apiUrl}/usuarios`,{
+      Codigo: codigo,
+      Contrasenna: password
+    } 
+    ,{
+      withCredentials: true
+    });
+  }
 }
