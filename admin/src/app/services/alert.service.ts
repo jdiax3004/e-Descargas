@@ -75,7 +75,7 @@ export class AlertService {
             if(fail) return fail();
             return this.error(error || 'Ha ocurrido un problema :(');
           })
-        } else console.log('picha')
+        } else console.log('error')
       }
     })
   }

@@ -5,25 +5,27 @@
           <h3 class="card-tittle">
               Asignar Roles
           </h3>
-          <form>
+          <form #form="ngForm" (ngSubmit)="submit()">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Lista de usuarios</label>
-                        
+                        <select multiple class="form-control" name="usuarioSeleccionado" [(ngModel)]="usuarioSeleccionado" (change)="onUsuarioChange()">
+                            <option [value]="item" *ngFor="let item of usuarios">{{ item.Usuario }}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Lista de roles</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Usuario" [(ngModel)]="usuarioSeleccionado.Usuario">
                     </div>
                     <hr>
                     <br> 
                     <div class="form-group">
-                        <div class="checkbox checkbox-success">
-                            <input id="checkbox1" type="checkbox">
-                            <label for="checkbox1"> Nombre usuario</label>
+                        <div class="checkbox checkbox-success" *ngFor="let item of roles">
+                            <input type="checkbox" name="">
+                            <label>{{ item.Rol }}</label>
                         </div>
                     </div>
                     <div class="row">

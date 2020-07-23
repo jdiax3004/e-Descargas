@@ -18,7 +18,6 @@ servicio.obtener = async (filtros) => {
 servicio.obtenerUno = async (codigo) => {
   let data = await storeProcedure("ObtenerUsuario", { Codigo: codigo })
   data.Id_Roles = await rolUsuarioServicio.obtenerRoles(codigo)
-  console.log(data)
   return data 
 }
 

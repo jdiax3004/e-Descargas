@@ -55,7 +55,6 @@ export class AuthService {
         this.goHome()
       }
     }, error => {
-      console.log(error.status)
       if (error.status == 400)
         this.alert.error('Por favor complete los datos.')
       else if (error.status == 401)
@@ -69,7 +68,6 @@ export class AuthService {
 
   logout() {
     this.usuarioService.logout().subscribe(data => {
-      console.log('oica')
       this.actual = null
       deleteCookie('connect.sid')
       this.router.navigate(['login'])
