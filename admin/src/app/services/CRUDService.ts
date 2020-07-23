@@ -39,8 +39,8 @@ export class CRUDService<T> {
    * @param id Id of element.
    * @param item New data of element.
    */
-  modificar(id: string, item: T | FormData) {
-    return this.httpClient.put(`${this.url}/${id}`, item, {
+  modificar(item: T | FormData) {
+    return this.httpClient.put(`${this.url}`, item, {
       withCredentials: true
     });
   }
@@ -49,7 +49,7 @@ export class CRUDService<T> {
    * Deletes an object in database.
    * @param id Id of element.
    */
-  eliminar(id: string) {
+  eliminar(id: string | number) {
     return this.httpClient.delete(`${this.url}/${id}`, {
       withCredentials: true
     });

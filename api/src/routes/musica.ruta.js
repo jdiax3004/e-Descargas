@@ -23,7 +23,12 @@ router.get('/musica/:codigo', isAuth([1, 4]), async (req, res, next) => {
 
 router.post('/musica', isAuth([1, 4]), async (req, res, next) => {
     try {
-        const data = await servicio.insertar(req.body, req.user)
+        const { user, body, files } = req
+        if(files) {
+            console.log(req)
+            throw new Error('XD')
+        }
+        const data = await servicio.insertar(body, user)
         return res.json(data)
     } catch (error) {
         next(error)

@@ -3,7 +3,7 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-tittle">
-              Crear Cancion
+              Crear Canción
           </h3>
           <hr>
           <form #form="ngForm" (ngSubmit)="submit()">
@@ -19,12 +19,14 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Género</label>
-                        <input type="text" class="form-control" >
+                        <select class="form-control" name="miselect" [(ngModel)]="objeto.Id_Genero">
+                            <option [value]="item.Id" *ngFor="let item of generos">{{ item.Genero }}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Interpretacion</label>
+                        <label>Interpretación</label>
                         <input type="text" class="form-control" name="Tipo_Interpretacion" [(ngModel)]="objeto.Tipo_Interpretacion">
                     </div>
                 </div>
@@ -37,7 +39,9 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Idioma</label>
-                        <input type="text" class="form-control">
+                        <select class="form-control" name="Id_Idioma" [(ngModel)]="objeto.Id_Idioma">
+                            <option [value]="item.Id" *ngFor="let item of idiomas">{{ item.Idioma }}</option>
+                        </select>
                     </div>
                 </div>
               </div>

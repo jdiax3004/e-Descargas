@@ -11,6 +11,67 @@ FROM Roles
 WHERE Id = SCOPE_IDENTITY();
 GO
 
+GO
+CREATE OR ALTER PROC dbo.ObtenerRol
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Roles;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Roles
+  WHERE Id = @Id;
+END
+GO
+
+-- Roles Usuarios
+
+GO
+CREATE OR ALTER PROC dbo.InsertarRolUsuario
+  @Id_Rol INT,
+  @Codigo_Usuario NVARCHAR(255)
+AS
+INSERT INTO Roles_Usuarios
+VALUES
+  (@Id_Rol, @Codigo_Usuario);
+SELECT *
+FROM Roles_Usuaios
+WHERE Id_Rol = @Id_Rol
+  AND Codigo_Usuario = @Codigo_Usuario;
+GO
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerRolUsuarios
+  @Codigo_Usuario NVARCHAR(255)
+AS
+IF @Codigo_Usuario IS NULL
+  BEGIN
+  SELECT *
+  FROM Roles_Usuarios;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Roles_Usuarios
+  WHERE Codigo_Usuario = @Codigo_Usuario;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarRolUsuario
+  @Codigo_Usuario NVARCHAR(255),
+  @Id_Rol AS INT
+AS
+DELETE 
+FROM Roles_Usuarios
+WHERE Codigo_Usuario = @Codigo_Usuario
+  AND Id_Rol = @Id_Rol;
+GO
+
 -- Idiomas
 GO
 CREATE OR ALTER PROC dbo.InsertarIdioma
