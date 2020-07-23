@@ -32,6 +32,24 @@ router.get("/actual", (req, res) => {
   }
 });
 
+router.get("/recuperar-contrasenna", async (req, res, next) => {
+  try {
+    const data = await servicio.obtener(req.query);
+    return res.json(data[0].Pregunta_Seguridad);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/recuperar-contrasenna", async (req, res, next) => {
+  try {
+    const data = await servicio.contrasenna(req.body);
+    return res.json(data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // CRUD Usuarios
 
 router.get("/usuarios", async (req, res, next) => {

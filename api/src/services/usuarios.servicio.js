@@ -1,10 +1,10 @@
-const { storeProcedure } = require("utils/db.utils")({ db: require('../db') });
+const { storeProcedure } = require("utils/db.utils")({ db: require("../db") });
 const { filtrar } = require("utils/array.utils");
 const bitacora = require('../log/bitacora.log')
 const consecutivo = require('./consecutivo.servicio')
 const rolUsuarioServicio = require('./rol-usuario.servicio')
 
-let servicio = {}
+let servicio = {};
 
 servicio.obtener = async (filtros) => {
   let result = await storeProcedure("ObtenerUsuario")
@@ -62,7 +62,21 @@ servicio.eliminar = async (codigo, usuario) => {
   const data = await storeProcedure("EliminarUsuario", { Codigo: codigo })
   bitacora.log(bitacora.ELIMINAR, { Codigo: codigo }, usuario)
 
-  return true
-}
+  return true;
+};
 
-module.exports = servicio
+servicio.contrasenna = async (objeto) => {
+  let result = await storeProcedure("ObtenerUsuario", {
+    Codigo: objeto.Codigo,
+  });
+  if (
+    objeto.Pregunta_Seguridad == result[0].Pregunta_Seguridad &&
+    objeto.Respuesta_Seguridad == result[0].Respuesta_Seguridad
+  ) {
+    return true
+  }
+
+  return false;
+};
+
+module.exports = servicio;
