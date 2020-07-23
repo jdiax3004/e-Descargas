@@ -1,40 +1,54 @@
-const { storeProcedure } = require("utils/db.utils")({ db: require('../db') });
+const { storeProcedure } = require("utils/db.utils")({ db: require("../db") });
 const { filtrar } = require("utils/array.utils");
-const bitacora = require('../log/bitacora.log')
-const consecutivo = require('./consecutivo.servicio')
+const bitacora = require("../log/bitacora.log");
+const consecutivo = require("./consecutivo.servicio");
 
-let servicio = {}
+let servicio = {};
 
 servicio.obtener = async (filtros) => {
-  let result = await storeProcedure("ObtenerUsuario")
-  if(filtros) result = filtrar(result, filtros)
+  let result = await storeProcedure("ObtenerUsuario");
+  if (filtros) result = filtrar(result, filtros);
 
-  return result
-}
+  return result;
+};
 
 servicio.obtenerUno = async (codigo) => {
-  return await storeProcedure("ObtenerUsuario", { Codigo: codigo })
-}
+  return await storeProcedure("ObtenerUsuario", { Codigo: codigo });
+};
 
 servicio.insertar = async (objeto) => {
-  objeto.Codigo = await consecutivo.generar(consecutivo.USUARIO)
-  const data = await storeProcedure("InsertarUsuario", objeto)
-  bitacora.log(bitacora.INSERTAR, data)
-  return data
-}
+  objeto.Codigo = await consecutivo.generar(consecutivo.USUARIO);
+  const data = await storeProcedure("InsertarUsuario", objeto);
+  bitacora.log(bitacora.INSERTAR, data);
+  return data;
+};
 
 servicio.modificar = async (objeto) => {
-  const data = await storeProcedure("ModificarUsuario", objeto)
-  bitacora.log(bitacora.MODIFICAR, data)
+  const data = await storeProcedure("ModificarUsuario", objeto);
+  bitacora.log(bitacora.MODIFICAR, data);
 
-  return data
-}
+  return data;
+};
 
 servicio.eliminar = async (codigo) => {
-  const data = await storeProcedure("EliminarUsuario", { Codigo: codigo })
-  bitacora.log(bitacora.ELIMINAR, { Codigo: codigo })
+  const data = await storeProcedure("EliminarUsuario", { Codigo: codigo });
+  bitacora.log(bitacora.ELIMINAR, { Codigo: codigo });
 
-  return true
-}
+  return true;
+};
 
-module.exports = servicio
+servicio.contrasenna = async (objeto) => {
+  let result = await storeProcedure("ObtenerUsuario", {
+    Codigo: objeto.Codigo,
+  });
+  if (
+    objeto.Pregunta_Seguridad == result[0].Pregunta_Seguridad &&
+    objeto.Respuesta_Seguridad == result[0].Respuesta_Seguridad
+  ) {
+    return true
+  }
+
+  return false;
+};
+
+module.exports = servicio;

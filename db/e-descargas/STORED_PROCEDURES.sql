@@ -498,6 +498,73 @@ DELETE FROM Consecutivos
       Id = @Id;
 GO
 
+
+
+-- Descargas
+GO
+CREATE OR ALTER PROC dbo.ObtenerDescargas
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Descargas;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Descargas
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.InsertarDescargas
+  @Genero AS NVARCHAR(255),
+  @Tipo AS NVARCHAR(255),
+  @Codigo_Referencia AS NVARCHAR(255),
+  @Fecha NVARCHAR(255)
+AS
+INSERT INTO Descargas
+VALUES
+  (@Genero, @Tipo, @Codigo_Referencia, @Fecha);
+SELECT *
+FROM Descargas
+WHERE Id = SCOPE_IDENTITY();
+GO
+
+GO
+CREATE OR ALTER PROC dbo.ModificarDescargas
+  @Id AS INT,
+  @Genero AS NVARCHAR(255) = null,
+  @Tipo AS NVARCHAR(255)= null,
+  @Codigo_Referencia AS NVARCHAR(255)= null,
+  @Fecha NVARCHAR(255)= null
+AS
+BEGIN
+  SET NOCOUNT ON
+  UPDATE Descargas
+    SET 
+        Genero = isNull(@Genero,Genero), 
+        Tipo = isNull(@Tipo,Tipo), 
+        Codigo_Referencia = isNull(@Codigo_Referencia, Codigo_Referencia),
+        Fecha = isNull(@Fecha, Fecha)
+    WHERE Id = @Id;
+  SELECT *
+  FROM Descargas
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarDescargas
+  @Id AS INT
+AS
+DELETE FROM Descargas 
+    WHERE 
+      Id = @Id;
+GO
+
 -- Transacciones
 GO
 CREATE OR ALTER PROC dbo.ObtenerTransaccion
