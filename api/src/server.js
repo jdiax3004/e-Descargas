@@ -40,7 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
-  multer({ dest: path.join(__dirname, "..", "public/upload/temp") }).single(
+  multer({ dest: path.join(__dirname, "..", "public/uploads/") }).single(
     "file"
   )
 );

@@ -6,38 +6,32 @@
               Crear Cancion
           </h3>
           <hr>
-          <form>
+          <form #form="ngForm" (ngSubmit)="submit()">
               <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Codigo</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Nombre" [(ngModel)]="objeto.Nombre">
                     </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Genero</label>
-                        <input type="text" class="form-control">
+                        <label>Género</label>
+                        <input type="text" class="form-control" >
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Interpretacion</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Tipo_Interpretacion" [(ngModel)]="objeto.Tipo_Interpretacion">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Paìs</label>
-                        <input type="text" class="form-control">
+                        <label>País</label>
+                        <input type="text" class="form-control" name="Pais" [(ngModel)]="objeto.Pais">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -51,19 +45,19 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Disquera</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Disquera" [(ngModel)]="objeto.Disquera">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Nombre Disco</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Disco" [(ngModel)]="objeto.Disco">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Año</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Anno" [(ngModel)]="objeto.Anno">
                     </div>
                 </div>
               </div>
@@ -83,7 +77,7 @@
               </div>
               <div class="row">
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+                    <button type="submit" class="btn btn-success" (click)="submit"> <i class="fa fa-check"></i> Guardar</button>
                     <button type="button" class="btn btn-inverse">Cancelar</button>
                 </div>
             </div>

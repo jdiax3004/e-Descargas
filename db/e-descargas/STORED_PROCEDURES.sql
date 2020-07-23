@@ -24,6 +24,23 @@ FROM Idiomas
 WHERE Id = SCOPE_IDENTITY();
 GO
 
+GO
+CREATE OR ALTER PROC dbo.ObtenerIdioma
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Idiomas;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Idiomas
+  WHERE Id = @Id;
+END
+GO
+
 -- Generos Musica
 GO
 CREATE OR ALTER PROC dbo.InsertarGeneroMusica
@@ -36,6 +53,24 @@ SELECT *
 FROM Generos_Musica
 WHERE Id = SCOPE_IDENTITY();
 GO
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerGeneroMusica
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Generos_Musica;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Generos_Musica
+  WHERE Id = @Id;
+END
+GO
+
 
 -- Generos Libros
 GO
@@ -50,6 +85,24 @@ FROM Generos_Libros
 WHERE Id = SCOPE_IDENTITY();
 GO
 
+GO
+CREATE OR ALTER PROC dbo.ObtenerGeneroLibro
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Generos_Libros;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Generos_Libros
+  WHERE Id = @Id;
+END
+GO
+
+
 -- Generos Peliculas
 GO
 CREATE OR ALTER PROC dbo.InsertarGeneroPeliculas
@@ -61,6 +114,23 @@ VALUES
 SELECT *
 FROM Generos_Peliculas
 WHERE Id = SCOPE_IDENTITY();
+GO
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerGeneroPeliculas
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Generos_Peliculas;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Generos_Peliculas
+  WHERE Id = @Id;
+END
 GO
 
 -- Usuarios
@@ -154,13 +224,21 @@ CREATE OR ALTER PROC dbo.ObtenerMusica
 AS
 IF @Codigo IS NULL
   BEGIN
-  SELECT *
-  FROM Musica;
+  SELECT Musica.*,
+	  Genero.Genero,
+	  Idioma.Idioma
+  FROM Musica
+    INNER JOIN Generos_Musica AS Genero ON Genero.Id = Id_Genero
+    INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma;
 END
   ELSE
   BEGIN
-  SELECT *
+  SELECT Musica.*,
+	  Genero.Genero,
+	  Idioma.Idioma
   FROM Musica
+    INNER JOIN Generos_Musica AS Genero ON Genero.Id = Id_Genero
+    INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma
   WHERE Codigo = @Codigo;
 END
 GO
@@ -183,9 +261,7 @@ AS
 INSERT INTO Musica
 VALUES
   (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Tipo_Interpretacion, @Pais, @Disquera, @Disco, @Compositor, @Archivo_Descarga, @Archivo_Previsualizacion);
-SELECT *
-FROM Musica
-WHERE Codigo = @Codigo;
+EXEC dbo.ObtenerMusica @Codigo = @Codigo;
 GO
 
 
@@ -222,9 +298,7 @@ BEGIN
         Archivo_Descarga = isNull(@Archivo_Descarga, Archivo_Descarga),
         Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
-  SELECT *
-  FROM Musica
-  WHERE Codigo = @Codigo;
+  EXEC dbo.ObtenerMusica @Codigo = @Codigo;
 END
 GO
 
@@ -245,13 +319,21 @@ CREATE OR ALTER PROC dbo.ObtenerLibro
 AS
 IF @Codigo IS NULL
   BEGIN
-  SELECT *
-  FROM Libros;
+  SELECT Libros.*,
+	  Genero.Genero,
+	  Idioma.Idioma
+  FROM Libros
+    INNER JOIN Generos_Libros AS Genero ON Genero.Id = Id_Genero
+    INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma;
 END
   ELSE
   BEGIN
-  SELECT *
+  SELECT Libros.*,
+	  Genero.Genero,
+	  Idioma.Idioma
   FROM Libros
+    INNER JOIN Generos_Libros AS Genero ON Genero.Id = Id_Genero
+    INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma
   WHERE Codigo = @Codigo;
 END
 GO
@@ -271,9 +353,7 @@ AS
 INSERT INTO Libros
 VALUES
   (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Autores, @Editorial, @Archivo_Descarga, @Archivo_Previsualizacion);
-SELECT *
-FROM Libros
-WHERE Codigo = @Codigo;
+EXEC dbo.ObtenerLibro @Codigo = @Codigo;
 GO
 
 GO
@@ -303,9 +383,7 @@ BEGIN
         Archivo_Descarga = isNull(@Archivo_Descarga, Archivo_Descarga),
         Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
-  SELECT *
-  FROM Libros
-  WHERE Codigo = @Codigo;
+EXEC dbo.ObtenerLibro @Codigo = @Codigo;
 END
 GO
 
@@ -326,13 +404,21 @@ CREATE OR ALTER PROC dbo.ObtenerPeliculas
 AS
 IF @Codigo IS NULL
   BEGIN
-  SELECT *
-  FROM Peliculas;
+  SELECT Peliculas.*,
+	  Genero.Genero,
+	  Idioma.Idioma
+  FROM Peliculas
+    INNER JOIN Generos_Peliculas AS Genero ON Genero.Id = Id_Genero
+    INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma;
 END
   ELSE
   BEGIN
-  SELECT *
+   SELECT Peliculas.*,
+	  Genero.Genero,
+	  Idioma.Idioma
   FROM Peliculas
+    INNER JOIN Generos_Peliculas AS Genero ON Genero.Id = Id_Genero
+    INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma
   WHERE Codigo = @Codigo;
 END
 GO
@@ -351,9 +437,7 @@ AS
 INSERT INTO Peliculas
 VALUES
   (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Actores, @Archivo_Descarga, @Archivo_Previsualizacion);
-SELECT *
-FROM Peliculas
-WHERE Codigo = @Codigo;
+EXEC dbo.ObtenerPeliculas @Codigo = @Codigo;
 GO
 
 GO
@@ -380,9 +464,7 @@ BEGIN
         Archivo_Descarga = isNull(@Archivo_Descarga, Archivo_Descarga),
         Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
-  SELECT *
-  FROM Peliculas
-  WHERE Codigo = @Codigo;
+  EXEC dbo.ObtenerPeliculas @Codigo = @Codigo;
 END
 GO
 

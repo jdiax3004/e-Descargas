@@ -9,6 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class MusicaService extends CRUDService<Musica> {
 
   constructor(private http: HttpClient) {
-    super(http, '/musica')
+    super(http, 'musica')
    }
 }

@@ -8,7 +8,6 @@ CREATE TABLE Roles
 		NOT NULL
 );
 
-
 CREATE TABLE Usuarios
 (
 	Codigo NVARCHAR(255)
@@ -31,6 +30,14 @@ CREATE TABLE Usuarios
 		NOT NULL,
 	Respuesta_Seguridad NVARCHAR(255)
 		NOT NULL
+);
+
+CREATE TABLE Roles_Usuarios
+(
+	Id_Rol INT
+		IDENTITY NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Roles(Id),
+	Codigo_Usuario NVARCHAR(255)
+		NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Usuarios(Codigo)
 );
 
 CREATE TABLE Idiomas

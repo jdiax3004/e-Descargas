@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const servicio = require('../services/musica.servicio')
+const { isAuth } = require('../security/auth')
 
-router.get('/musica', async (req, res, next) => {
+router.get('/musica', isAuth([1, 4]), async (req, res, next) => {
     try {
         const data = await servicio.obtener(req.query)
 
@@ -11,7 +12,7 @@ router.get('/musica', async (req, res, next) => {
     }
 })
 
-router.get('/musica/:codigo', async (req, res, next) => {
+router.get('/musica/:codigo', isAuth([1, 4]), async (req, res, next) => {
     try {
         const data = await servicio.obtenerUno(req.params.codigo)
         return res.json(data)
@@ -20,16 +21,16 @@ router.get('/musica/:codigo', async (req, res, next) => {
     }
 })
 
-router.post('/musica', async (req, res, next) => {
+router.post('/musica', isAuth([1, 4]), async (req, res, next) => {
     try {
-        const data = await servicio.insertar(req.body)
+        const data = await servicio.insertar(req.body, req.user)
         return res.json(data)
     } catch (error) {
         next(error)
     }
 })
 
-router.put('/musica', async (req, res, next) => {
+router.put('/musica', isAuth([1, 4]), async (req, res, next) => {
     try {
         const data = await servicio.modificar(req.body)
         return res.json(data)
@@ -38,7 +39,7 @@ router.put('/musica', async (req, res, next) => {
     }
 })
 
-router.delete('/musica/:codigo', async (req, res, next) => {
+router.delete('/musica/:codigo', isAuth([1, 4]), async (req, res, next) => {
     try {
         const data = await servicio.eliminar(req.params.codigo)
         return res.json({ success: data })
@@ -46,6 +47,5 @@ router.delete('/musica/:codigo', async (req, res, next) => {
         next(error)
     }
 })
-
 
 module.exports = router
