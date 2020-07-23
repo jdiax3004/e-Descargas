@@ -1,33 +1,31 @@
 <div class="row">
     <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-tittle">
-              Consecutivos
-          </h3>
-          <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Codigo</th>
-                    <th>Descripcion</th>
-                    <th>Consecutivo</th>
-                    <th class="text-nowrap">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>
-                        Productos y servicios
-                    </td>
-                    <td>01</td>
-                    <td class="text-nowrap">
-                        Editar
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <button class="btn btn-primary">Nuevo consecutivo</button>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-tittle">
+                    Consecutivos
+                </h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Descripcion</th>
+                            <th>Consecutivo</th>
+                            <th class="text-nowrap">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let objeto of objetos">
+                            <td>{{ objeto.Id }}</td>
+                            <td>{{ objeto.Descripcion }}</td>
+                            <td>{{ objeto.Consecutivo }}</td>
+                             <td class="text-nowrap">
+                                <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" [routerLink]="['/crearConsecutivos/nueva']">Nuevo consecutivo</button>
+            </div>
         </div>
     </div>
-</div>

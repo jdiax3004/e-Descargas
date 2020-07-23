@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const servicio = require("../services/usuarios.servicio");
-const passport = require('passport');
+const passport = require("passport");
 
 // Autenticación Usuarios
 
@@ -35,7 +35,10 @@ router.get("/actual", (req, res) => {
 router.get("/recuperar-contrasenna", async (req, res, next) => {
   try {
     const data = await servicio.obtener(req.query);
-    return res.json(data[0].Pregunta_Seguridad);
+    return res.json({
+      Codigo: data[0].Codigo,
+      Pregunta_Seguridad: data[0].Pregunta_Seguridad,
+    });
   } catch (error) {
     next(error);
   }

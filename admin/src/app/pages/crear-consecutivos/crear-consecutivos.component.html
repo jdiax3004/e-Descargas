@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-tittle">
+              Crear Canción
+          </h3>
+          <hr>
+          <form #form="ngForm" (ngSubmit)="submit()">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <input type="text" class="form-control" name="Descripcion" [(ngModel)]="objeto.Descripcion">
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Consecutivo</label>
+                        <input type="text" class="form-control" name="Consecutivo" [(ngModel)]="objeto.Consecutivo">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Posee Prefijo</label>
+                        <input type="text" class="form-control" name="Posee_Prefijo" [(ngModel)]="objeto.Posee_Prefijo">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Prefijo</label>
+                        <input type="text" class="form-control" name="Prefijo" [(ngModel)]="objeto.Prefijo">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Rango Inicial</label>
+                        <input type="text" class="form-control" name="Rango_Inicio" [(ngModel)]="objeto.Rango_Inicio">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Rango Final</label>
+                        <input type="text" class="form-control" name="Rango_Final" [(ngModel)]="objeto.Rango_Final">
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success" (click)="submit"> <i class="fa fa-check"></i> Guardar</button>
+                    <button type="button" class="btn btn-inverse">Cancelar</button>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>

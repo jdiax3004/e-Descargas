@@ -1,14 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SharedModule } from "../shared/shared.module";
-
 import { PagesComponent } from "./pages.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { PAGES_ROUTES } from "./pages.routes";
 import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
 import { AsignarRolesComponent } from './asignar-roles/asignar-roles.component';
 import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
-import { ConsecutivosComponent } from './consecutivos/consecutivos.component';
+import { ConsecutivoComponent } from './consecutivos/consecutivos.component';
 import { ParametrosComponent } from './parametros/parametros.component';
 import { PeliculasComponent } from './peliculas/peliculas.component';
 import { LibrosComponent } from './libros/libros.component';
@@ -24,9 +23,10 @@ import { ConsultaBitacoraComponent } from './consulta-bitacora/consulta-bitacora
 import { AuthGuardService } from '../services/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CrearConsecutivosComponent } from './crear-consecutivos/crear-consecutivos.component';
 
 @NgModule({
-  declarations: [PagesComponent, DashboardComponent, CrearUsuarioComponent, AsignarRolesComponent, CambiarContrasenaComponent, ConsecutivosComponent, ParametrosComponent, PeliculasComponent, LibrosComponent, MusicaComponent, BitacoraComponent, TransaccionesComponent, DescargasComponent, ErroresComponent, CrearPeliculaComponent, CrearLibroComponent, CrearCancionComponent, ConsultaBitacoraComponent],
+  declarations: [PagesComponent, DashboardComponent, CrearUsuarioComponent, AsignarRolesComponent, CambiarContrasenaComponent, ConsecutivoComponent, ParametrosComponent, PeliculasComponent, LibrosComponent, MusicaComponent, BitacoraComponent, TransaccionesComponent, DescargasComponent, ErroresComponent, CrearPeliculaComponent, CrearLibroComponent, CrearCancionComponent, ConsultaBitacoraComponent, CrearConsecutivosComponent],
   imports: [CommonModule, SharedModule, PAGES_ROUTES, HttpClientModule, FormsModule],
   exports: [DashboardComponent],
   providers: [AuthGuardService]

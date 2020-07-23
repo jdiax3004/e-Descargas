@@ -4,7 +4,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
 import { AsignarRolesComponent } from './asignar-roles/asignar-roles.component';
 import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
-import { ConsecutivosComponent } from './consecutivos/consecutivos.component';
+import { ConsecutivoComponent } from './consecutivos/consecutivos.component';
 import { ParametrosComponent } from './parametros/parametros.component';
 import { LibrosComponent } from './libros/libros.component';
 import { PeliculasComponent } from './peliculas/peliculas.component';
@@ -19,6 +19,7 @@ import { CrearCancionComponent } from './crear-cancion/crear-cancion.component';
 import { ConsultaBitacoraComponent } from './consulta-bitacora/consulta-bitacora.component';
 import { AuthGuardService as AuthGuard } from '../services/auth-guard.service'
 import { ADMINISTRADOR, SEGURIDAD, CONSECUTIVO } from '../constants/roles-usuarios';
+import { CrearConsecutivosComponent } from './crear-consecutivos/crear-consecutivos.component';
 
 const pagesRoutes: Routes = [
   {
@@ -52,7 +53,7 @@ const pagesRoutes: Routes = [
       },
       {
         path: "consecutivos",
-        component: ConsecutivosComponent,
+        component: ConsecutivoComponent,
         data: { titulo: "Lista de Consecutivos", Id_Rol: [ADMINISTRADOR, CONSECUTIVO] },
         canActivate: [AuthGuard]
       },
@@ -126,6 +127,12 @@ const pagesRoutes: Routes = [
         path: "consultarBitacora/:id",
         component: ConsultaBitacoraComponent,
         data: { titulo: "Consulta bitácora", Id_Rol: [ADMINISTRADOR] },
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "crearConsecutivos/:id",
+        component: CrearConsecutivosComponent,
+        data: { titulo: "Crear Consecutivo", Id_Rol: [ADMINISTRADOR, CONSECUTIVO] },
         canActivate: [AuthGuard]
       },
     ],
