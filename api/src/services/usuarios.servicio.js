@@ -83,7 +83,6 @@ servicio.contrasenna = async (objeto) => {
       Codigo: objeto.Codigo,
     })
   )[0];
-
   if (
     objeto.Pregunta_Seguridad == result.Pregunta_Seguridad &&
     objeto.Respuesta_Seguridad == result.Respuesta_Seguridad
