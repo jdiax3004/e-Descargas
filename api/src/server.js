@@ -16,6 +16,7 @@ require("./security/passport")(passport);
 app.set("port", process.env.PORT || 3000);
 
 // Middleware
+app.use(express.urlencoded({extended: true}));
 app.use(cors({ 
   origin: ["http://localhost:4200", "http://127.0.0.1:4200", "https://fonts.gstatic.com"],
   credentials: true
