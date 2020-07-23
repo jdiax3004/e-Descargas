@@ -1,4 +1,3 @@
--- Roles
 GO
 CREATE OR ALTER PROC dbo.InsertarRol
   @Rol NVARCHAR(255)
@@ -28,8 +27,6 @@ END
 END
 GO
 
--- Roles Usuarios
-
 GO
 CREATE OR ALTER PROC dbo.InsertarRolUsuario
   @Id_Rol INT,
@@ -39,13 +36,13 @@ INSERT INTO Roles_Usuarios
 VALUES
   (@Id_Rol, @Codigo_Usuario);
 SELECT *
-FROM Roles_Usuaios
+FROM Roles_Usuarios
 WHERE Id_Rol = @Id_Rol
   AND Codigo_Usuario = @Codigo_Usuario;
 GO
 
 GO
-CREATE OR ALTER PROC dbo.ObtenerRolUsuarios
+CREATE OR ALTER PROC dbo.ObtenerRolUsuario
   @Codigo_Usuario NVARCHAR(255)
 AS
 IF @Codigo_Usuario IS NULL
@@ -63,16 +60,13 @@ GO
 
 GO
 CREATE OR ALTER PROC dbo.EliminarRolUsuario
-  @Codigo_Usuario NVARCHAR(255),
-  @Id_Rol AS INT
+  @Codigo_Usuario NVARCHAR(255)
 AS
 DELETE 
 FROM Roles_Usuarios
-WHERE Codigo_Usuario = @Codigo_Usuario
-  AND Id_Rol = @Id_Rol;
+WHERE Codigo_Usuario = @Codigo_Usuario;
 GO
 
--- Idiomas
 GO
 CREATE OR ALTER PROC dbo.InsertarIdioma
   @Idioma NVARCHAR(255)
@@ -102,7 +96,6 @@ END
 END
 GO
 
--- Generos Musica
 GO
 CREATE OR ALTER PROC dbo.InsertarGeneroMusica
   @Genero NVARCHAR(255)
@@ -133,7 +126,6 @@ END
 GO
 
 
--- Generos Libros
 GO
 CREATE OR ALTER PROC dbo.InsertarGeneroLibros
   @Genero NVARCHAR(255)
@@ -164,7 +156,6 @@ END
 GO
 
 
--- Generos Peliculas
 GO
 CREATE OR ALTER PROC dbo.InsertarGeneroPeliculas
   @Genero NVARCHAR(255)
@@ -194,8 +185,6 @@ END
 END
 GO
 
--- Usuarios
-
 GO
 CREATE OR ALTER PROC dbo.ObtenerUsuario
   @Codigo AS NVARCHAR(255) = NULL
@@ -216,7 +205,6 @@ GO
 GO
 CREATE OR ALTER PROC dbo.InsertarUsuario
   @Codigo AS NVARCHAR(255),
-  @Id_Rol AS INT,
   @Usuario AS NVARCHAR(255),
   @Nombre AS NVARCHAR(255),
   @Primer_Apellido AS NVARCHAR(255),
@@ -228,7 +216,7 @@ CREATE OR ALTER PROC dbo.InsertarUsuario
 AS
 INSERT INTO Usuarios
 VALUES
-  (@Codigo, @Id_Rol, @Usuario, @Nombre, @Primer_Apellido, @Segundo_Apellido, @Correo, @Contrasenna, @Pregunta_Seguridad, @Respuesta_Seguridad);
+  (@Codigo, @Usuario, @Nombre, @Primer_Apellido, @Segundo_Apellido, @Correo, @Contrasenna, @Pregunta_Seguridad, @Respuesta_Seguridad);
 SELECT *
 FROM Usuarios
 WHERE Codigo = @Codigo;
@@ -238,7 +226,6 @@ GO
 GO
 CREATE OR ALTER PROC dbo.ModificarUsuario
   @Codigo AS NVARCHAR(255),
-  @Id_Rol AS INT = null,
   @Usuario AS NVARCHAR(255)= null,
   @Nombre AS NVARCHAR(255)= null,
   @Primer_Apellido AS NVARCHAR(255)= null,
@@ -253,7 +240,6 @@ BEGIN
 
   UPDATE Usuarios
     SET 
-        Id_Rol = isNull(@Id_Rol,Id_Rol), 
         Usuario = isNull(@Usuario,Usuario), 
         Nombre = isNull(@Nombre, Nombre),
         Primer_Apellido = isNull(@Primer_Apellido, Primer_Apellido),
@@ -278,7 +264,6 @@ DELETE FROM Usuarios
       Codigo = @Codigo;
 GO
 
--- Musica
 GO
 CREATE OR ALTER PROC dbo.ObtenerMusica
   @Codigo AS NVARCHAR(255) = NULL
@@ -372,8 +357,6 @@ DELETE FROM Musica
       Codigo = @Codigo;
 GO
 
--- Libros
-
 GO
 CREATE OR ALTER PROC dbo.ObtenerLibro
   @Codigo AS NVARCHAR(255) = NULL
@@ -457,7 +440,6 @@ DELETE FROM Libros
       Codigo = @Codigo;
 GO
 
--- Peliculas
 
 GO
 CREATE OR ALTER PROC dbo.ObtenerPeliculas
@@ -539,8 +521,6 @@ DELETE FROM Peliculas
       Codigo = @Codigo;
 GO
 
-
--- Errores
 GO
 CREATE OR ALTER PROC dbo.InsertarError
   @Mensaje AS NVARCHAR(255),
@@ -570,7 +550,6 @@ VALUES
   (@Codigo_Usuario, @Codigo_Registro, @Tipo, @Descripcion, @Detalle_Registro, @Fecha);
 GO
 
--- Consecutivos
 GO
 CREATE OR ALTER PROC dbo.ObtenerConsecutivo
   @Id AS INT = NULL
@@ -641,7 +620,6 @@ DELETE FROM Consecutivos
       Id = @Id;
 GO
 
--- Transacciones
 GO
 CREATE OR ALTER PROC dbo.ObtenerTransaccion
   @Codigo AS NVARCHAR(255) = NULL
@@ -702,7 +680,6 @@ DELETE FROM Transacciones
       Codigo = @Codigo;
 GO
 
--- Parametros
 
 GO
 CREATE OR ALTER PROC dbo.ObtenerParametros

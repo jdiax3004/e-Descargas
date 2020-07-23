@@ -29,8 +29,8 @@ servicio.modificar = async (objeto, usuario) => {
 }
 
 servicio.eliminar = async (codigo, usuario) => {
-  const data = await storeProcedure("EliminarParametros", { Id: id })
-  bitacora.log(bitacora.ELIMINAR, { Id: id }, usuario)
+  const data = await storeProcedure("EliminarParametros", { Id: codigo })
+  bitacora.log(bitacora.ELIMINAR, { Id: codigo }, usuario)
 
   return true
 }

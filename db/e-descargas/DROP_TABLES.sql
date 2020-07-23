@@ -13,5 +13,6 @@ DROP TABLE Generos_Libros;
 DROP TABLE Peliculas;
 DROP TABLE Generos_Peliculas;
 DROP TABLE Idiomas;
+DROP TABLE Roles_Usuarios;
 DROP TABLE Usuarios;
 DROP TABLE Roles;

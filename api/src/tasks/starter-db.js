@@ -8,13 +8,13 @@ const usuarios = require("../services/usuarios.servicio");
 async function exec() {
   await db.authenticate();
 
-  //await crearConsecutivos();
+  await crearConsecutivos();
   await crearRoles();
-  //await crearUsuarios();
+  await crearUsuarios();
   await crearIdiomas();
   await crearGenerosMusica();
   await crearGenerosLibros();
-  //await crearGenerosPeliculas();
+  await crearGenerosPeliculas();
 }
 
 async function crearConsecutivos() {
@@ -74,9 +74,9 @@ async function crearConsecutivos() {
 }
 
 async function crearRoles() {
-  // await storeProcedure("InsertarRol", {
-  //   Rol: "Admin",
-  // });
+  await storeProcedure("InsertarRol", {
+    Rol: "Admin",
+  });
   await storeProcedure("InsertarRol", {
     Rol: "Seguridad",
   });
@@ -95,9 +95,9 @@ async function crearRoles() {
 }
 
 async function crearIdiomas() {
-  // await storeProcedure("InsertarIdioma", {
-  //   Idioma: "Español",
-  // });
+  await storeProcedure("InsertarIdioma", {
+    Idioma: "Español",
+  });
   await storeProcedure("InsertarIdioma", {
     Idioma: "Ingles",
   });
@@ -113,9 +113,9 @@ async function crearIdiomas() {
 }
 
 async function crearGenerosMusica() {
-  // await storeProcedure("InsertarGeneroMusica", {
-  //   Genero: "Rock",
-  // });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Rock",
+  });
   await storeProcedure("InsertarGeneroMusica", {
     Genero: "Metal",
   });
@@ -141,7 +141,7 @@ async function crearGenerosMusica() {
 
 async function crearUsuarios() {
   await usuarios.insertar({
-    Id_Rol: 1,
+    Id_Roles: [1],
     Usuario: "jdiazher",
     Nombre: "Julian",
     Primer_Apellido: "Diaz",
@@ -154,9 +154,9 @@ async function crearUsuarios() {
 }
 
 async function crearGenerosLibros() {
-  // await storeProcedure("InsertarGeneroLibros", {
-  //   Genero: "Fantasia",
-  // });
+  await storeProcedure("InsertarGeneroLibros", {
+    Genero: "Fantasia",
+  });
   await storeProcedure("InsertarGeneroLibros", {
     Genero: "Suspenso",
   });
@@ -169,9 +169,9 @@ async function crearGenerosLibros() {
 }
 
 async function crearGenerosPeliculas() {
-  // await storeProcedure("InsertarGeneroPeliculas", {
-  //   Genero: "Accion",
-  // });
+  await storeProcedure("InsertarGeneroPeliculas", {
+    Genero: "Accion",
+  });
   await storeProcedure("InsertarGeneroPeliculas", {
     Genero: "Ciencia Ficción",
   });
