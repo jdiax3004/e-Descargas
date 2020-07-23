@@ -53,12 +53,16 @@ export class CrearCancionComponent implements OnInit {
     if(this.archivoDescarga) formData.append("file", this.archivoDescarga)
     if(this.archivoVisualizacion) formData.append("file", this.archivoVisualizacion)
 
+    // TODO: esto es provisional
+    this.objeto.Archivo_Descarga = 'c:/temp';
+    this.objeto.Archivo_Previsualizacion = 'c:/temp';
+
     for(let prop in this.objeto) {
       formData.append(prop, this.objeto[prop])
     }
 
-    this.servicio.insertar(formData).subscribe(response => {
+    this.servicio.insertar(this.objeto).subscribe(response => {
       this.alert.success('Elemento creado correctamente!');
-    }, this.alert.handleError)
+    }, err => this.alert.handleError(err))
   }
 }

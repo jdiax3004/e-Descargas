@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export class CRUDService<T> {
+
   constructor(private httpClient: HttpClient, private url: string) {
     this.url = `${environment.apiUrl}/${url}`
   }
