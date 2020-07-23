@@ -12,25 +12,25 @@ servicio.obtener = async (filtros) => {
 }
 
 servicio.obtenerUno = async (codigo) => {
-  return await storeProcedure("ObtenerParametros", { Id: id })
+  return await storeProcedure("ObtenerParametros", { Id: codigo })
 }
 
-servicio.insertar = async (objeto) => {
+servicio.insertar = async (objeto, usuario) => {
   const data = await storeProcedure("InsertarParametros", objeto)
-  bitacora.log(bitacora.INSERTAR, data)
+  bitacora.log(bitacora.INSERTAR, data, usuario)
   return data
 }
 
-servicio.modificar = async (objeto) => {
+servicio.modificar = async (objeto, usuario) => {
   const data = await storeProcedure("ModificarParametros", objeto)
-  bitacora.log(bitacora.MODIFICAR, data)
+  bitacora.log(bitacora.MODIFICAR, data, usuario)
 
   return data
 }
 
-servicio.eliminar = async (codigo) => {
+servicio.eliminar = async (codigo, usuario) => {
   const data = await storeProcedure("EliminarParametros", { Id: id })
-  bitacora.log(bitacora.ELIMINAR, { Id: id })
+  bitacora.log(bitacora.ELIMINAR, { Id: id }, usuario)
 
   return true
 }

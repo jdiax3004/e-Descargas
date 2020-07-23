@@ -16,23 +16,23 @@ servicio.obtenerUno = async (codigo) => {
   return await storeProcedure("ObtenerMusica", { Codigo: codigo })
 }
 
-servicio.insertar = async (objeto, req) => {
+servicio.insertar = async (objeto, usuario) => {
   objeto.Codigo = await consecutivo.generar(consecutivo.MUSICA)
   const data = await storeProcedure("InsertarMusica", objeto)
-  bitacora.log(bitacora.INSERTAR, data, req.user)
+  bitacora.log(bitacora.INSERTAR, data, usuario)
   return data
 }
 
-servicio.modificar = async (objeto, req) => {
+servicio.modificar = async (objeto, usuario) => {
   const data = await storeProcedure("ModificarMusica", objeto)
-  bitacora.log(bitacora.MODIFICAR, req.user)
+  bitacora.log(bitacora.MODIFICAR, usuario)
 
   return data
 }
 
-servicio.eliminar = async (codigo, req) => {
+servicio.eliminar = async (codigo, usuario) => {
   const data = await storeProcedure("EliminarMusica", { Codigo: codigo })
-  bitacora.log(bitacora.ELIMINAR, { Codigo: codigo }, req.user)
+  bitacora.log(bitacora.ELIMINAR, { Codigo: codigo }, usuario)
 
   return true
 }

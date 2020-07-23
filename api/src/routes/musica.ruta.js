@@ -32,7 +32,7 @@ router.post('/musica', isAuth([1, 4]), async (req, res, next) => {
 
 router.put('/musica', isAuth([1, 4]), async (req, res, next) => {
     try {
-        const data = await servicio.modificar(req.body)
+        const data = await servicio.modificar(req.body, req.user)
         return res.json(data)
     } catch (error) {
         next(error)
@@ -41,7 +41,7 @@ router.put('/musica', isAuth([1, 4]), async (req, res, next) => {
 
 router.delete('/musica/:codigo', isAuth([1, 4]), async (req, res, next) => {
     try {
-        const data = await servicio.eliminar(req.params.codigo)
+        const data = await servicio.eliminar(req.params.codigo, req.user)
         return res.json({ success: data })
     } catch (error) {
         next(error)

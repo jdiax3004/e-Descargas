@@ -16,9 +16,9 @@ servicio.obtenerUno = async (codigo) => {
   return await storeProcedure("ObtenerRol", { Id: codigo })
 }
 
-servicio.insertar = async (objeto) => {
+servicio.insertar = async (objeto, usuario) => {
   const data = await storeProcedure("InsertarRol", objeto)
-  bitacora.log(bitacora.INSERTAR, data)
+  bitacora.log(bitacora.INSERTAR, data, usuario)
   return data
 }
 

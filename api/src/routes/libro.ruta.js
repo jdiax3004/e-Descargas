@@ -23,7 +23,7 @@ router.get('/libro/:codigo', async (req, res, next) => {
 
 router.post('/libro', async (req, res, next) => {
     try {
-        const data = await servicio.insertar(req.body)
+        const data = await servicio.insertar(req.body, req.user)
         return res.json(data)
     } catch (error) {
         next(error)
@@ -32,7 +32,7 @@ router.post('/libro', async (req, res, next) => {
 
 router.put('/libro', async (req, res, next) => {
     try {
-        const data = await servicio.modificar(req.body)
+        const data = await servicio.modificar(req.body, req.user)
         return res.json(data)
     } catch (error) {
         next(error)
@@ -41,7 +41,7 @@ router.put('/libro', async (req, res, next) => {
 
 router.delete('/libro/:codigo', async (req, res, next) => {
     try {
-        const data = await servicio.eliminar(req.params.codigo)
+        const data = await servicio.eliminar(req.params.codigo, req.user)
         return res.json({ success: data })
     } catch (error) {
         next(error)
