@@ -26,6 +26,7 @@ export class AsignarRolesComponent implements OnInit {
   cargarUsuarios() {
     this.servicio.obtener().subscribe(response => {
       this.usuarios = response;
+      this.usuarioSeleccionado = response[0];
     })
   }
 

@@ -10,7 +10,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Lista de usuarios</label>
-                        <select multiple class="form-control" name="usuarioSeleccionado" [(ngModel)]="usuarioSeleccionado" (change)="onUsuarioChange()">
+                        <select class="form-control" name="usuarioSeleccionado" [(ngModel)]="usuarioSeleccionado" (change)="onUsuarioChange()">
                             <option [value]="item" *ngFor="let item of usuarios">{{ item.Usuario }}</option>
                         </select>
                     </div>
@@ -18,7 +18,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Lista de roles</label>
-                        <input type="text" class="form-control" name="Usuario" [(ngModel)]="usuarioSeleccionado.Usuario">
+                        <input type="text" class="form-control" name="Usuario" [value]="usuarioSeleccionado.Usuario" disabled>
                     </div>
                     <hr>
                     <br> 
