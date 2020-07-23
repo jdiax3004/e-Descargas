@@ -50,8 +50,11 @@ app.use(process.env.API_PATH, require("./routes/libro.ruta"));
 app.use(process.env.API_PATH, require("./routes/peliculas.ruta"));
 app.use(process.env.API_PATH, require("./routes/transaccion.ruta"));
 app.use(process.env.API_PATH, require("./routes/usuarios.ruta"));
+app.use(process.env.API_PATH, require("./routes/rol.ruta"));
 app.use(process.env.API_PATH, require("./routes/parametros.ruta"));
 app.use(process.env.API_PATH, require("./routes/genero-musica.ruta"));
+app.use(process.env.API_PATH, require("./routes/genero-pelicula.ruta"));
+app.use(process.env.API_PATH, require("./routes/genero-libro.ruta"));
 app.use(process.env.API_PATH, require("./routes/idiomas.ruta"));
 app.use(process.env.API_PATH, require("./routes/descargas.ruta"));
 
