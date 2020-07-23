@@ -37,7 +37,11 @@ export class AlertService {
    * @param text message.
    */
   handleError(error: any) {
-    this.error(error && error.error && error.error.message ? error.error.message : 'Ha ocurrido un problema.');
+    let message = 'Ha ocurrido un problema.';
+    if(error && error.error && error.error.message) {
+      message = error.error.message
+    }
+    this.error(message);
   }
 
   /**

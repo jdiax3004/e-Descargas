@@ -8,13 +8,13 @@ const usuarios = require("../services/usuarios.servicio");
 async function exec() {
   await db.authenticate();
 
-  //await crearConsecutivos();
-//await crearRoles();
- //await crearUsuarios();
+  await crearConsecutivos();
+  await crearRoles();
+  await crearUsuarios();
   await crearIdiomas();
-  //await crearGenerosMusica();
-  //await crearGenerosLibros();
-  //await crearGenerosPeliculas();
+  await crearGenerosMusica();
+  await crearGenerosLibros();
+  await crearGenerosPeliculas();
 }
 
 async function crearConsecutivos() {
@@ -77,11 +77,38 @@ async function crearRoles() {
   await storeProcedure("InsertarRol", {
     Rol: "Admin",
   });
+  await storeProcedure("InsertarRol", {
+    Rol: "Seguridad",
+  });
+  await storeProcedure("InsertarRol", {
+    Rol: "Consecutivo",
+  });
+  await storeProcedure("InsertarRol", {
+    Rol: "Mantenimiento",
+  });
+  await storeProcedure("InsertarRol", {
+    Rol: "Consulta",
+  });
+  await storeProcedure("InsertarRol", {
+    Rol: "Cliente",
+  });
 }
 
 async function crearIdiomas() {
   await storeProcedure("InsertarIdioma", {
     Idioma: "Español",
+  });
+  await storeProcedure("InsertarIdioma", {
+    Idioma: "Ingles",
+  });
+  await storeProcedure("InsertarIdioma", {
+    Idioma: "Italiano",
+  });
+  await storeProcedure("InsertarIdioma", {
+    Idioma: "Frances",
+  });
+  await storeProcedure("InsertarIdioma", {
+    Idioma: "Aleman",
   });
 }
 
@@ -89,11 +116,32 @@ async function crearGenerosMusica() {
   await storeProcedure("InsertarGeneroMusica", {
     Genero: "Rock",
   });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Metal",
+  });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Punk",
+  });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Pop",
+  });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Regueaton",
+  });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Bachata",
+  });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Trap",
+  });
+  await storeProcedure("InsertarGeneroMusica", {
+    Genero: "Balada",
+  });
 }
 
 async function crearUsuarios() {
   await usuarios.insertar({
-    Id_Rol: 1,
+    Id_Roles: [1],
     Usuario: "jdiazher",
     Nombre: "Julian",
     Primer_Apellido: "Diaz",
@@ -109,11 +157,32 @@ async function crearGenerosLibros() {
   await storeProcedure("InsertarGeneroLibros", {
     Genero: "Fantasia",
   });
+  await storeProcedure("InsertarGeneroLibros", {
+    Genero: "Suspenso",
+  });
+  await storeProcedure("InsertarGeneroLibros", {
+    Genero: "Ciencia Ficción",
+  });
+  await storeProcedure("InsertarGeneroLibros", {
+    Genero: "Novela",
+  });
 }
 
 async function crearGenerosPeliculas() {
   await storeProcedure("InsertarGeneroPeliculas", {
     Genero: "Accion",
+  });
+  await storeProcedure("InsertarGeneroPeliculas", {
+    Genero: "Ciencia Ficción",
+  });
+  await storeProcedure("InsertarGeneroPeliculas", {
+    Genero: "Drama",
+  });
+  await storeProcedure("InsertarGeneroPeliculas", {
+    Genero: "Terror",
+  });
+  await storeProcedure("InsertarGeneroPeliculas", {
+    Genero: "Comedia",
   });
 }
 

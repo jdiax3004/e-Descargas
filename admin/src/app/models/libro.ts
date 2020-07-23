@@ -1,7 +1,9 @@
 export class Libro {
   Codigo?: string;
   Id_Genero?: number;
+  Genero?: string;
   Id_Idioma?: number;
+  Idioma?: string;
   Nombre?: string;
   Anno?: number;
   Autores?: string;

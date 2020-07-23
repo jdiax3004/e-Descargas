@@ -3,21 +3,21 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-tittle">
-              Parametros
+              Parámetros
           </h3>
           <hr>
-          <form>
+          <form #form="ngForm" (ngSubmit)="submit()">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Ruta de almacenamiento previsualizacion libros pdf</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="param1" [(ngModel)]="params[0].Valor">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Ruta almacenamiento libros pdf</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="param2" [(ngModel)]="params[1].Valor">
                     </div>
                 </div>
               </div>
@@ -25,13 +25,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Ruta de almacenamiento previsualizacion peliculas</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="param3" [(ngModel)]="params[2].Valor">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Ruta almacenamiento peliculas</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="param4" [(ngModel)]="params[3].Valor">
                     </div>
                 </div>
               </div>
@@ -39,19 +39,19 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Ruta de almacenamiento previsualizacion musica</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="param5" [(ngModel)]="params[4].Valor">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Ruta almacenamiento musica</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="param6" [(ngModel)]="params[5].Valor">
                     </div>
                 </div>
               </div>
               <div class="row">
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
+                    <button type="submit" class="btn btn-success" (click)="submit()"> <i class="fa fa-check"></i> Guardar</button>
                     <button type="button" class="btn btn-inverse">Cancelar</button>
                 </div>
             </div>

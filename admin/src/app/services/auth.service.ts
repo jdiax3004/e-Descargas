@@ -31,14 +31,19 @@ export class AuthService {
 
   isAuth(roles?: number[]): boolean {
     if (this.actual) {
-      if (roles) return roles.includes(this.actual.Id_Rol)
-      return true
+      if (roles) {
+        for(let rol of roles) {
+            if(this.actual.Id_Roles.includes(rol)) return true;
+        }
+        return false;
+      } 
+      return true;
     }
-    return false
+    return false;
   }
 
   goHome() {
-    this.router.navigate(['dashboard'])
+    this.router.navigate([''])
   }
 
   login(usuario: string, contrasenna: string) {

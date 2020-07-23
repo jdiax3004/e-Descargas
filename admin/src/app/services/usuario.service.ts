@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class UsuarioService extends CRUDService<Usuario> {
 
   constructor(private http: HttpClient) {
-    super(http, '/usuarios');
+    super(http, 'usuarios');
   }
 
   login(Usuario: string, Contrasenna: string) {

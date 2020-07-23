@@ -72,7 +72,7 @@ router.get("/usuarios/:codigo", async (req, res, next) => {
 
 router.post("/usuarios", async (req, res, next) => {
   try {
-    const data = await servicio.insertar(req.body);
+    const data = await servicio.insertar(req.body, req.user);
     return res.json(data);
   } catch (error) {
     next(error);
@@ -81,7 +81,7 @@ router.post("/usuarios", async (req, res, next) => {
 
 router.put("/usuarios", async (req, res, next) => {
   try {
-    const data = await servicio.modificar(req.body);
+    const data = await servicio.modificar(req.body, req.user);
     return res.json(data);
   } catch (error) {
     next(error);
@@ -90,7 +90,7 @@ router.put("/usuarios", async (req, res, next) => {
 
 router.delete("/usuarios/:codigo", async (req, res, next) => {
   try {
-    const data = await servicio.eliminar(req.params.codigo);
+    const data = await servicio.eliminar(req.params.codigo, req.user);
     return res.json({ success: data });
   } catch (error) {
     next(error);

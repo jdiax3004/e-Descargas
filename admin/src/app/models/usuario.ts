@@ -1,6 +1,6 @@
 export class Usuario {
   Codigo?: string;
-  Id_Rol?: number;
+  Id_Roles?: number[];
   Usuario?: string;
   Nombre?: string;
   Primer_Apellido?: string;

@@ -22,22 +22,22 @@ servicio.obtenerUno = async (id) => {
   return await storeProcedure("ObtenerConsecutivo", { Id: id });
 };
 
-servicio.insertar = async (objeto) => {
+servicio.insertar = async (objeto, usuario) => {
   const data = await storeProcedure("InsertarConsecutivo", objeto);
-  bitacora.log(bitacora.INSERTAR, data);
+  bitacora.log(bitacora.INSERTAR, data, usuario);
   return data;
 };
 
-servicio.modificar = async (objeto) => {
+servicio.modificar = async (objeto, usuario) => {
   const data = await storeProcedure("ModificarConsecutivo", objeto);
-  bitacora.log(bitacora.MODIFICAR, data);
+  bitacora.log(bitacora.MODIFICAR, data, usuario);
 
   return data;
 };
 
-servicio.eliminar = async (id) => {
+servicio.eliminar = async (id, usuario) => {
   const data = await storeProcedure("EliminarConsecutivo", { Id: id });
-  bitacora.log(bitacora.ELIMINAR, { Id: id });
+  bitacora.log(bitacora.ELIMINAR, { Id: id }, usuario);
 
   return true;
 };

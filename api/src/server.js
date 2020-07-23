@@ -40,9 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
-  multer({ dest: path.join(__dirname, "..", "public/upload/temp") }).single(
-    "file"
-  )
+  multer({ dest: path.join(__dirname, "..", "public/temp/") }).array("file")
 );
 
 // Rutas
@@ -53,8 +51,9 @@ app.use(process.env.API_PATH, require("./routes/peliculas.ruta"));
 app.use(process.env.API_PATH, require("./routes/transaccion.ruta"));
 app.use(process.env.API_PATH, require("./routes/usuarios.ruta"));
 app.use(process.env.API_PATH, require("./routes/parametros.ruta"));
+app.use(process.env.API_PATH, require("./routes/genero-musica.ruta"));
+app.use(process.env.API_PATH, require("./routes/idiomas.ruta"));
 app.use(process.env.API_PATH, require("./routes/descargas.ruta"));
-
 
 
 // Manejo de Errores

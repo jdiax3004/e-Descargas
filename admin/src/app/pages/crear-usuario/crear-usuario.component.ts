@@ -20,7 +20,6 @@ export class CrearUsuarioComponent implements OnInit {
 
   submit() {
     this.alert.showLoading()
-    this.objeto.Id_Rol = ADMINISTRADOR; //TODO: revisar
     this.servicio.insertar(this.objeto).subscribe(response => {
       this.alert.success('Elemento creado correctamente!');
     }, this.alert.handleError)

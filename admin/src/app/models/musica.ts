@@ -1,7 +1,9 @@
 export class Musica {
   Codigo?: string;
   Id_Genero?: number;
+  Genero?: string;
   Id_Idioma?: number;
+  Idioma?: string;
   Nombre?: string;
   Anno?: number;
   Tipo_Interpretacion?: string;
