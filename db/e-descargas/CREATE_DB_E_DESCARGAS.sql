@@ -155,9 +155,9 @@ CREATE TABLE Bitacora
 		NOT NULL,
 	Tipo NVARCHAR(255)
 		NOT NULL,
-	Descripcion NVARCHAR(500)
+	Descripcion NVARCHAR(4000)
 		NOT NULL,
-	Detalle_Registro NVARCHAR(1000)
+	Detalle_Registro NVARCHAR(4000)
 		NOT NULL,
 	Fecha NVARCHAR(255)
 		NOT NULL
@@ -193,11 +193,11 @@ CREATE TABLE Errores
 (
 	Id INT
 		IDENTITY NOT NULL PRIMARY KEY,
-	Mensaje NVARCHAR(255)
+	Mensaje NVARCHAR(4000)
 		NOT NULL,
-	Descripcion NVARCHAR(1000)
+	Descripcion NVARCHAR(max)
 		NOT NULL,
-	Codigo_Error NVARCHAR(30)
+	Codigo_Error NVARCHAR(255)
 		NOT NULL,
 	Fecha NVARCHAR(255)
 		NOT NULL
@@ -213,7 +213,7 @@ CREATE TABLE Tarjetas
 		NOT NULL UNIQUE,
 	CVV INT
 		NOT NULL,
-	Tipo NVARCHAR(20)
+	Tipo NVARCHAR(255)
 		NOT NULL,
 	Mes_Expiracion NVARCHAR(255)
 		NOT NULL,
