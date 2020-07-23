@@ -9,12 +9,17 @@ let servicio = {}
 servicio.obtener = async (filtros) => {
   let result = await storeProcedure("ObtenerUsuario")
   if(filtros) result = filtrar(result, filtros)
-
+  for(let item of result) {
+    item.Id_Roles = await rolUsuarioServicio.obtenerRoles(item.Codigo)
+  }
   return result
 }
 
 servicio.obtenerUno = async (codigo) => {
-  return await storeProcedure("ObtenerUsuario", { Codigo: codigo })
+  let data = await storeProcedure("ObtenerUsuario", { Codigo: codigo })
+  data.Id_Roles = await rolUsuarioServicio.obtenerRoles(codigo)
+  console.log(data)
+  return data 
 }
 
 servicio.insertar = async (objeto, usuario) => {
@@ -28,7 +33,7 @@ servicio.insertar = async (objeto, usuario) => {
   const data = await storeProcedure("InsertarUsuario", objeto)
   bitacora.log(bitacora.INSERTAR, data, usuario)
 
-  for(let Id_Rol in roles) {
+  for(let Id_Rol of roles) {
     await rolUsuarioServicio.insertar({ Id_Rol, Codigo_Usuario: objeto.Codigo})
   }
 
@@ -47,7 +52,7 @@ servicio.modificar = async (objeto, usuario) => {
   const data = await storeProcedure("ModificarUsuario", objeto)
   bitacora.log(bitacora.MODIFICAR, data, usuario)
 
-  for(let Id_Rol in roles) {
+  for(let Id_Rol of roles) {
     await rolUsuarioServicio.insertar({ Id_Rol, Codigo_Usuario: objeto.Codigo})
   }
 

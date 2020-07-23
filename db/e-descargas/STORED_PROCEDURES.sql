@@ -59,6 +59,19 @@ END
 GO
 
 GO
+CREATE OR ALTER PROC dbo.ObtenerRolUsuarioArray
+  @Codigo_Usuario NVARCHAR(255)
+AS
+DECLARE @result VARCHAR(500)
+SET @result = '['
+SELECT @result = @result + CAST(Id_Rol AS VARCHAR(10)) + ', ' 
+FROM Roles_Usuarios
+WHERE Codigo_Usuario = @Codigo_Usuario;
+
+SELECT LEFT(@result,LEN(@result)-1) + ']' AS Id_Roles
+GO
+
+GO
 CREATE OR ALTER PROC dbo.EliminarRolUsuario
   @Codigo_Usuario NVARCHAR(255)
 AS

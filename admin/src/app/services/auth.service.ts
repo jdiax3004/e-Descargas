@@ -31,10 +31,15 @@ export class AuthService {
 
   isAuth(roles?: number[]): boolean {
     if (this.actual) {
-      if (roles) return roles.includes(this.actual.Id)
-      return true
+      if (roles) {
+        for(let rol of roles) {
+            if(this.actual.Id_Roles.includes(rol)) return true;
+        }
+        return false;
+      } 
+      return true;
     }
-    return false
+    return false;
   }
 
   goHome() {
