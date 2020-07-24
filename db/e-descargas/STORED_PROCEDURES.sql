@@ -182,7 +182,7 @@ WHERE Id = SCOPE_IDENTITY();
 GO
 
 GO
-CREATE OR ALTER PROC dbo.ObtenerGeneroPeliculas
+CREATE OR ALTER PROC dbo.ObtenerGeneroPelicula
   @Id AS INT = NULL
 AS
 IF @Id IS NULL

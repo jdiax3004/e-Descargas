@@ -135,6 +135,18 @@ const pagesRoutes: Routes = [
         data: { titulo: "Crear Consecutivo", Id_Rol: [ADMINISTRADOR, CONSECUTIVO] },
         canActivate: [AuthGuard]
       },
+      {
+        path: "crearPeliculas/:id",
+        component: CrearPeliculaComponent,
+        data: { titulo: "Crear Peliculas", Id_Rol: [ADMINISTRADOR, CONSECUTIVO] },
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "crearLibros/:id",
+        component: CrearLibroComponent,
+        data: { titulo: "Crear Libros", Id_Rol: [ADMINISTRADOR, CONSECUTIVO] },
+        canActivate: [AuthGuard]
+      },
     ],
   },
 ];

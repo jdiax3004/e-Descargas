@@ -3,41 +3,38 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-tittle">
-              Crear pelìcula
+              Crear Película
           </h3>
           <hr>
-          <form>
+          <form #form="ngForm" (ngSubmit)="submit()">
               <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Codigo</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Nombre" [(ngModel)]="objeto.Nombre">
                     </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Genero</label>
-                        <input type="text" class="form-control">
-                    </div>
+                        <label>Género</label>
+                        <select class="form-control" name="miselect" [(ngModel)]="objeto.Id_Genero">
+                            <option [value]="item.Id" *ngFor="let item of generos">{{ item.Genero }}</option>
+                        </select>                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Año</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="Anno" [(ngModel)]="objeto.Anno">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Idioma</label>
-                        <input type="text" class="form-control">
+                        <select class="form-control" name="Id_Idioma" [(ngModel)]="objeto.Id_Idioma">
+                            <option [value]="item.Id" *ngFor="let item of idiomas">{{ item.Idioma }}</option>
+                        </select>
                     </div>
                 </div>
               </div>
@@ -45,7 +42,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Actores</label>
-                        <textarea type="text" class="form-control"></textarea>
+                        <textarea type="text" class="form-control" name="Actores" [(ngModel)]="objeto.Actores"></textarea>
                     </div>
                 </div>
               </div>
@@ -53,13 +50,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Archivo descarga</label>
-                        <input type="file" class="form-control">
+                        <input type="file" class="form-control-file" id="Archivo_Descarga">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Archivo visualizacion</label>
-                        <input type="file" class="form-control">
+                        <input type="file" class="form-control-file" id="Archivo_Visualizacion">
                     </div>
                 </div>
               </div>

@@ -7,7 +7,6 @@ CREATE TABLE Roles
 	Rol NVARCHAR(255)
 		NOT NULL
 );
-
 CREATE TABLE Usuarios
 (
 	Codigo NVARCHAR(255)
@@ -188,6 +187,8 @@ CREATE TABLE Descargas
 	Fecha NVARCHAR(255)
 		NOT NULL
 );
+
+--delete from Errores where id > 10
 
 CREATE TABLE Errores
 (
