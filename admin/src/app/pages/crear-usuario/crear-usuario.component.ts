@@ -22,6 +22,6 @@ export class CrearUsuarioComponent implements OnInit {
     this.alert.showLoading()
     this.servicio.insertar(this.objeto).subscribe(response => {
       this.alert.success('Elemento creado correctamente!');
-    }, this.alert.handleError)
+    }, err => this.alert.handleError(err))
   }
 }
