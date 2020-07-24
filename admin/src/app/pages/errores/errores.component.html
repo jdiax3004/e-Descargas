@@ -1,48 +1,47 @@
 <div class="row">
     <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-tittle">
-              Errores
-          </h3>
-          <hr>
-          <h4>Filtros</h4>
-          <div class="row">
-                <div class="col-md-4">
-                    <div>
-                        <input id="checkbox2" type="checkbox">
-                        <label for="checkbox2"> Fecha</label>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-tittle">
+                    Errores
+                </h3>
+                <hr>
+                <h4>Filtros</h4>
+                <form #form="ngForm" (ngSubmit)="submit()">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="Fecha" [(ngModel)]="filtros.Fecha">
+                        </div>
                     </div>
-                    <input type="text" class="form-control">
-                </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Numero Error</th>
+                            <th>Mensaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let objeto of objetos">
+                            <td>{{ objeto.Fecha }}</td>
+                            <td>
+                                {{ objeto.Id }}
+                            </td>
+                            <td class="text-nowrap">
+                                {{ objeto.Mensaje }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <button class="btn btn-primary">Buscar</button>
-                </div>
-            </div>
-          <hr>
-          <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Numero Error</th>
-                    <th>Mensaje</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let objeto of objetos">
-                    <td>{{ objeto.Fecha }}</td>
-                    <td>
-                        {{ objeto.Id }}
-                    </td>
-                    <td class="text-nowrap">
-                        {{ objeto.Mensaje }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         </div>
     </div>
-</div>

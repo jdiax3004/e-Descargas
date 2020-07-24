@@ -13,12 +13,21 @@ export class ErroresComponent implements OnInit {
   constructor(private service:ErroresService, private alert: AlertService) { }
 
   objetos: Error[] = [];
+  filtros: Error = {};
   ngOnInit() {
     this.cargar();
   }
   cargar() {
     this.service.obtener().subscribe(data => {
       this.objetos = data;
+    })
+  }
+
+  submit() {
+    this.alert.showLoading()
+    this.service.obtener(this.filtros).subscribe(data => {
+      this.objetos = data;
+      this.alert.hideLoading();
     })
   }
 
