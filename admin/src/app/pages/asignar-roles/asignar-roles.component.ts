@@ -14,7 +14,7 @@ export class AsignarRolesComponent implements OnInit {
   usuarios: Usuario[] = []
   roles: any[] = []
 
-  usuarioSeleccionado: Usuario = {}
+  usuarioSeleccionado: Usuario = { Id_Roles: [] }
 
   constructor(private servicio: UsuarioService, private rolServicio: RolService, private alert: AlertService) { }
 
@@ -36,13 +36,22 @@ export class AsignarRolesComponent implements OnInit {
     })
   }
 
-  onUsuarioChange() {
-    console.log(this.usuarioSeleccionado)
+  seleccionarUsuario(usuario: Usuario) {
+    this.usuarioSeleccionado = usuario;
+  }
+
+  setRol(id: number) {
+    const index = this.usuarioSeleccionado.Id_Roles.indexOf(id);
+    if (index > -1) {
+      this.usuarioSeleccionado.Id_Roles.splice(index, 1);
+    } else {
+      this.usuarioSeleccionado.Id_Roles.push(id);
+    }
   }
 
   submit() {
     this.alert.showLoading()
-    this.servicio.modificar(this.usuarioSeleccionado).subscribe(response => {
+    this.servicio.modificar({ Codigo: this.usuarioSeleccionado.Codigo, Id_Roles: this.usuarioSeleccionado.Id_Roles }).subscribe(response => {
       this.alert.success('Elemento Actualizado!');
     }, this.alert.handleError);
   }
