@@ -15,7 +15,7 @@ bitacora.log = (tipo, objeto, usuario) => {
         Codigo_Usuario,
         Codigo_Registro:  objeto.Codigo || objeto.Id,
         Tipo:             tipo,
-        Descripcion:      `${tipo} `,
+        Descripcion:      `${tipo} ${objeto.Codigo || objeto.Id}`,
         Detalle_Registro: JSON.stringify(objeto),
         Fecha:            new Date()
     }
