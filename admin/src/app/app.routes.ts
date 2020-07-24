@@ -4,10 +4,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import { NopagefoundComponent } from "./shared/nopagefound/nopagefound.component";
 import { LoginGuardService as LoginGuard } from './services/login-guard.service'
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 
 const ROUTES: Routes = [
   { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
   { path: "register", component: RegisterComponent, canActivate: [LoginGuard] },
+  { path: "recover", component: PasswordRecoveryComponent, canActivate: [LoginGuard] },
   { path: "**", component: NopagefoundComponent },
 ];
 
