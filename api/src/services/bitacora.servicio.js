@@ -6,7 +6,6 @@ let servicio = {};
 
 servicio.obtener = async (filtros) => {
   let result = await storeProcedure("ObtenerBitacora")
-  console.log("Hola"+result);
   if(filtros) result = filtrar(result, filtros)
   
   return result
