@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TransaccionService } from 'src/app/services/transaccion.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { Transaccion } from 'src/app/models/transaccion';
 
 @Component({
   selector: 'app-transacciones',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransaccionesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:TransaccionService, private alert:AlertService) { }
+
+  objetos: Transaccion[] = [];
+  //filtros: Transaccion = { Tipo: "" };
 
   ngOnInit() {
+    this.cargar();
   }
-
+  cargar() {
+    this.service.obtener().subscribe(data => {
+      this.objetos = data;
+    })
+  }
 }
