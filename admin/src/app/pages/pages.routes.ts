@@ -28,7 +28,7 @@ const pagesRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: "dashboard",
+        path: "",
         component: DashboardComponent,
         data: { titulo: "Dashboard", Id_Rol: [ADMINISTRADOR] },
         canActivate: [AuthGuard]
