@@ -24,4 +24,13 @@ export class MusicaComponent implements OnInit {
     })
   }
 
+  delete(id:string){
+    this.alert.preConfirmLoading('¿Esta seguro?', 'La acción eliminará el objeto.', () => new Promise((resolve, reject) => {
+      this.service.eliminar(id).subscribe(result => {
+        this.cargar();
+        resolve('Elemento eliminado correctamente!')
+      }, error => reject('No se pudo eliminar el objeto.'))
+    }))
+  }
+
 }
