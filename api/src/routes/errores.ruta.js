@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const servicio = require("../services/errores.servicio");
+const { isAuth } = require('../security/auth')
 
-router.get("/errores", async (req, res, next) => {
+router.get("/errores", isAuth([1, 5]), async (req, res, next) => {
   try {
     const data = await servicio.obtener(req.query);
     return res.json(data);
@@ -10,7 +11,7 @@ router.get("/errores", async (req, res, next) => {
   }
 });
 
-router.get("/errores/:Id", async (req, res, next) => {
+router.get("/errores/:Id", isAuth([1, 5]), async (req, res, next) => {
   try {
     const data = await servicio.obtenerUno(req.params.Id);
     return res.json(data);
@@ -19,7 +20,7 @@ router.get("/errores/:Id", async (req, res, next) => {
   }
 });
 
-router.post("/errores", async (req, res, next) => {
+router.post("/errores", isAuth([1, 5]), isAuth([1, 5]), async (req, res, next) => {
   try {
     const data = await servicio.insertar(req.body);
     return res.json(data);
@@ -28,7 +29,7 @@ router.post("/errores", async (req, res, next) => {
   }
 });
 
-router.put("/errores", async (req, res, next) => {
+router.put("/errores", isAuth([1, 5]), async (req, res, next) => {
   try {
     const data = await servicio.modificar(req.body);
     return res.json(data);
@@ -37,7 +38,7 @@ router.put("/errores", async (req, res, next) => {
   }
 });
 
-router.delete("/bitacora/:Id", async (req, res, next) => {
+router.delete("/bitacora/:Id", isAuth([1, 5]), async (req, res, next) => {
   try {
     const data = await servicio.eliminar(req.params.Id);
     return res.json({ success: data });
