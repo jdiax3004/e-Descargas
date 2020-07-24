@@ -5,29 +5,28 @@
           <h3 class="card-tittle">
               Cambiar contraseña
           </h3>
-          <form>
+          <form #form="ngForm" (ngSubmit)="submit()">
             <div class="col-md-12 ">
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="text" class="form-control">
+                    <input [(ngModel)]="contrasenna" name="contrasenna" type="password" class="form-control">
                 </div>
             </div>
             <div class="col-md-12 ">
                 <div class="form-group">
-                    <label>Nueva contraseña</label>
-                    <input type="text" class="form-control">
+                    <label>Nueva Contraseña</label>
+                    <input [(ngModel)]="nuevacontrasenna" name="nuevacontrasenna"  type="password" class="form-control">
                 </div>
             </div>
             <div class="col-md-12 ">
                 <div class="form-group">
-                    <label>Confirmar nueva contraseña</label>
-                    <input type="text" class="form-control">
+                    <label>Confirmar Nueva Contraseña</label>
+                    <input [(ngModel)]="confirmarContrasenna" name="confirmarContrasenna"  type="password" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-actions">
                     <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Guardar</button>
-                    <button type="button" class="btn btn-inverse">Cancelar</button>
                 </div>
             </div>
           </form>
