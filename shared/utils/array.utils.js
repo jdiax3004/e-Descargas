@@ -13,18 +13,16 @@ arrayUtils.filtrar = (array, filtros) => {
             if(valor) {
                 array = array.filter(obj => {
                     let trydate = new Date(obj[filtro])
-
-                    if(trydate instanceof Date) {
+                    if(!isNaN(trydate)) {
                         try {
                             return trydate.getTime() >= new Date(valor).getTime() 
                         } catch(err) {
                             return false
                         }
-                    }
-
-                    if(typeof obj[filtro] === 'string')
+                    } else if(typeof obj[filtro] === 'string') {
                         return obj[filtro].includes(valor)
-                    
+                    }
+                        
                     return obj[filtro] == valor
                 })
             } 
