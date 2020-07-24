@@ -126,7 +126,7 @@ const pagesRoutes: Routes = [
       {
         path: "consultarBitacora/:id",
         component: ConsultaBitacoraComponent,
-        data: { titulo: "Consulta bitácora", Id_Rol: [ADMINISTRADOR, CONSULTA] },
+        data: { titulo: "Consulta Bitácora", Id_Rol: [ADMINISTRADOR, CONSULTA] },
         canActivate: [AuthGuard]
       },
       {

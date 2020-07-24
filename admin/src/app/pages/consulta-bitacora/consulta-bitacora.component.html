@@ -3,34 +3,34 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-tittle">
-             Consulta Bitàcora
+             Consulta Bitácora
           </h3>
           <hr>
           <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Fecha</label>
-                    <input type="text" class="form-control" disabled>
+                    <input name="Fecha" [(ngModel)]="item.Fecha" type="text" class="form-control" disabled>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Usuario</label>
-                    <input type="text" class="form-control" disabled>
+                    <input name="Codigo_Usuario" [(ngModel)]="item.Codigo_Usuario" type="text" class="form-control" disabled>
                 </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Codigo registro</label>
-                    <input type="text" class="form-control" disabled>
+                    <label>Codigo Registro</label>
+                    <input name="Codigo_Registro" [(ngModel)]="item.Codigo_Registro" type="text" class="form-control" disabled>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Tipo</label>
-                    <input type="text" class="form-control" disabled>
+                    <input name="Tipo" [(ngModel)]="item.Tipo" type="text" class="form-control" disabled>
                 </div>
             </div>
           </div>
@@ -38,13 +38,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Descripcion</label>
-                    <textarea type="text" class="form-control" disabled></textarea>
+                    <textarea name="Descripcion" [(ngModel)]="item.Descripcion" type="text" class="form-control" disabled></textarea>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Registro en detalle</label>
-                    <textarea type="text" class="form-control" disabled></textarea>
+                    <textarea name="Detalle_Registro" [(ngModel)]="item.Detalle_Registro" type="text" class="form-control" disabled></textarea>
                 </div>
             </div>
           </div>
