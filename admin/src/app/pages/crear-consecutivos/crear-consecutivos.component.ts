@@ -21,10 +21,12 @@ export class CrearConsecutivosComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')
-    this.servicio.obtenerUno(this.id).subscribe(data => {
-      this.objeto = data
-      this.esCreacion = false
-    })
+    if(this.id  != 'nueva') {
+      this.servicio.obtenerUno(this.id).subscribe(data => {
+        this.objeto = data
+        this.esCreacion = false
+      })
+    }
   }
 
   submit() {
@@ -37,8 +39,7 @@ export class CrearConsecutivosComponent implements OnInit {
       this.servicio.modificar(this.objeto).subscribe(response => {
         this.alert.success('Elemento actualizado correctamente!');
       }, err => this.alert.handleError(err))
-    }
-    
+    } 
   }
 
 }

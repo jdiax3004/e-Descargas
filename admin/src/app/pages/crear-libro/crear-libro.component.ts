@@ -4,6 +4,7 @@ import { LibrosService } from 'src/app/services/libros.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { GeneroLibroService } from 'src/app/services/genero-libro.service';
 import { IdiomaService } from 'src/app/services/idioma.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-crear-libro',
@@ -11,6 +12,9 @@ import { IdiomaService } from 'src/app/services/idioma.service';
   styleUrls: ['./crear-libro.component.css']
 })
 export class CrearLibroComponent implements OnInit {
+
+  id: string;
+  esCreacion: boolean = true;
   objeto: Libro = new Libro();
   generos: any[] = [];
   idiomas: any[] = [];
@@ -18,24 +22,32 @@ export class CrearLibroComponent implements OnInit {
   archivoDescarga: File;
   archivoVisualizacion: File;
 
-  constructor(private servicio: LibrosService, private generoService: GeneroLibroService, private idiomaService: IdiomaService, private alert: AlertService) { }
+  constructor(private servicio: LibrosService, private generoService: GeneroLibroService, private route: ActivatedRoute, private idiomaService: IdiomaService, private alert: AlertService) { }
   
   ngOnInit() {
+    
     this.cargarGeneros();
     this.cargarIdiomas();
+    this.id = this.route.snapshot.paramMap.get('id')
+    if(this.id  != 'nueva') {
+      this.servicio.obtenerUno(this.id).subscribe(data => {
+        this.objeto = data
+        this.esCreacion = false
+      })
+    }
   }
 
   cargarGeneros() {
     this.generoService.obtener().subscribe(response => {
       this.generos = response;
-      this.objeto.Id_Genero = response[0].Id;
+      if(this.esCreacion) this.objeto.Id_Genero = response[0].Id;
     });
   }
 
   cargarIdiomas() {
     this.idiomaService.obtener().subscribe(response => {
       this.idiomas = response;
-      this.objeto.Id_Idioma = response[0].Id;
+      if(this.esCreacion) this.objeto.Id_Idioma = response[0].Id;
     });
   }
 
@@ -44,25 +56,21 @@ export class CrearLibroComponent implements OnInit {
   }
 
 
-
   submit() {
     this.alert.showLoading()
-
-    let formData = new FormData()
-    let files = FileList
-    if(this.archivoDescarga) formData.append("file", this.archivoDescarga)
-    if(this.archivoVisualizacion) formData.append("file", this.archivoVisualizacion)
 
     // TODO: esto es provisional
     this.objeto.Archivo_Descarga = 'c:/temp';
     this.objeto.Archivo_Previsualizacion = 'c:/temp';
 
-    for(let prop in this.objeto) {
-      formData.append(prop, this.objeto[prop])
-    }
-
-    this.servicio.insertar(this.objeto).subscribe(response => {
-      this.alert.success('Elemento creado correctamente!');
-    }, err => this.alert.handleError(err))
+    if(this.esCreacion) {
+      this.servicio.insertar(this.objeto).subscribe(response => {
+        this.alert.success('Elemento creado correctamente!');
+      }, err => this.alert.handleError(err))
+    } else {
+      this.servicio.modificar(this.objeto).subscribe(response => {
+        this.alert.success('Elemento actualizado correctamente!');
+      }, err => this.alert.handleError(err))
+    } 
   }
 }

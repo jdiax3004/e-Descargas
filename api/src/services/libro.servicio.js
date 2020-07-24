@@ -23,6 +23,8 @@ servicio.insertar = async (objeto, usuario) => {
 };
 
 servicio.modificar = async (objeto, usuario) => {
+  delete objeto.Idioma
+  delete objeto.Genero
   const data = await storeProcedure("ModificarLibro", objeto);
   bitacora.log(bitacora.MODIFICAR, data, usuario);
 
