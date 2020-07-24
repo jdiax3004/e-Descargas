@@ -49,10 +49,10 @@ servicio.insertar = async (objeto, usuario) => {
 };
 
 servicio.modificar = async (objeto, usuario) => {
-  await rolUsuarioServicio.eliminar(objeto.Codigo);
-
+  
   let roles = [];
   if (objeto.Id_Roles) {
+    await rolUsuarioServicio.eliminar(objeto.Codigo);
     roles = objeto.Id_Roles;
     delete objeto.Id_Roles;
   }

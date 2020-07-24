@@ -13,12 +13,23 @@ export class BitacoraComponent implements OnInit {
   constructor(private service:BitacoraService, private alert: AlertService) { }
 
   objetos: Bitacora[] = [];
+  filtros: Bitacora = { Tipo: "" };
+  
   ngOnInit() {
     this.cargar();
   }
+
   cargar() {
     this.service.obtener().subscribe(data => {
       this.objetos = data;
+    })
+  }
+
+  submit() {
+    this.alert.showLoading()
+    this.service.obtener(this.filtros).subscribe(data => {
+      this.objetos = data;
+      this.alert.hideLoading();
     })
   }
 

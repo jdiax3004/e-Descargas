@@ -9,9 +9,23 @@ let arrayUtils = {}
 arrayUtils.filtrar = (array, filtros) => {
     for (let filtro in filtros) {
         if (filtros.hasOwnProperty(filtro)) {
-            array = array.filter(obj => {
-                return obj[filtro] === filtros[filtro]
-            })
+            let valor = filtros[filtro]
+            if(valor) {
+                array = array.filter(obj => {
+                    let trydate = new Date(obj[filtro])
+                    if(!isNaN(trydate)) {
+                        try {
+                            return trydate.getTime() >= new Date(valor).getTime() 
+                        } catch(err) {
+                            return false
+                        }
+                    } else if(typeof obj[filtro] === 'string') {
+                        return obj[filtro].includes(valor)
+                    }
+                        
+                    return obj[filtro] == valor
+                })
+            } 
         }         
     }
     return array

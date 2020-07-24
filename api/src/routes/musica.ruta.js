@@ -2,7 +2,7 @@ const router = require('express').Router()
 const servicio = require('../services/musica.servicio')
 const { isAuth } = require('../security/auth')
 
-router.get('/musica', isAuth([1, 4]), async (req, res, next) => {
+router.get('/musica', async (req, res, next) => {
     try {
         const data = await servicio.obtener(req.query)
 
@@ -12,7 +12,7 @@ router.get('/musica', isAuth([1, 4]), async (req, res, next) => {
     }
 })
 
-router.get('/musica/:codigo', isAuth([1, 4]), async (req, res, next) => {
+router.get('/musica/:codigo', async (req, res, next) => {
     try {
         const data = await servicio.obtenerUno(req.params.codigo)
         return res.json(data)

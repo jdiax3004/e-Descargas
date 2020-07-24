@@ -5,10 +5,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db');
 
-// Importar Rutas
-const tarjetasRoutes = require('./routes/tarjetas');
-const easypayRoutes = require('./routes/easypay');
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,8 +22,8 @@ app.use(function (req, res, next) {
 });
 
 // Rutas
-app.use('/tarjetas', tarjetasRoutes);
-app.use('/easypay', easypayRoutes);
+app.use('/tarjetas', require('./routes/tarjetas.ruta'));
+app.use('/easypay', require('./routes/easypay.ruta'));
 
 // Escuchar peticiones
 app.listen(3001, () =>

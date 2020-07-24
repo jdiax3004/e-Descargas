@@ -1,64 +1,68 @@
 <div class="row">
     <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-tittle">
-              Bitácora
-          </h3>
-          <hr>
-          <h4>Filtros</h4>
-          <div class="row">
-                <div class="col-md-4">
-                    <div>
-                        <input id="checkbox1" type="checkbox">
-                        <label for="checkbox1"> Usuarios</label>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-tittle">
+                    Bitácora
+                </h3>
+                <hr>
+                <h4>Filtros</h4>
+                <form #form="ngForm" (ngSubmit)="submit()">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>
+                                <label for="checkbox1"> Usuarios</label>
+                            </div>
+                            <input type="text" class="form-control" name="Codigo_Usuario" [(ngModel)]="filtros.Codigo_Usuario">
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <label for="checkbox2"> Fecha</label>
+                            </div>
+                            <input type="text" class="form-control" name="Fecha" [(ngModel)]="filtros.Fecha">
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <label for="checkbox3"> Tipo</label>
+                            </div>
+                            <select class="form-control" name="Tipo" [(ngModel)]="filtros.Tipo">
+                                <option value="">Todos</option>
+                                <option value="Insertar">Insertar</option>
+                                <option value="Modificar">Modificar</option>
+                                <option value="Eliminar">Eliminar</option>
+                            </select>
+                        </div>
                     </div>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <input id="checkbox2" type="checkbox">
-                        <label for="checkbox2"> Fecha</label>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </div>
                     </div>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <input id="checkbox3" type="checkbox">
-                        <label for="checkbox3"> Tipo</label>
-                    </div>
-                    <input type="text" class="form-control">
-                </div>
+                </form>
+                <hr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Codigo Registro</th>
+                            <th>Descripcion</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr [routerLink]="['/consultarBitacora/1']" *ngFor="let objeto of objetos">
+                            <td>{{ objeto.Fecha }}</td>
+                            <td>
+                                {{ objeto.Codigo_Registro}}
+                            </td>
+                            <td class="text-nowrap">
+                                {{ objeto.Descripcion }}
+                            </td>
+                            <td><a>Ver mas...</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <button class="btn btn-primary">Buscar</button>
-                </div>
-            </div>
-          <hr>
-          <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Codigo Registro</th>
-                    <th>Descripcion</th>
-                    <th>Link</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr [routerLink]="['/consultarBitacora/1']" *ngFor="let objeto of objetos">
-                    <td>{{ objeto.Fecha }}</td>
-                    <td>
-                        {{ objeto.Codigo_Registro}}
-                    </td>
-                    <td class="text-nowrap">
-                        {{ objeto.Descripcion }}
-                    </td>
-                    <td><a>Ver mas...</a></td>
-                </tr>
-            </tbody>
-        </table>
         </div>
     </div>
-</div>
