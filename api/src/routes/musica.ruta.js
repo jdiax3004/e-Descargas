@@ -23,13 +23,7 @@ router.get('/musica/:codigo', async (req, res, next) => {
 
 router.post('/musica', isAuth([1, 4]), async (req, res, next) => {
     try {
-        const { user, files } = req
-        const body = req.body
-        if(files) {
-            // TODO: obtener archivos
-        }
-        console.log(body)
-        const data = await servicio.insertar(body, user)
+        const data = await servicio.insertar(req.body, req.user)
         return res.json(data)
     } catch (error) {
         next(error)

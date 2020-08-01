@@ -31,11 +31,15 @@ fileUploader.upload = async (file, location) => {
 
 }
 
+
 fileUploader.delete = async (path) => {
   let arr = path.split('/')
   arr = arr.slice(Math.max(arr.length - 4, 0))
   const name = arr.join('/').split('.')[0]
-  return await cloudinary.v2.uploader.destroy(name)
+  const type = path.split('/').slice(Math.max(path.split('/').length - 7, 0))[0]
+  return await cloudinary.v2.uploader.destroy(name, {
+    resource_type: type
+  })
 }
 
 module.exports = fileUploader
