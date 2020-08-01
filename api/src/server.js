@@ -41,11 +41,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
-  multer({ dest: path.join(__dirname, "..", "public/temp/") }).array("file")
+  multer({ dest: path.join(__dirname, "..", "public/temp/") }).single("file")
 );
 
 // Rutas
 app.use(process.env.API_PATH, require("./routes/consecutivo.ruta"));
+app.use(process.env.API_PATH, require("./routes/archivos.ruta"));
 app.use(process.env.API_PATH, require("./routes/musica.ruta"));
 app.use(process.env.API_PATH, require("./routes/libro.ruta"));
 app.use(process.env.API_PATH, require("./routes/peliculas.ruta"));

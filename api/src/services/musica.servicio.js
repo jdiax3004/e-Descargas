@@ -1,6 +1,8 @@
-const { storeProcedure } = require("utils/db.utils")({ db: require('../db') });
-const { filtrar } = require("utils/array.utils");
+const { storeProcedure } = require("utils/db.utils")({ db: require('../db') })
+const { filtrar } = require("utils/array.utils")
+const archivos = require('./archivos.servicio')
 const bitacora = require('../log/bitacora.log')
+const errorLoguer = require('../log/error.log')
 const consecutivo = require('./consecutivo.servicio')
 
 let servicio = {}
@@ -33,9 +35,16 @@ servicio.modificar = async (objeto, usuario) => {
 }
 
 servicio.eliminar = async (codigo, usuario) => {
-  const data = await storeProcedure("EliminarMusica", { Codigo: codigo })
+  const item = await servicio.obtenerUno(codigo)
+  try {
+    await archivos.eliminar(item.Archivo_Descarga)
+    await archivos.eliminar(item.Archivo_Previsualizacion)
+  } catch(err) {
+    errorLoguer.log(err)
+  }
+  await storeProcedure("EliminarMusica", { Codigo: codigo })
   bitacora.log(bitacora.ELIMINAR, { Codigo: codigo }, usuario)
-
+  
   return true
 }
 
