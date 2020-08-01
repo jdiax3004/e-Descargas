@@ -9,8 +9,8 @@ let logger = {}
  */
 logger.log = (error) => {
     let obj = {
-        Mensaje:      error.message.substr(0, 500),
-        Descripcion:  error.stack.substr(0, 500),
+        Mensaje:      error.message ? error.message.substr(0, 500) : 'Error desconocido',
+        Descripcion:  error.stack ? error.stack.substr(0, 500) : '',
         Codigo_Error: error.code || -1,
         Fecha:        new Date()
     }

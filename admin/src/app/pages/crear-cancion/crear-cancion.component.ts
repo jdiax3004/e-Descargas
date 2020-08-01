@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { GeneroMusicaService } from 'src/app/services/genero-musica.service';
 import { IdiomaService } from 'src/app/services/idioma.service';
 import { ActivatedRoute } from '@angular/router';
+import { ArchivosService } from 'src/app/services/archivos.service';
 
 @Component({
   selector: 'app-crear-cancion',
@@ -21,7 +22,10 @@ export class CrearCancionComponent implements OnInit {
   archivoDescarga: File;
   archivoVisualizacion: File;
 
-  constructor(private servicio: MusicaService, private generoService: GeneroMusicaService, private route: ActivatedRoute, private idiomaService: IdiomaService, private alert: AlertService) { }
+  extencionesPermitidasDescarga = ['mp3']
+  extencionesPermitidasVisualizacion = ['png', 'jpeg', 'jpg']
+
+  constructor(private servicio: MusicaService, private generoService: GeneroMusicaService, private archivosService: ArchivosService, private route: ActivatedRoute, private idiomaService: IdiomaService, private alert: AlertService) { }
   
   ngOnInit() {
     this.cargarGeneros();
@@ -50,16 +54,45 @@ export class CrearCancionComponent implements OnInit {
   }
 
   onArchivoDescargaChange(file: File) {
-    this.archivoDescarga = file;
+    const ext = file.name.split('.').pop()
+    if(!this.extencionesPermitidasDescarga.includes(ext)) {
+      this.alert.error(`El tipo de archivo ${ext} no es permitido.`)
+    } else {
+      this.archivoDescarga = file;
+    }
+  }
+
+  onArchivoVisualizacionChange(file: File) {
+    const ext = file.name.split('.').pop()
+    if(!this.extencionesPermitidasVisualizacion.includes(ext)) {
+      this.alert.error(`El tipo de archivo ${ext} no es permitido.`)
+    } else {
+      this.archivoVisualizacion = file;
+    }
   }
 
 
-  submit() {
-    this.alert.showLoading()
+  async submit() {
+    this.alert.showLoading();
+    
 
-    // TODO: esto es provisional
-    this.objeto.Archivo_Descarga = 'c:/temp';
-    this.objeto.Archivo_Previsualizacion = 'c:/temp';
+    if(this.archivoDescarga) {
+      let formData = new FormData();
+      formData.append("tipo", "Archivo_Descarga_Musica");
+      formData.append("file", this.archivoDescarga);
+      const { url } = await this.archivosService.subir(formData).catch(err => this.alert.handleError(err));
+      if(!url) return
+      this.objeto.Archivo_Descarga = url;
+    }
+
+    if(this.archivoVisualizacion) {
+      let formData = new FormData();
+      formData.append("tipo", "Archivo_Visualizacion_Musica");
+      formData.append("file", this.archivoVisualizacion);
+      const { url } = await this.archivosService.subir(formData).catch(err => this.alert.handleError(err));
+      if(!url) return
+      this.objeto.Archivo_Previsualizacion = url;
+    }
 
     if(this.esCreacion) {
       this.servicio.insertar(this.objeto).subscribe(response => {
