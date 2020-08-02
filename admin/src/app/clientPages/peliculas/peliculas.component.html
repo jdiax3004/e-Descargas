@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-tittle">
+                    Peliculas
+                </h3>
+                <br>
+                <h4 class="text-center">El usuario debe agregar como mínimo un filtro para iniciar la búsqueda</h4>
+                <br>
+                <div class="row justify-content-center">
+                    <button (click)="open(content)" class="btn btn-primary btn btn-rounded btn-success waves-effect waves-light">Agregar un filtro</button>
+                </div>
+                <br>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Genero</th>
+                            <th>Vista Previa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>sd</td>
+                            <td>
+                                qqq
+                            </td>
+                            <td>
+                                qqq
+                            </td>
+                            <td><a>Ver mas...</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #form="ngForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div>
+                            <label for="checkbox1"> Usuarios</label>
+                        </div>
+                        <input type="text" class="form-control" name="Codigo_Usuario">
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <label for="checkbox2"> Fecha</label>
+                        </div>
+                        <input type="text" class="form-control" name="Fecha">
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <label for="checkbox3"> Tipo</label>
+                        </div>
+                        <select class="form-control" name="Tipo">
+                            <option value="">Todos</option>
+                            <option value="Insertar">Insertar</option>
+                            <option value="Modificar">Modificar</option>
+                            <option value="Eliminar">Eliminar</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        </div>
+      </ng-template>
+    

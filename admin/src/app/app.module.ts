@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginGuardService } from './services/login-guard.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { CommonModule } from '@angular/common';
+import { ClientPagesModule } from './clientPages/client-pages.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     APP_ROUTES,
     PagesModule,
+    ClientPagesModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
