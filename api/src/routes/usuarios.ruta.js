@@ -53,6 +53,19 @@ router.post("/recuperar-contrasenna", async (req, res, next) => {
   }
 });
 
+router.get(
+  "/auth/facebook",
+  passport.authenticate("facebook", { scope: "email" })
+);
+
+router.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "/yes",
+    failureRedirect: "/no",
+  })
+);
+
 // CRUD Usuarios
 
 router.get("/usuarios", async (req, res, next) => {
