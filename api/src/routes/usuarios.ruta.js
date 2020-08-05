@@ -60,10 +60,13 @@ router.get(
 
 router.get(
   "/auth/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "/yes",
-    failureRedirect: "/no",
-  })
+  passport.authenticate("facebook"),(req, res) => {
+    try {
+      return res.status(200).send(req.user);
+    } catch (error) {
+      next(error);
+    }
+  }
 );
 
 // CRUD Usuarios
