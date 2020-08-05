@@ -23,7 +23,7 @@ import { CrearConsecutivosComponent } from './crear-consecutivos/crear-consecuti
 
 const pagesRoutes: Routes = [
   {
-    path: "",
+    path: "admin",
     component: PagesComponent,
     canActivate: [AuthGuard],
     children: [

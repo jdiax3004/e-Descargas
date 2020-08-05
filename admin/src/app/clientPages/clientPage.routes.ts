@@ -10,7 +10,7 @@ import { PagoEasypayComponent } from './pago-easypay/pago-easypay.component';
 
 const clientPagesRoutes: Routes = [
     {
-      path: "client",
+      path: "",
       component: ClientPagesComponent,
       //canActivate: [AuthGuard],
       children: [
