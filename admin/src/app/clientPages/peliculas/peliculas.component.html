@@ -62,6 +62,7 @@
                             <th>Nombre</th>
                             <th>Genero</th>
                             <th>Vista Previa</th>
+                            <th>Compra</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,10 @@
                             <td>{{ objeto.Nombre }}</td>
                             <td>{{ objeto.Genero }}</td>
                             <td>...</td>
+                            <td>
+                                <button class="btn btn-info" (click)="agregarAlCarrito(objeto)">Agregar al carrito</button>
+                                <button class="btn btn-success" (click)="comprar(objeto)">Comprar</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
