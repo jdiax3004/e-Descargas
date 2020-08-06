@@ -1,4 +1,4 @@
-export class Bitacora {
+export class Tarjeta {
     Id?: number;
     Codigo_Usuario?: number;
     Numero?: string;

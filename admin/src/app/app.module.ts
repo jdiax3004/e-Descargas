@@ -15,6 +15,7 @@ import { LoginGuardService } from './services/login-guard.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { CommonModule } from '@angular/common';
 import { ClientPagesModule } from './clientPages/client-pages.module';
+import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ClientPagesModule } from './clientPages/client-pages.module';
     HttpClientModule,
     CommonModule
   ],
-  providers: [LoginGuardService, AuthGuardService],
+  providers: [LoginGuardService, AuthGuardService,Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

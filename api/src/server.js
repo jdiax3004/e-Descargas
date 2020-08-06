@@ -16,11 +16,22 @@ require("./security/passport")(passport);
 app.set("port", process.env.PORT || 3000);
 
 // Middleware
-app.use(express.urlencoded({extended: true}));
-app.use(cors({ 
-  origin: ["http://localhost:4200", "http://127.0.0.1:4200", "https://fonts.gstatic.com"],
-  credentials: true
-}));
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:4200",
+      "http://localhost:5000",
+      "http://127.0.0.1:4200",
+      "https://fonts.gstatic.com",
+      "https://www.facebook.com",
+    ],
+    credentials: true,
+  })
+);
+
+app.options('*', cors())
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser(process.env.SESSION_SECRET));
@@ -61,8 +72,6 @@ app.use(process.env.API_PATH, require("./routes/idiomas.ruta"));
 app.use(process.env.API_PATH, require("./routes/descargas.ruta"));
 app.use(process.env.API_PATH, require("./routes/bitacora.ruta"));
 app.use(process.env.API_PATH, require("./routes/errores.ruta"));
-
-
 
 // Manejo de Errores
 app.use((err, req, res, next) => {

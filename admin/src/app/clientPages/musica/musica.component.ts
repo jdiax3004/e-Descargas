@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeneroMusicaService } from '../../services/genero-musica.service';
 import { IdiomaService } from '../../services/idioma.service';
 import { AlertService } from '../../services/alert.service';
-import { Musica } from '../../../../../shared/app/models/musica';
+import { Musica } from '../../models/musica';
 import { MusicaService } from '../../services/musica.service';
 
 @Component({

@@ -7,60 +7,41 @@ import { PeliculasComponent } from './peliculas/peliculas.component';
 import { MetodosPagoComponent } from './metodos-pago/metodos-pago.component';
 import { PagoTarjetaComponent } from './pago-tarjeta/pago-tarjeta.component';
 import { PagoEasypayComponent } from './pago-easypay/pago-easypay.component';
+import { AuthGuardService as AuthGuard } from '../services/auth-guard.service'
 
 const clientPagesRoutes: Routes = [
     {
-      path: "client",
+      path: "",
       component: ClientPagesComponent,
-      //canActivate: [AuthGuard],
+      canActivate: [AuthGuard],
       children: [
-        /*{
-          path: "",
-          component: DashboardComponent,
-          data: { titulo: "Dashboard", Id_Rol: [ADMINISTRADOR] },
-          canActivate: [AuthGuard]
-        },*/
         {
             path: "perfil",
             component: PerfilComponent,
-            //data: { titulo: "Perfil", Id_Rol: [ADMINISTRADOR] },
-            //canActivate: [AuthGuard]
         },
         {
             path: "peliculas",
             component: PeliculasComponent,
-            //data: { titulo: "Perfil", Id_Rol: [ADMINISTRADOR] },
-            //canActivate: [AuthGuard]
         },
         {
             path: "musica",
             component: MusicaComponent,
-            //data: { titulo: "Perfil", Id_Rol: [ADMINISTRADOR] },
-            //canActivate: [AuthGuard]
         },
         {
             path: "libros",
             component: LibrosComponent,
-            //data: { titulo: "Perfil", Id_Rol: [ADMINISTRADOR] },
-            //canActivate: [AuthGuard]
         },
         {
           path: "metodospago",
           component: MetodosPagoComponent,
-          //data: { titulo: "Perfil", Id_Rol: [ADMINISTRADOR] },
-          //canActivate: [AuthGuard]
         },
         {
           path: "tarjeta",
           component: PagoTarjetaComponent,
-          //data: { titulo: "Perfil", Id_Rol: [ADMINISTRADOR] },
-          //canActivate: [AuthGuard]
         },
         {
           path: "easypay",
           component: PagoEasypayComponent,
-          //data: { titulo: "Perfil", Id_Rol: [ADMINISTRADOR] },
-          //canActivate: [AuthGuard]
         },
       ]
     }

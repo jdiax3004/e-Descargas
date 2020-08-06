@@ -10,6 +10,6 @@ import { Transaccion } from '../models/transaccion';
 export class TransaccionService extends CRUDService<Transaccion> {
 
   constructor(private http: HttpClient) { 
-    super(http, 'transaccion')
+    super(http, 'transacciones')
   }
 }
