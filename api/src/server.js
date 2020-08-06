@@ -72,6 +72,10 @@ app.use(process.env.API_PATH, require("./routes/idiomas.ruta"));
 app.use(process.env.API_PATH, require("./routes/descargas.ruta"));
 app.use(process.env.API_PATH, require("./routes/bitacora.ruta"));
 app.use(process.env.API_PATH, require("./routes/errores.ruta"));
+app.use(process.env.API_PATH, require("./routes/tarjetas.ruta"));
+app.use(process.env.API_PATH, require("./routes/easypay.ruta"));
+
+
 
 // Manejo de Errores
 app.use((err, req, res, next) => {
