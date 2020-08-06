@@ -19,7 +19,7 @@
                             <div>
                                 <label for="checkbox2"> Fecha</label>
                             </div>
-                            <input type="text" class="form-control" name="Fecha" [(ngModel)]="filtros.Fecha">
+                            <input type="text" placeholder="Año, Mes y Día: 2020-07-23" class="form-control" name="Fecha" [(ngModel)]="filtros.Fecha">
                         </div>
                         <div class="col-md-4">
                             <div>
@@ -45,6 +45,7 @@
                     <thead>
                         <tr>
                             <th>Fecha</th>
+                            <th>Usuario</th>
                             <th>Codigo Registro</th>
                             <th>Descripcion</th>
                             <th>Link</th>
@@ -53,13 +54,14 @@
                     <tbody>
                         <tr  *ngFor="let objeto of objetos"  routerLink="/admin/consultarBitacora/{{objeto.Id}}">
                             <td>{{ objeto.Fecha }}</td>
+                            <td>{{ objeto.Codigo_Usuario }}</td>
                             <td>
                                 {{ objeto.Codigo_Registro}}
                             </td>
                             <td class="text-nowrap">
                                 {{ objeto.Descripcion }}
                             </td>
-                            <td><a>Ver mas...</a></td>
+                            <td><a href="javascript:void(0)">Ver mas...</a></td>
                         </tr>
                     </tbody>
                 </table>

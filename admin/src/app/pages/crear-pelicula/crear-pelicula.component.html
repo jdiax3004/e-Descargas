@@ -8,10 +8,16 @@
           <hr>
           <form #form="ngForm" (ngSubmit)="submit()">
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Nombre</label>
                         <input type="text" class="form-control" name="Nombre" [(ngModel)]="objeto.Nombre">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Precio</label>
+                        <input type="number" class="form-control" name="Precio" [(ngModel)]="objeto.Precio">
                     </div>
                 </div>
               </div>

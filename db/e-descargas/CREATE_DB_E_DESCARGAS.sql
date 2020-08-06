@@ -69,6 +69,8 @@ CREATE TABLE Peliculas
 	Actores
 		NVARCHAR(255)
 		NULL,
+			Precio NVARCHAR(255)
+		NULL,
 	Archivo_Descarga
 		NVARCHAR(255)
 		NOT NULL,
@@ -100,6 +102,8 @@ CREATE TABLE Libros
 	Autores NVARCHAR(255)
 		NULL,
 	Editorial NVARCHAR(255)
+		NULL,
+	Precio NVARCHAR(255)
 		NULL,
 	Archivo_Descarga NVARCHAR(255)
 		NOT NULL,
@@ -137,6 +141,8 @@ CREATE TABLE Musica
 	Disco NVARCHAR(255)
 		NULL,
 	Compositor NVARCHAR(255)
+		NULL,
+			Precio NVARCHAR(255)
 		NULL,
 	Archivo_Descarga NVARCHAR(255)
 		NOT NULL,

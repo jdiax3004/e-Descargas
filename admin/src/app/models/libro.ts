@@ -8,6 +8,7 @@ export class Libro {
   Anno?: number;
   Autores?: string;
   Editorial?: string;
+  Precio?:number;
   Archivo_Descarga?: string;
   Archivo_Previsualizacion?: string;
 }

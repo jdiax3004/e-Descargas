@@ -64,7 +64,7 @@ CREATE OR ALTER PROC dbo.ObtenerRolUsuarioArray
 AS
 DECLARE @result VARCHAR(500)
 SET @result = '['
-SELECT @result = @result + CAST(Id_Rol AS VARCHAR(10)) + ', ' 
+SELECT @result = @result + CAST(Id_Rol AS VARCHAR(10)) + ', '
 FROM Roles_Usuarios
 WHERE Codigo_Usuario = @Codigo_Usuario;
 
@@ -284,8 +284,8 @@ AS
 IF @Codigo IS NULL
   BEGIN
   SELECT Musica.*,
-	  Genero.Genero,
-	  Idioma.Idioma
+    Genero.Genero,
+    Idioma.Idioma
   FROM Musica
     INNER JOIN Generos_Musica AS Genero ON Genero.Id = Id_Genero
     INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma;
@@ -293,8 +293,8 @@ END
   ELSE
   BEGIN
   SELECT Musica.*,
-	  Genero.Genero,
-	  Idioma.Idioma
+    Genero.Genero,
+    Idioma.Idioma
   FROM Musica
     INNER JOIN Generos_Musica AS Genero ON Genero.Id = Id_Genero
     INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma
@@ -314,12 +314,13 @@ CREATE OR ALTER PROC dbo.InsertarMusica
   @Disquera AS NVARCHAR(255),
   @Disco AS NVARCHAR(255),
   @Compositor AS NVARCHAR(255),
+  @Precio AS NVARCHAR(255),
   @Archivo_Descarga AS NVARCHAR(255),
   @Archivo_Previsualizacion AS NVARCHAR(255)
 AS
 INSERT INTO Musica
 VALUES
-  (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Tipo_Interpretacion, @Pais, @Disquera, @Disco, @Compositor, @Archivo_Descarga, @Archivo_Previsualizacion);
+  (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Tipo_Interpretacion, @Pais, @Disquera, @Disco, @Compositor, @Precio, @Archivo_Descarga, @Archivo_Previsualizacion);
 EXEC dbo.ObtenerMusica @Codigo = @Codigo;
 GO
 
@@ -336,6 +337,7 @@ CREATE OR ALTER PROC dbo.ModificarMusica
   @Disquera AS NVARCHAR(255) = null,
   @Disco AS NVARCHAR(255) = null,
   @Compositor AS NVARCHAR(255) = null,
+  @Precio AS NVARCHAR(255)=null,
   @Archivo_Descarga AS NVARCHAR(255) = null,
   @Archivo_Previsualizacion AS NVARCHAR(255) = null
 
@@ -354,6 +356,7 @@ BEGIN
         Disquera = isNull(@Disquera, Disquera),
         Disco = isNull(@Disco, Disco),
         Compositor = isNull(@Compositor, Compositor),
+        Precio = isNull(@Precio, Precio),
         Archivo_Descarga = isNull(@Archivo_Descarga, Archivo_Descarga),
         Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
@@ -377,8 +380,8 @@ AS
 IF @Codigo IS NULL
   BEGIN
   SELECT Libros.*,
-	  Genero.Genero,
-	  Idioma.Idioma
+    Genero.Genero,
+    Idioma.Idioma
   FROM Libros
     INNER JOIN Generos_Libros AS Genero ON Genero.Id = Id_Genero
     INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma;
@@ -386,8 +389,8 @@ END
   ELSE
   BEGIN
   SELECT Libros.*,
-	  Genero.Genero,
-	  Idioma.Idioma
+    Genero.Genero,
+    Idioma.Idioma
   FROM Libros
     INNER JOIN Generos_Libros AS Genero ON Genero.Id = Id_Genero
     INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma
@@ -404,12 +407,13 @@ CREATE OR ALTER PROC dbo.InsertarLibro
   @Anno AS NVARCHAR(255),
   @Autores AS NVARCHAR(255),
   @Editorial AS NVARCHAR(255),
+  @Precio AS NVARCHAR(255),
   @Archivo_Descarga AS NVARCHAR(255),
   @Archivo_Previsualizacion AS NVARCHAR(255)
 AS
 INSERT INTO Libros
 VALUES
-  (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Autores, @Editorial, @Archivo_Descarga, @Archivo_Previsualizacion);
+  (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Autores, @Editorial, @Precio, @Archivo_Descarga, @Archivo_Previsualizacion);
 EXEC dbo.ObtenerLibro @Codigo = @Codigo;
 GO
 
@@ -422,6 +426,7 @@ CREATE OR ALTER PROC dbo.ModificarLibro
   @Anno AS NVARCHAR(255)= null,
   @Autores AS NVARCHAR(255)= null,
   @Editorial AS NVARCHAR(255)= null,
+  @Precio AS NVARCHAR(255)=null,
   @Archivo_Descarga AS NVARCHAR(255)= null,
   @Archivo_Previsualizacion AS NVARCHAR(255)= null
 
@@ -437,10 +442,12 @@ BEGIN
         Anno = isNull(@Anno, Anno),
         Autores = isNull(@Autores, Autores),
         Editorial = isNull(@Editorial, Editorial),
+                Precio = isNull(@Precio, Precio),
+
         Archivo_Descarga = isNull(@Archivo_Descarga, Archivo_Descarga),
         Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
-EXEC dbo.ObtenerLibro @Codigo = @Codigo;
+  EXEC dbo.ObtenerLibro @Codigo = @Codigo;
 END
 GO
 
@@ -461,17 +468,17 @@ AS
 IF @Codigo IS NULL
   BEGIN
   SELECT Peliculas.*,
-	  Genero.Genero,
-	  Idioma.Idioma
+    Genero.Genero,
+    Idioma.Idioma
   FROM Peliculas
     INNER JOIN Generos_Peliculas AS Genero ON Genero.Id = Id_Genero
     INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma;
 END
   ELSE
   BEGIN
-   SELECT Peliculas.*,
-	  Genero.Genero,
-	  Idioma.Idioma
+  SELECT Peliculas.*,
+    Genero.Genero,
+    Idioma.Idioma
   FROM Peliculas
     INNER JOIN Generos_Peliculas AS Genero ON Genero.Id = Id_Genero
     INNER JOIN Idiomas AS Idioma ON Idioma.Id = Id_Idioma
@@ -487,12 +494,13 @@ CREATE OR ALTER PROC dbo.InsertarPeliculas
   @Nombre AS NVARCHAR(255),
   @Anno AS NVARCHAR(255),
   @Actores AS NVARCHAR(255),
+  @Precio AS NVARCHAR(255),
   @Archivo_Descarga AS NVARCHAR(255),
   @Archivo_Previsualizacion AS NVARCHAR(255)
 AS
 INSERT INTO Peliculas
 VALUES
-  (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Actores, @Archivo_Descarga, @Archivo_Previsualizacion);
+  (@Codigo, @Id_Genero, @Id_Idioma, @Nombre, @Anno, @Actores, @Precio, @Archivo_Descarga, @Archivo_Previsualizacion);
 EXEC dbo.ObtenerPeliculas @Codigo = @Codigo;
 GO
 
@@ -504,6 +512,7 @@ CREATE OR ALTER PROC dbo.ModificarPeliculas
   @Nombre AS NVARCHAR(255)= null,
   @Anno AS NVARCHAR(255)= null,
   @Actores AS NVARCHAR(255)= null,
+  @Precio AS NVARCHAR(255)=null,
   @Archivo_Descarga AS NVARCHAR(255)= null,
   @Archivo_Previsualizacion AS NVARCHAR(255)= null
 AS
@@ -517,6 +526,8 @@ BEGIN
         Nombre = isNull(@Nombre, Nombre),
         Anno = isNull(@Anno, Anno),
         Actores = isNull(@Actores, Actores),
+                Precio = isNull(@Precio, Precio),
+
         Archivo_Descarga = isNull(@Archivo_Descarga, Archivo_Descarga),
         Archivo_Previsualizacion = isNull(@Archivo_Previsualizacion,Archivo_Previsualizacion)
     WHERE Codigo = @Codigo;
@@ -824,7 +835,7 @@ CREATE OR ALTER PROC dbo.InsertarParametros
 AS
 INSERT INTO Parametros
 VALUES
-  (@Nombre,@Descripcion,@Valor);
+  (@Nombre, @Descripcion, @Valor);
 SELECT *
 FROM Parametros
 WHERE Id = SCOPE_IDENTITY();
@@ -891,7 +902,7 @@ CREATE OR ALTER PROC dbo.InsertarTarjetas
 AS
 INSERT INTO Tarjetas
 VALUES
-  (@Codigo_Usuario,@Numero,@CVV,@Tipo,@Mes_Expiracion,@Anno_Expiracion);
+  (@Codigo_Usuario, @Numero, @CVV, @Tipo, @Mes_Expiracion, @Anno_Expiracion);
 SELECT *
 FROM Tarjetas
 WHERE Id = SCOPE_IDENTITY();
@@ -962,7 +973,7 @@ CREATE OR ALTER PROC dbo.InsertarEasyPay
 AS
 INSERT INTO EasyPay
 VALUES
-  (@Codigo_Usuario,@Numero_Cuenta,@Codigo_Seguridad,@Contrasenna);
+  (@Codigo_Usuario, @Numero_Cuenta, @Codigo_Seguridad, @Contrasenna);
 SELECT *
 FROM EasyPay
 WHERE Id = SCOPE_IDENTITY();

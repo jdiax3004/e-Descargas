@@ -11,6 +11,7 @@ export class Musica {
   Disquera?: string;
   Disco?: string;
   Compositor?: string;
+  Precio?:number;
   Archivo_Descarga?: string;
   Archivo_Previsualizacion?: string;
 }

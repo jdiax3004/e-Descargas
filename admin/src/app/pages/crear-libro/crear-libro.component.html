@@ -16,17 +16,23 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Categoría</label>
                         <select class="form-control" name="miselect" [(ngModel)]="objeto.Id_Genero">
                             <option [value]="item.Id" *ngFor="let item of generos">{{ item.Genero }}</option>
                         </select>                       </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Editorial</label>
                         <input type="text" class="form-control" name="Editorial" [(ngModel)]="objeto.Editorial">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Precio</label>
+                        <input type="number" class="form-control" name="Precio" [(ngModel)]="objeto.Precio">
                     </div>
                 </div>
               </div>
