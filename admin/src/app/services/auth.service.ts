@@ -45,8 +45,16 @@ export class AuthService {
     return false;
   }
 
+  isAdmin() {
+    return this.actual && this.actual.Id_Roles.length > 0;
+  }
+
   goHome() {
-    this.router.navigate([""]);
+    if(this.isAdmin()) {
+      this.router.navigate(['admin'])
+    } else {
+      this.router.navigate([''])
+    }
   }
 
   login(usuario: string, contrasenna: string) {
@@ -73,14 +81,12 @@ export class AuthService {
   }
 
   logout() {
-    this.usuarioService.logout().subscribe(
-      (data) => {
-        this.actual = null;
-        deleteCookie("connect.sid");
-        this.router.navigate(["login"]);
-      },
-      (error) => this.alert.handleError(error)
-    );
+    this.usuarioService.logout().subscribe(data => {
+      this.actual = null
+      deleteCookie('connect.sid')
+      this.router.navigate(['login'])
+    }, error => this.alert.handleError(error))
+
   }
 
   loginFacebook() {

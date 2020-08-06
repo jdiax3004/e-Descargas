@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const servicio = require('../services/transaccion.servicio')
-const { isAuth } = require('../security/auth')
+const { isAuth, ensureAuthenticated } = require('../security/auth')
 
-router.get('/transaccion', isAuth([1, 5]), async (req, res, next) => {
+router.get('/transacciones', isAuth([1, 5]), async (req, res, next) => {
     try {
         const data = await servicio.obtener(req.query)
 
@@ -12,7 +12,7 @@ router.get('/transaccion', isAuth([1, 5]), async (req, res, next) => {
     }
 })
 
-router.get('/transaccion/:codigo', isAuth([1, 5]), async (req, res, next) => {
+router.get('/transacciones/:codigo', isAuth([1, 5]), async (req, res, next) => {
     try {
         const data = await servicio.obtenerUno(req.params.codigo)
         return res.json(data)
@@ -21,8 +21,9 @@ router.get('/transaccion/:codigo', isAuth([1, 5]), async (req, res, next) => {
     }
 })
 
-router.post('/transaccion', isAuth([1, 5]), async (req, res, next) => {
+router.post('/transacciones', ensureAuthenticated, async (req, res, next) => {
     try {
+        req.body.Codigo_usuario = req.user.Codigo
         const data = await servicio.insertar(req.body, req.user)
         return res.json(data)
     } catch (error) {
@@ -30,7 +31,7 @@ router.post('/transaccion', isAuth([1, 5]), async (req, res, next) => {
     }
 })
 
-router.put('/transaccion', isAuth([1, 5]), async (req, res, next) => {
+router.put('/transacciones', isAuth([1, 5]), async (req, res, next) => {
     try {
         const data = await servicio.modificar(req.body, req.user)
         return res.json(data)
@@ -39,7 +40,7 @@ router.put('/transaccion', isAuth([1, 5]), async (req, res, next) => {
     }
 })
 
-router.delete('/transaccion/:codigo', isAuth([1, 5]), async (req, res, next) => {
+router.delete('/transacciones/:codigo', isAuth([1, 5]), async (req, res, next) => {
     try {
         const data = await servicio.eliminar(req.params.codigo, req.user)
         return res.json({ success: data })
