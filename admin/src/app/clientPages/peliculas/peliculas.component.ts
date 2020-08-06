@@ -37,7 +37,6 @@ export class PeliculasComponent implements OnInit {
   }
 
   cargar() {
-    console.log(this.filtros);
     if(!this.verificarParametros(this.filtros)) {
       this.alert.error('No ingreso parametros');
       return;
@@ -45,7 +44,6 @@ export class PeliculasComponent implements OnInit {
     this.alert.showLoading()
     this.service.obtener(this.filtros).subscribe(data => {
       this.objetos = data;
-      console.log(this.objetos);
       this.alert.hideLoading();
     })
   }
@@ -53,7 +51,6 @@ export class PeliculasComponent implements OnInit {
   verificarParametros(obj) {
     if (Object.keys(obj).length === 0) return false;
     for(let key of Object.keys(obj)) {
-      console.log(obj[key] !== "")
       if(obj[key] !== "") {
         return true;
       }

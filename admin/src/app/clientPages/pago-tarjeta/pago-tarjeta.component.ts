@@ -12,7 +12,7 @@ import { Tarjeta } from 'src/app/models/tarjeta';
 export class PagoTarjetaComponent implements OnInit {
 
   metodoPago: Tarjeta = {}
-  monto: number;
+  monto: number = 300; //TODO: borar esto
 
   constructor(private service: TransaccionService, private alert: AlertService) { }
 

@@ -8,7 +8,7 @@
                     </h3>
                     <small>Tarjetas gurdadas</small>
                     <div class="card-body collapse show waves-effect waves-light" style="background-color: cornsilk;">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col">
                                 <input name="group1" type="radio" class="with-gap" id="radio_3">
                             </div>
@@ -21,7 +21,7 @@
                             <div class="col">
                                 12/2021
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <br>
                     <hr>
@@ -32,13 +32,13 @@
                             <input class="form-control" placeholder="Número tarjeta" name="Numero_Tarjeta" [(ngModel)]="metodoPago.Numero_Tarjeta">
                         </div>
                         <div class="col">
-                            <input class="form-control" placeholder="Fecha Exp.">
+                            <input class="form-control" type="number" placeholder="Mes Exp." name="Mes_Expiracion" [(ngModel)]="metodoPago.Mes_Expiracion">
                         </div>
                         <div class="col">
-                            <input class="form-control" placeholder="Fecha Exp.">
+                            <input class="form-control" type="number" placeholder="Año   Exp." name="Anno_Expiracion" [(ngModel)]="metodoPago.Anno_Expiracion">
                         </div>
                         <div class="col">
-                            <input class="form-control" placeholder="CVV" name="CVV" [(ngModel)]="metodoPago.CVV">
+                            <input class="form-control" type="number" placeholder="CVV" name="CVV" [(ngModel)]="metodoPago.CVV">
                         </div>
                     </div>
                     <br>

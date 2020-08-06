@@ -23,7 +23,7 @@ export class CrearCancionComponent implements OnInit {
   archivoVisualizacion: File;
 
   extencionesPermitidasDescarga = ['mp3']
-  extencionesPermitidasVisualizacion = ['png', 'jpeg', 'jpg']
+  extencionesPermitidasVisualizacion = ['mp3']
 
   constructor(private servicio: MusicaService, private generoService: GeneroMusicaService, private archivosService: ArchivosService, private route: ActivatedRoute, private idiomaService: IdiomaService, private alert: AlertService) { }
   

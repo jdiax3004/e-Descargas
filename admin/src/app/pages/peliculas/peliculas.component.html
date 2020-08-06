@@ -18,7 +18,7 @@
                             <td>{{ objeto.Codigo }}</td>
                             <td>{{ objeto.Nombre }}</td>
                             <td class="text-nowrap">
-                                <a routerLink="/crearPeliculas/{{objeto.Codigo}}" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                <a routerLink="/admin/crearPeliculas/{{objeto.Codigo}}" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                 <a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Eliminar" (click)="delete(objeto.Codigo)"> <i class="fa fa-close text-danger"></i> </a>
                             </td>
                         </tr>

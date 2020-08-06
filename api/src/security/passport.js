@@ -35,7 +35,6 @@ module.exports = function (passport) {
         profileFields: ["email", "id", "first_name", "last_name"],
       },
       function (accessToken, refreshToken, profile, done) {
-        console.log(profile.emails[0].value);
         usuarios
           .obtener({ Correo: profile.emails[0].value })
           .then((users) => {

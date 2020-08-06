@@ -24,7 +24,7 @@ export class CrearPeliculaComponent implements OnInit {
   archivoVisualizacion: File;
 
   extencionesPermitidasDescarga = ['mp4']
-  extencionesPermitidasVisualizacion = ['png', 'jpeg', 'jpg']
+  extencionesPermitidasVisualizacion = ['mp4']
 
   constructor(private servicio: PeliculasService, private generoService: GeneroPeliculaService, private route: ActivatedRoute, private archivosService: ArchivosService, private idiomaService: IdiomaService, private alert: AlertService) { }
   
