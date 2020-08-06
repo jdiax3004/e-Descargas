@@ -12,11 +12,12 @@ import { MetodosPagoComponent } from './metodos-pago/metodos-pago.component';
 import { PagoTarjetaComponent } from './pago-tarjeta/pago-tarjeta.component';
 import { PagoEasypayComponent } from './pago-easypay/pago-easypay.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ClientSidebarComponent } from './components/client-sidebar/client-sidebar.component';
 
 
 
 @NgModule({
-  declarations: [ClientPagesComponent, PerfilComponent, PeliculasComponent, LibrosComponent, MusicaComponent, MetodosPagoComponent, PagoTarjetaComponent, PagoEasypayComponent],
+  declarations: [ClientPagesComponent, PerfilComponent, PeliculasComponent, LibrosComponent, MusicaComponent, MetodosPagoComponent, PagoTarjetaComponent, PagoEasypayComponent, ClientSidebarComponent],
   imports: [
     CommonModule,HttpClientModule,FormsModule,SharedModule,CLIENT_PAGES_ROUTES
   ],
