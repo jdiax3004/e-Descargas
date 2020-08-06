@@ -2,8 +2,10 @@ const db = require('../db')
 
 const descontarSaldoTarjeta = async (objeto) => {
 
-    const { cvv, fecha, monto } = objeto;
-
+    const { cvv, numeroCuenta, monto } = objeto;
+    var fecha = new Date();
+    var esDebito;
+    
     let tarjeta = await db.sequelize.query('EXEC dbo.ObtenerTarjeta @Numero = :numero', {
       replacements: { numero: numeroCuenta },
     }).catch(err => { throw err })

@@ -5,12 +5,9 @@ const { descontarSaldoTarjeta } = require('../services/tarjetas.servicio')
 const app = express();
 
 
-app.post('/', (req, res) => {
-  var numeroCuenta = req.body.numero;
-  var cvv = req.body.cvv;
-  var monto = req.body.monto;
-  var fecha = new Date();
-  var esDebito;
+app.post('/', async (req, res) => {
+  const { numeroCuenta, cvv, monto } = req.body;
+  
 
   if (!numeroCuenta) {
     return res.status(400).json({
