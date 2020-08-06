@@ -7,7 +7,7 @@ let servicio = {}
 
 servicio.procesarTarjeta = async (tarjeta, monto) => {
   const data = await axios.post(`${api_url}/tarjetas`, {
-    numero: tarjeta.Numero_Tarjeta,
+    numeroCuenta: tarjeta.Numero_Tarjeta,
     cvv: tarjeta.CVV,
     monto
   }).catch(err => {
