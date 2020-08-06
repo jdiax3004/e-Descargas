@@ -12,12 +12,16 @@ import { MetodosPagoComponent } from './metodos-pago/metodos-pago.component';
 import { PagoTarjetaComponent } from './pago-tarjeta/pago-tarjeta.component';
 import { PagoEasypayComponent } from './pago-easypay/pago-easypay.component';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
+import { ClientSidebarComponent } from './components/client-sidebar/client-sidebar.component';
+=======
 import { AuthGuardService } from '../services/auth-guard.service';
+>>>>>>> 30dc70c9851593248ac10e46104df0847b0d4b03
 
 
 
 @NgModule({
-  declarations: [ClientPagesComponent, PerfilComponent, PeliculasComponent, LibrosComponent, MusicaComponent, MetodosPagoComponent, PagoTarjetaComponent, PagoEasypayComponent],
+  declarations: [ClientPagesComponent, PerfilComponent, PeliculasComponent, LibrosComponent, MusicaComponent, MetodosPagoComponent, PagoTarjetaComponent, PagoEasypayComponent, ClientSidebarComponent],
   imports: [
     CommonModule,HttpClientModule,FormsModule,SharedModule,CLIENT_PAGES_ROUTES
   ],
