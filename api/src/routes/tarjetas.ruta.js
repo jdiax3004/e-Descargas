@@ -31,7 +31,7 @@ router.post('/tarjetas', ensureAuthenticated, async (req, res, next) => {
     }
 })
 
-router.put('/tarjetas', isAuth([1, 4]), async (req, res, next) => {
+router.put('/tarjetas', ensureAuthenticated, async (req, res, next) => {
     try {
         const data = await servicio.modificar(req.body, req.user)
         return res.json(data)

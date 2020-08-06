@@ -2,7 +2,7 @@ const router = require('express').Router()
 const servicio = require('../services/transaccion.servicio')
 const { isAuth, ensureAuthenticated } = require('../security/auth')
 
-router.get('/transacciones', isAuth([1, 5]), async (req, res, next) => {
+router.get('/transacciones', ensureAuthenticated, async (req, res, next) => {
     try {
         const data = await servicio.obtener(req.query)
 
@@ -12,7 +12,7 @@ router.get('/transacciones', isAuth([1, 5]), async (req, res, next) => {
     }
 })
 
-router.get('/transacciones/:codigo', isAuth([1, 5]), async (req, res, next) => {
+router.get('/transacciones/:codigo',ensureAuthenticated, async (req, res, next) => {
     try {
         const data = await servicio.obtenerUno(req.params.codigo)
         return res.json(data)
@@ -31,7 +31,7 @@ router.post('/transacciones', ensureAuthenticated, async (req, res, next) => {
     }
 })
 
-router.put('/transacciones', isAuth([1, 5]), async (req, res, next) => {
+router.put('/transacciones', async (req, res, next) => {
     try {
         const data = await servicio.modificar(req.body, req.user)
         return res.json(data)
@@ -40,7 +40,7 @@ router.put('/transacciones', isAuth([1, 5]), async (req, res, next) => {
     }
 })
 
-router.delete('/transacciones/:codigo', isAuth([1, 5]), async (req, res, next) => {
+router.delete('/transacciones/:codigo', ensureAuthenticated, async (req, res, next) => {
     try {
         const data = await servicio.eliminar(req.params.codigo, req.user)
         return res.json({ success: data })
