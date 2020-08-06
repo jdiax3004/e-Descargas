@@ -8,9 +8,70 @@
                 <br>
                 <h4 class="text-center">El usuario debe agregar como mínimo un filtro para iniciar la búsqueda</h4>
                 <br>
-                <div class="row justify-content-center">
-                    <button (click)="open(content)" class="btn btn-primary btn btn-rounded btn-success waves-effect waves-light">Agregar un filtro</button>
-                </div>
+                <form #form="ngForm" (ngSubmit)="cargar()">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox3"> Genero</label>
+                            </div>
+                            <select class="form-control" name="FiltroGenero" [(ngModel)]="filtros.Id_Genero">
+                                <option value="">Seleccionar...</option>
+                                <option [value]="item.Id" *ngFor="let item of generos">{{ item.Genero }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox1"> Nombre</label>
+                            </div>
+                            <input type="text" class="form-control" name="FiltroNombre" [(ngModel)]="filtros.Nombre">
+                        </div>
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox2"> Tipo</label>
+                            </div>
+                            <input type="text" class="form-control" name="FiltroUsuario" [(ngModel)]="filtros.Tipo_Interpretacion">
+                        </div>
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox3"> Idioma</label>
+                            </div>
+                            <select class="form-control" name="FiltroIdioma" [(ngModel)]="filtros.Id_Idioma">
+                                <option value="">Seleccionar...</option>
+                                <option [value]="item.Id" *ngFor="let item of idiomas">{{ item.Idioma }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox2"> País</label>
+                            </div>
+                            <input type="text" class="form-control" name="FiltroActores" [(ngModel)]="filtros.Pais">
+                        </div>
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox3"> Año</label>
+                            </div>
+                            <input type="text" class="form-control" name="FiltroAnnio" [(ngModel)]="filtros.Anno">
+                        </div>
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox3"> Disquera</label>
+                            </div>
+                            <input type="text" class="form-control" name="FiltroAnnio" [(ngModel)]="filtros.Disquera">
+                        </div>
+                        <div class="col-md-2">
+                            <div>
+                                <label for="checkbox3"> Disco</label>
+                            </div>
+                            <input type="text" class="form-control" name="FiltroAnnio" [(ngModel)]="filtros.Disco">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
                 <br>
                 <table class="table table-bordered">
                     <thead>
@@ -24,19 +85,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>sd</td>
+                        <tr *ngFor="let item of this.objetos">
+                            <td>{{item.Codigo}}</td>
                             <td>
-                                qqq
+                                {{item.Nombre}}
                             </td>
                             <td class="text-nowrap">
-                                qq
+                                {{item.Compositor}}
                             </td>
                             <td class="text-nowrap">
-                                qq
+                                {{item.Disco}}
                             </td>
                             <td class="text-nowrap">
-                                qq
+                                {{item.Genero}}
                             </td>
                             <td><a>Ver mas...</a></td>
                         </tr>
@@ -45,51 +106,6 @@
             </div>
         </div>
     </div>
+</div>
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form #form="ngForm">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div>
-                            <label for="checkbox1"> Usuarios</label>
-                        </div>
-                        <input type="text" class="form-control" name="Codigo_Usuario">
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <label for="checkbox2"> Fecha</label>
-                        </div>
-                        <input type="text" class="form-control" name="Fecha">
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <label for="checkbox3"> Tipo</label>
-                        </div>
-                        <select class="form-control" name="Tipo">
-                            <option value="">Todos</option>
-                            <option value="Insertar">Insertar</option>
-                            <option value="Modificar">Modificar</option>
-                            <option value="Eliminar">Eliminar</option>
-                        </select>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" type="submit">Buscar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-        </div>
-      </ng-template>
     

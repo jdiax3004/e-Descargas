@@ -2,7 +2,7 @@ const db = require('../db')
 
 const descontarSaldoCuenta = async (objeto) => {
 
-    const {contrasena,monto} = objeto;
+    const {contrasena,monto,numeroCuenta,codigo} = objeto;
 
     let data = await db.sequelize
     .query('dbo.ObtenerCuentaEasyPay @Numero = :numero', {
