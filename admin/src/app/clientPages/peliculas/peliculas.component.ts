@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { Pelicula } from 'src/app/models/pelicula';
 import { GeneroPeliculaService } from '../../services/genero-pelicula.service';
 import { IdiomaService } from '../../services/idioma.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-peliculas',
@@ -13,11 +15,25 @@ import { IdiomaService } from '../../services/idioma.service';
 export class PeliculasComponent implements OnInit {
 
   constructor(private service:PeliculasService, private alert: AlertService, 
-    private generoService: GeneroPeliculaService, private idiomasService: IdiomaService) { }
+    private generoService: GeneroPeliculaService, private idiomasService: IdiomaService, private carrito: CarritoService, private modalService: BsModalService) { }
   objetos: Pelicula[] = [];
   filtros: any = {};
   generos: any[] = [];
   idiomas: any[] = [];
+  linkSeleccionado: string = '';
+  modalRef: BsModalRef;
+ 
+  openModal(template: TemplateRef<any>, src: string) {
+    console.log(src);
+    this.linkSeleccionado = src;
+    this.modalRef = this.modalService.show(template);
+  }
+
+  cerrarModal() {
+    this.modalRef.hide();
+    this.linkSeleccionado = '';
+  }
+
   ngOnInit() {
     //this.cargar();
     this.cargarGeneros();
@@ -57,4 +73,14 @@ export class PeliculasComponent implements OnInit {
     }
     return false;
   }
+
+  agregarAlCarrito(item: Pelicula) {
+    this.carrito.agregar(item)
+  }
+
+  comprar(item: Pelicula) {
+    this.agregarAlCarrito(item)
+    this.carrito.checkout()
+  }
+
 }

@@ -2,7 +2,7 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <form #form="ngForm" (ngSubmit)="procesar()">
+                <form #form="ngForm" (ngSubmit)="submit()">
                     <h3 class="card-tittle">
                         Pago con tarjeta
                     </h3>
@@ -61,7 +61,7 @@
                     <li>Pelicula</li>
                 </ul>
                 <hr>
-                <span>Total</span>
+                <span>Total {{ carrito.obtenerMonto() }}</span>
             </div>
         </div>
     </div>

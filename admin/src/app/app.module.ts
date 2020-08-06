@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
+
 import { AppComponent } from "./app.component";
 import { RegisterComponent } from "./register/register.component";
 import { LoginComponent } from "./login/login.component";
@@ -16,6 +17,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { CommonModule } from '@angular/common';
 import { ClientPagesModule } from './clientPages/client-pages.module';
 import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    ModalModule.forRoot()
   ],
   providers: [LoginGuardService, AuthGuardService,Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent],

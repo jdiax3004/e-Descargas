@@ -3,6 +3,7 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { TARJETA } from 'src/app/constants/metodos-pago';
 import { Tarjeta } from 'src/app/models/tarjeta';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-pago-tarjeta',
@@ -12,22 +13,14 @@ import { Tarjeta } from 'src/app/models/tarjeta';
 export class PagoTarjetaComponent implements OnInit {
 
   metodoPago: Tarjeta = {}
-  monto: number = 300; //TODO: borar esto
 
-  constructor(private service: TransaccionService, private alert: AlertService) { }
+  constructor(private service: TransaccionService, private alert: AlertService, private carrito: CarritoService) { }
 
   ngOnInit() {
   }
 
-  procesar() {
-    this.alert.showLoading();
-    this.service.insertar({
-      Monto: this.monto,
-      Tipo_Pago: TARJETA,
-      Metodo_Pago: this.metodoPago
-    }).subscribe(response => {
-      this.alert.success("Compra realizada con éxito!");
-    }, err => this.alert.handleError(err))
+  submit() {
+    this.carrito.procesar(TARJETA, this.metodoPago)
   }
 
 }
