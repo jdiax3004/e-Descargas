@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from "../shared/shared.module";
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { CLIENT_PAGES_ROUTES } from './clientPage.routes';
 import { ClientPagesComponent } from './client-pages.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -19,7 +20,7 @@ import { AuthGuardService } from '../services/auth-guard.service';
 @NgModule({
   declarations: [ClientPagesComponent, PerfilComponent, PeliculasComponent, LibrosComponent, MusicaComponent, MetodosPagoComponent, PagoTarjetaComponent, PagoEasypayComponent, ClientSidebarComponent],
   imports: [
-    CommonModule,HttpClientModule,FormsModule,SharedModule,CLIENT_PAGES_ROUTES
+    CommonModule,HttpClientModule,FormsModule,SharedModule,CLIENT_PAGES_ROUTES,ModalModule.forRoot()
   ],
   providers: [AuthGuardService]
 })
