@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const servicio = require('../services/easypay.servicio')
-const { isAuth } = require('../security/auth')
+const { isAuth, ensureAuthenticated } = require('../security/auth')
 
 router.get('/easypay', async (req, res, next) => {
     try {
@@ -21,8 +21,9 @@ router.get('/easypay/:codigo', async (req, res, next) => {
     }
 })
 
-router.post('/easypay', async (req, res, next) => {
+router.post('/easypay', ensureAuthenticated, async (req, res, next) => {
     try {
+        req.body.Codigo_Usuario = req.user.Codigo
         const data = await servicio.insertar(req.body, req.user)
         return res.json(data)
     } catch (error) {
@@ -39,7 +40,7 @@ router.put('/easypay', isAuth([1, 4]), async (req, res, next) => {
     }
 })
 
-router.delete('/easypay/:codigo', isAuth([1, 4]), async (req, res, next) => {
+router.delete('/easypay/:codigo', ensureAuthenticated, async (req, res, next) => {
     try {
         const data = await servicio.eliminar(req.params.codigo, req.user)
         return res.json({ success: data })

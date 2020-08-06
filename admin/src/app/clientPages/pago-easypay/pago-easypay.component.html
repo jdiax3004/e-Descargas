@@ -2,24 +2,44 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-tittle">
-                    Pago Easypay
-                </h3>
-                <br>
-                <div class="form-group">
-                    <label class="control-label">Número de cuenta Easypay</label>
-                    <input type="text" id="firstName" class="form-control" placeholder="Número de cuenta"> 
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Código de seguridad</label>
-                    <input type="text" id="firstName" class="form-control" placeholder="Código Seguridad"> 
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Contraseña</label>
-                    <input type="password" id="firstName" class="form-control" placeholder="Contraseña"> 
-                </div>
-                <br>
-                <button type="button" class="btn waves-effect waves-light btn-block btn-info">Siguiente Paso</button>
+                <form #form="ngForm" (ngSubmit)="submit()">
+                    <h3 class="card-tittle">
+                        Pago Easypay
+                    </h3>
+                    <small>Cuentas gurdadas</small>
+                    <div class="card-body collapse show waves-effect waves-light" style="background-color: cornsilk;">
+                        <div class="row" *ngFor="let item of items" (click)="setMetodoPago(item)">
+                            <div class="col">
+                                {{ item.Numero_Cuenta }}
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-danger" (click)="eliminar(item)">Borrar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="form-group">
+                        <label class="control-label">Número de cuenta Easypay</label>
+                        <input type="number" id="firstName" class="form-control" placeholder="Número de cuenta" name="Numero_Cuenta" [(ngModel)]="metodoPago.Numero_Cuenta">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Código de seguridad</label>
+                        <input type="number" id="firstName" class="form-control" placeholder="Código Seguridad" name="Codigo_Seguridad" [(ngModel)]="metodoPago.Codigo_Seguridad">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Contraseña</label>
+                        <input type="password" id="firstName" class="form-control" placeholder="Contraseña" name="Contrasenna" [(ngModel)]="metodoPago.Contrasenna">
+                    </div>
+                    <br>
+                    <button type="button" class="btn waves-effect waves-light btn-block btn-info" (click)="guardar()">
+                        Guardar método de pago</button>
+                    <br>
+        
+                    <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Procesar la
+                        compra</button>
+                </form>
             </div>
         </div>
     </div>
@@ -31,12 +51,10 @@
                 </h3>
                 <br>
                 <ul>
-                    <li>Cancion</li>
-                    <li>Libro</li>
-                    <li>Pelicula</li>
+                    <li *ngFor="let item of carrito.obtener()">{{ item.Nombre }} | {{ item.Precio }}</li>
                 </ul>
                 <hr>
-                <span>Total</span>
+                <span>Total {{ carrito.obtenerMonto() }}</span>
             </div>
         </div>
     </div>

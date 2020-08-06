@@ -1,7 +1,7 @@
 export class Tarjeta {
     Id?: number;
     Codigo_Usuario?: number;
-    Numero?: string;
+    Numero?: number;
     CVV?: number;
     Tipo?: string;
     Mes_Expiracion?: number;

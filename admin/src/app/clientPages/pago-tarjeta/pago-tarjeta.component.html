@@ -8,20 +8,23 @@
                     </h3>
                     <small>Tarjetas gurdadas</small>
                     <div class="card-body collapse show waves-effect waves-light" style="background-color: cornsilk;">
-                        <!-- <div class="row">
+                        <div class="row" *ngFor="let item of items" (click)="setMetodoPago(item)">
                             <div class="col">
-                                <input name="group1" type="radio" class="with-gap" id="radio_3">
+                                <img 
+                                height="50px"
+                                src="https://lh3.googleusercontent.com/proxy/2JoqTS9PwaTRCG_nJbDJfHbWmTUuOlkMztb4FB3dVdUJjUkyGrzwyQCnRBq5zRdbY_ClvUh96_a-RTkEm2eU50b9lECbqoIaR7Bw3MSwHiGvGhhYAA_SdA" 
+                                alt="visa">
                             </div>
                             <div class="col">
-                                img
+                                {{ item.Numero }}
                             </div>
                             <div class="col">
-                                xxxxxxxxxxxxxxxx
+                                {{ item.Mes_Expiracion }}/{{ item.Anno_Expiracion }}
                             </div>
                             <div class="col">
-                                12/2021
+                                <button type="button" class="btn btn-danger" (click)="eliminar(item)">Borrar</button>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                     <br>
                     <hr>
@@ -29,7 +32,7 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <input class="form-control" placeholder="Número tarjeta" name="Numero_Tarjeta" [(ngModel)]="metodoPago.Numero_Tarjeta">
+                            <input class="form-control" type="number" placeholder="Número tarjeta" name="Numero" [(ngModel)]="metodoPago.Numero">
                         </div>
                         <div class="col">
                             <input class="form-control" type="number" placeholder="Mes Exp." name="Mes_Expiracion" [(ngModel)]="metodoPago.Mes_Expiracion">
@@ -42,6 +45,10 @@
                         </div>
                     </div>
                     <br>
+                    <button type="button" class="btn waves-effect waves-light btn-block btn-info" (click)="guardar()">
+                        Guardar método de pago</button>
+                    <br>
+        
                     <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Procesar la
                         compra</button>
                 </form>
@@ -56,9 +63,7 @@
                 </h3>
                 <br>
                 <ul>
-                    <li>Cancion</li>
-                    <li>Libro</li>
-                    <li>Pelicula</li>
+                    <li *ngFor="let item of carrito.obtener()">{{ item.Nombre }} | {{ item.Precio }}</li>
                 </ul>
                 <hr>
                 <span>Total {{ carrito.obtenerMonto() }}</span>

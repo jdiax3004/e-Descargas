@@ -71,7 +71,9 @@ export class CarritoService {
       Tipo_Pago: tipo,
       Metodo_Pago: metodoPago
     }).subscribe(response => {
-      this.alert.success("Compra realizada con éxito!")
+      this.alert.success("Compra realizada con éxito!\n" + this.obtener()[0].Archivo_Descarga)
+      this.limpiar()
+      this.router.navigate([''])
     }, err => this.alert.handleError(err))
   }
 }

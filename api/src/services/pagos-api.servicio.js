@@ -7,7 +7,7 @@ let servicio = {}
 
 servicio.procesarTarjeta = async (tarjeta, monto) => {
   const data = await axios.post(`${api_url}/tarjetas`, {
-    numeroCuenta: tarjeta.Numero_Tarjeta,
+    numeroCuenta: tarjeta.Numero,
     cvv: tarjeta.CVV,
     mes: tarjeta.Mes_Expiracion,
     anno: tarjeta.Anno_Expiracion,
@@ -24,9 +24,8 @@ servicio.procesarTarjeta = async (tarjeta, monto) => {
 } 
 
 servicio.procesarEasyPay = async (easypay, monto) => {
-  {contrasena,monto,numeroCuenta,codigo}
   const data = await axios.post(`${api_url}/easypay`, {
-    numeroCuenta: easypay.Numero_Tarjeta,
+    numeroCuenta: easypay.Numero_Cuenta,
     contrasena: easypay.Contrasenna,
     codigo: easypay.Codigo_Seguridad,
     monto
