@@ -4,43 +4,53 @@
     <section id="wrapper" class="login-register login-sidebar" style="background-image:url(../assets/images/background/login-register.jpg);">
         <div class="login-box card">
             <div class="card-body">
-                <form class="form-horizontal form-material" id="loginform">
+                <form class="form-horizontal form-material" id="loginform" #form="ngForm" (ngSubmit)="submit()">
                     <a href="javascript:void(0)" class="text-center db"><img src="../assets/images/logo.png" alt="Home" style="width:40px;height:38px;" /><br/>
                         <img src="../assets/images/Untitled-1.png" alt="Home" style="width:200px;height:60px;"/></a>
                     <h3 class="box-title m-t-40 m-b-0">Registrarme</h3><small>¡Crea una cuenta y disfruta!</small>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="text" required="" placeholder="Usuario" name="Usuario" [(ngModel)]="objeto.Usuario">
+                        </div>
+                    </div>
                     <div class="form-group m-t-20">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Nombre">
+                            <input class="form-control" type="text" required="" placeholder="Nombre" name="Nombre" [(ngModel)]="objeto.Nombre">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Usuario">
+                            <input class="form-control" type="text" required="" placeholder="Primer Apellido" name="Primer_Apellido" [(ngModel)]="objeto.Primer_Apellido">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Primer Apellido">
+                            <input class="form-control" type="text" required="" placeholder="Segundo Apellido" name="Segundo_Apellido" [(ngModel)]="objeto.Segundo_Apellido">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Segundo Apellido">
+                            <input class="form-control" type="email" required="" placeholder="Correo Electrónico" name="Correo" [(ngModel)]="objeto.Correo">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required="" placeholder="Correo Electrónico">
+                            <input class="form-control" type="password" required="" placeholder="Contraseña" name="Contrasenna" [(ngModel)]="objeto.Contrasenna">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="Contraseña">
+                            <input class="form-control" type="password" required="" placeholder="Pregunta de Seguridad" name="Pregunta_Seguridad" [(ngModel)]="objeto.Pregunta_Seguridad">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" required="" placeholder="Respuesta de Seguridad" name="Respuesta_Seguridad" [(ngModel)]="objeto.Respuesta_Seguridad">
                         </div>
                     </div>
                     <div class="form-group text-center m-t-20">
                         <div class="col-xs-12">
-                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Registrarme</button>
+                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit" >Registrarme</button>
                         </div>
                     </div>
                     <div class="form-group m-b-0">
