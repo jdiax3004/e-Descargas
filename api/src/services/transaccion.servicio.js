@@ -1,7 +1,8 @@
-const { storeProcedure } = require("utils/db.utils")({ db: require('../db') });
-const { filtrar } = require("utils/array.utils");
+const { storeProcedure } = require("utils/db.utils")({ db: require('../db') })
+const { filtrar } = require("utils/array.utils")
 const bitacora = require('../log/bitacora.log')
 const consecutivo = require('./consecutivo.servicio')
+const pagos = require('./pagos-api.servicio')
 
 let servicio = {}
 
@@ -17,7 +18,21 @@ servicio.obtenerUno = async (codigo) => {
 }
 
 servicio.insertar = async (objeto, usuario) => {
+  if(!objeto.Metodo_Pago) throw new Error("No se especificó el método de pago.");
+
+  if(objeto.Tipo_Pago == 'tarjeta') {
+    await pagos.procesarTarjeta(objeto.Metodo_Pago, objeto.Monto)
+      .catch(err => { throw err })
+  }
+
+  if(objeto.Tipo_Pago == 'easy_pay') {
+    await pagos.procesarEasyPay(objeto.Metodo_Pago, objeto.Monto)
+      .catch(err => { throw err })
+  }
+
+  delete objeto.Metodo_Pago
   objeto.Codigo = await consecutivo.generar(consecutivo.TRANSACCION)
+  objeto.Fecha = new Date()
   const data = await storeProcedure("InsertarTransaccion", objeto)
   bitacora.log(bitacora.INSERTAR, data, usuario)
   return data

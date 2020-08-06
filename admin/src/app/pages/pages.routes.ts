@@ -30,49 +30,49 @@ const pagesRoutes: Routes = [
       {
         path: "",
         component: DashboardComponent,
-        data: { titulo: "Dashboard", Id_Rol: [ADMINISTRADOR] },
+        data: { titulo: "Dashboard", Id_Roles: [ADMINISTRADOR] },
         canActivate: [AuthGuard]
       },
       {
         path: "crearUsuario",
         component: CrearUsuarioComponent,
-        data: { titulo: "Crear usuario", Id_Rol: [ADMINISTRADOR, SEGURIDAD] },
+        data: { titulo: "Crear usuario", Id_Roles: [ADMINISTRADOR, SEGURIDAD] },
         canActivate: [AuthGuard]
       },
       {
         path: "asignarRol",
         component: AsignarRolesComponent,
-        data: { titulo: "Asignar Roles", Id_Rol: [ADMINISTRADOR, SEGURIDAD] },
+        data: { titulo: "Asignar Roles", Id_Roles: [ADMINISTRADOR, SEGURIDAD] },
         canActivate: [AuthGuard]
       },
       {
         path: "cambiarContrasena",
         component: CambiarContrasenaComponent,
-        data: { titulo: "Cambiar Contraseña", Id_Rol: [ADMINISTRADOR] },
+        data: { titulo: "Cambiar Contraseña", Id_Roles: [ADMINISTRADOR] },
         canActivate: [AuthGuard]
       },
       {
         path: "consecutivos",
         component: ConsecutivoComponent,
-        data: { titulo: "Lista de Consecutivos", Id_Rol: [ADMINISTRADOR, CONSECUTIVO, MANTENIMIENTO] },
+        data: { titulo: "Lista de Consecutivos", Id_Roles: [ADMINISTRADOR, CONSECUTIVO, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "parametros",
         component: ParametrosComponent,
-        data: { titulo: "Paramentros", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "Paramentros", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "libros",
         component: LibrosComponent,
-        data: { titulo: "Libros", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "Libros", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "musica",
         component: MusicaComponent,
-        data: { titulo: "Musica", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "Musica", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
@@ -84,19 +84,19 @@ const pagesRoutes: Routes = [
       {
         path: "descargas",
         component: DescargasComponent,
-        data: { titulo: "Descargas", Id_Rol: [ADMINISTRADOR, CONSULTA] },
+        data: { titulo: "Descargas", Id_Roles: [ADMINISTRADOR, CONSULTA] },
         canActivate: [AuthGuard]
       },
       {
         path: "errores",
         component: ErroresComponent,
-        data: { titulo: "Errores", Id_Rol: [ADMINISTRADOR, CONSULTA] },
+        data: { titulo: "Errores", Id_Roles: [ADMINISTRADOR, CONSULTA] },
         canActivate: [AuthGuard]
       },
       {
         path: "transacciones",
         component: TransaccionesComponent,
-        data: { titulo: "Transacciones", Id_Rol: [ADMINISTRADOR, CONSULTA] },
+        data: { titulo: "Transacciones", Id_Roles: [ADMINISTRADOR, CONSULTA] },
         canActivate: [AuthGuard]
       },
       {
@@ -108,43 +108,43 @@ const pagesRoutes: Routes = [
       {
         path: "crearPelicula/:id",
         component: CrearPeliculaComponent,
-        data: { titulo: "Crear nueva pelicula", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "Crear nueva pelicula", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "crearLibro/:id",
         component: CrearLibroComponent,
-        data: { titulo: "Crear nuevo libro", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "Crear nuevo libro", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "crearCancion/:id",
         component: CrearCancionComponent,
-        data: { titulo: "CrearCancion", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "CrearCancion", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "consultarBitacora/:id",
         component: ConsultaBitacoraComponent,
-        data: { titulo: "Consulta Bitácora", Id_Rol: [ADMINISTRADOR, CONSULTA] },
+        data: { titulo: "Consulta Bitácora", Id_Roles: [ADMINISTRADOR, CONSULTA] },
         canActivate: [AuthGuard]
       },
       {
         path: "crearConsecutivos/:id",
         component: CrearConsecutivosComponent,
-        data: { titulo: "Crear Consecutivo", Id_Rol: [ADMINISTRADOR, CONSECUTIVO, MANTENIMIENTO] },
+        data: { titulo: "Crear Consecutivo", Id_Roles: [ADMINISTRADOR, CONSECUTIVO, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "crearPeliculas/:id",
         component: CrearPeliculaComponent,
-        data: { titulo: "Crear Peliculas", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "Crear Peliculas", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
       {
         path: "crearLibros/:id",
         component: CrearLibroComponent,
-        data: { titulo: "Crear Libros", Id_Rol: [ADMINISTRADOR, MANTENIMIENTO] },
+        data: { titulo: "Crear Libros", Id_Roles: [ADMINISTRADOR, MANTENIMIENTO] },
         canActivate: [AuthGuard]
       },
     ],

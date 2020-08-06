@@ -12,6 +12,7 @@ import { MetodosPagoComponent } from './metodos-pago/metodos-pago.component';
 import { PagoTarjetaComponent } from './pago-tarjeta/pago-tarjeta.component';
 import { PagoEasypayComponent } from './pago-easypay/pago-easypay.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 
 
@@ -20,5 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,HttpClientModule,FormsModule,SharedModule,CLIENT_PAGES_ROUTES
   ],
+  providers: [AuthGuardService]
 })
 export class ClientPagesModule { }

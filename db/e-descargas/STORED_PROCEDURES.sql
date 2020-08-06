@@ -755,13 +755,14 @@ GO
 GO
 CREATE OR ALTER PROC dbo.InsertarTransaccion
   @Codigo AS NVARCHAR(255),
+  @Codigo_Usuario AS NVARCHAR(255),
   @Tipo_Pago AS NVARCHAR(255),
   @Monto AS NVARCHAR(255),
   @Fecha AS NVARCHAR(255)
 AS
 INSERT INTO Transacciones
 VALUES
-  (@Codigo, @Tipo_Pago, @Monto, @Fecha);
+  (@Codigo, @Codigo_Usuario, @Tipo_Pago, @Monto, @Fecha);
 SELECT *
 FROM Transacciones
 WHERE Codigo = @Codigo;
@@ -771,12 +772,14 @@ GO
 CREATE OR ALTER PROC dbo.ModificarTransaccion
   @Codigo AS NVARCHAR(255),
   @Tipo_Pago AS NVARCHAR(255),
+  @Codigo_Usuario AS NVARCHAR(255),
   @Monto AS NVARCHAR(255),
   @Fecha AS NVARCHAR(255)
 AS
 UPDATE Transacciones
     SET 
         Codigo = @Codigo, 
+        Codigo_Usuario = @Codigo_Usuario,
         Tipo_Pago = @Tipo_Pago, 
         Monto = @Monto, 
         Fecha = @Fecha
