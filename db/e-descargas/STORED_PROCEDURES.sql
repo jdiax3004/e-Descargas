@@ -860,3 +860,143 @@ DELETE FROM Parametros
     WHERE 
       @Id = @Id;
 GO
+
+--Tarjetas
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerTarjetas
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM Tarjetas;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM Tarjetas
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.InsertarTarjetas
+  @Codigo_Usuario AS NVARCHAR(255),
+  @Numero AS NVARCHAR(255),
+  @CVV AS NVARCHAR(255),
+  @Tipo AS NVARCHAR(255),
+  @Mes_Expiracion AS NVARCHAR(255),
+  @Anno_Expiracion AS NVARCHAR(255)
+AS
+INSERT INTO Tarjetas
+VALUES
+  (@Codigo_Usuario,@Numero,@CVV,@Tipo,@Mes_Expiracion,@Anno_Expiracion);
+SELECT *
+FROM Tarjetas
+WHERE Id = SCOPE_IDENTITY();
+GO
+
+
+GO
+CREATE OR ALTER PROC dbo.ModificarTarjetas
+  @Id AS INT,
+  @Codigo_Usuario AS NVARCHAR(255) = null,
+  @Numero AS NVARCHAR(255)= null,
+  @CVV AS NVARCHAR(255)= null,
+  @Tipo AS NVARCHAR(255)= null,
+  @Mes_Expiracion AS NVARCHAR(255)= null,
+  @Anno_Expiracion AS NVARCHAR(255)= null
+AS
+BEGIN
+  SET NOCOUNT ON
+  UPDATE Tarjetas
+    SET 
+        Codigo_Usuario = isNull(@Codigo_Usuario,Codigo_Usuario), 
+        Numero = isNull(@Numero,Numero), 
+        CVV = isNull(@CVV, CVV),
+        Tipo = isNull(@Tipo,Tipo), 
+        Mes_Expiracion = isNull(@Mes_Expiracion,Mes_Expiracion), 
+        Anno_Expiracion = isNull(@Anno_Expiracion,Anno_Expiracion)
+    WHERE Id = @Id;
+  SELECT *
+  FROM Tarjetas
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarTarjetas
+  @Id AS INT
+AS
+DELETE FROM Tarjetas 
+    WHERE 
+      @Id = @Id;
+GO
+
+--EasyPay
+
+GO
+CREATE OR ALTER PROC dbo.ObtenerEasyPay
+  @Id AS INT = NULL
+AS
+IF @Id IS NULL
+  BEGIN
+  SELECT *
+  FROM EasyPay;
+END
+  ELSE
+  BEGIN
+  SELECT *
+  FROM EasyPay
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.InsertarEasyPay
+  @Codigo_Usuario AS NVARCHAR(255),
+  @Numero_Cuenta AS NVARCHAR(500),
+  @Codigo_Seguridad AS NVARCHAR(255),
+  @Contrasenna AS NVARCHAR(500)
+AS
+INSERT INTO EasyPay
+VALUES
+  (@Codigo_Usuario,@Numero_Cuenta,@Codigo_Seguridad,@Contrasenna);
+SELECT *
+FROM EasyPay
+WHERE Id = SCOPE_IDENTITY();
+GO
+
+
+GO
+CREATE OR ALTER PROC dbo.ModificarEasyPay
+  @Id AS INT,
+  @Codigo_Usuario AS NVARCHAR(255)=null,
+  @Numero_Cuenta AS NVARCHAR(500)=null,
+  @Codigo_Seguridad AS NVARCHAR(255)=null,
+  @Contrasenna AS NVARCHAR(500)=null
+AS
+BEGIN
+  SET NOCOUNT ON
+  UPDATE EasyPay
+    SET 
+        Codigo_Usuario = isNull(@Codigo_Usuario,Codigo_Usuario), 
+        Numero_Cuenta = isNull(@Numero_Cuenta,Numero_Cuenta), 
+        Codigo_Seguridad = isNull(@Codigo_Seguridad, Codigo_Seguridad),
+        Contrasenna = isNull(@Contrasenna,Contrasenna)
+    WHERE Id = @Id;
+  SELECT *
+  FROM EasyPay
+  WHERE Id = @Id;
+END
+GO
+
+GO
+CREATE OR ALTER PROC dbo.EliminarEasyPay
+  @Id AS INT
+AS
+DELETE FROM EasyPay 
+    WHERE 
+      @Id = @Id;
+GO

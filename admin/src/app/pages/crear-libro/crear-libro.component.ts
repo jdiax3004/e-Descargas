@@ -24,7 +24,7 @@ export class CrearLibroComponent implements OnInit {
   archivoVisualizacion: File;
 
   extencionesPermitidasDescarga = ['pdf']
-  extencionesPermitidasVisualizacion = ['png', 'jpeg', 'jpg']
+  extencionesPermitidasVisualizacion = ['pdf']
 
   constructor(private servicio: LibrosService, private generoService: GeneroLibroService, private archivosService: ArchivosService, private route: ActivatedRoute, private idiomaService: IdiomaService, private alert: AlertService) { }
   
