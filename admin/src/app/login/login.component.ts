@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { AuthService } from '../services/auth.service';
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-login",
@@ -13,7 +13,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   ingresar(form: FormGroup) {
-    const { Usuario, Contrasenna } = form.value
-    this.auth.login(Usuario, Contrasenna)
+    const { Usuario, Contrasenna } = form.value;
+    this.auth.login(Usuario, Contrasenna);
+  }
+
+  ingresarFacebook() {
+    this.auth.loginFacebook();
   }
 }
