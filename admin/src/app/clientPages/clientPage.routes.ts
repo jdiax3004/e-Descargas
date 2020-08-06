@@ -8,6 +8,7 @@ import { MetodosPagoComponent } from './metodos-pago/metodos-pago.component';
 import { PagoTarjetaComponent } from './pago-tarjeta/pago-tarjeta.component';
 import { PagoEasypayComponent } from './pago-easypay/pago-easypay.component';
 import { AuthGuardService as AuthGuard } from '../services/auth-guard.service'
+import { CompraExitosaComponent } from './compra-exitosa/compra-exitosa.component';
 
 const clientPagesRoutes: Routes = [
     {
@@ -42,6 +43,10 @@ const clientPagesRoutes: Routes = [
         {
           path: "easypay",
           component: PagoEasypayComponent,
+        },
+        {
+          path: "compra-exitosa/:id",
+          component: CompraExitosaComponent,
         },
       ]
     }
