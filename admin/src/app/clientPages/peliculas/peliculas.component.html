@@ -70,7 +70,7 @@
                             <td>{{ objeto.Codigo }}</td>
                             <td>{{ objeto.Nombre }}</td>
                             <td>{{ objeto.Genero }}</td>
-                            <td>...</td>
+                            <td><a (click)="openModal(template, objeto.Archivo_Previsualizacion)">Ver...</a></td>
                             <td>
                                 <button class="btn btn-info" (click)="agregarAlCarrito(objeto)">Agregar al carrito</button>
                                 <button class="btn btn-success" (click)="comprar(objeto)">Comprar</button>
@@ -81,51 +81,20 @@
             </div>
         </div>
     </div>
+</div>
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form #form="ngForm">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div>
-                            <label for="checkbox1"> Usuarios</label>
-                        </div>
-                        <input type="text" class="form-control" name="Codigo_Usuario">
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <label for="checkbox2"> Fecha</label>
-                        </div>
-                        <input type="text" class="form-control" name="Fecha">
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <label for="checkbox3"> Tipo</label>
-                        </div>
-                        <select class="form-control" name="Tipo">
-                            <option value="">Todos</option>
-                            <option value="Insertar">Insertar</option>
-                            <option value="Modificar">Modificar</option>
-                            <option value="Eliminar">Eliminar</option>
-                        </select>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" type="submit">Buscar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-        </div>
-      </ng-template>
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="cerrarModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <video width="420" height="240" autoplay controls>
+            <source [src]="this.linkSeleccionado" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+    </div>
+</ng-template>
     
