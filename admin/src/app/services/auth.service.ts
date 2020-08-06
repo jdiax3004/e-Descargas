@@ -24,7 +24,9 @@ export class AuthService {
   public actual: Usuario;
 
   obtenerActual() {
-    return new Promise((resolve, reject) => {
+    if (window.location.hash && window.location.hash == '#_=_') {
+      window.location.hash = '';
+  }    return new Promise((resolve, reject) => {
       this.usuarioService.actual().subscribe((data: any) => {
         this.actual = data ? data : null;
         resolve();
@@ -50,10 +52,10 @@ export class AuthService {
   }
 
   goHome() {
-    if(this.isAdmin()) {
-      this.router.navigate(['admin'])
+    if (this.isAdmin()) {
+      this.router.navigate(["admin"]);
     } else {
-      this.router.navigate([''])
+      this.router.navigate([""]);
     }
   }
 
@@ -81,23 +83,18 @@ export class AuthService {
   }
 
   logout() {
-    this.usuarioService.logout().subscribe(data => {
-      this.actual = null
-      deleteCookie('connect.sid')
-      this.router.navigate(['login'])
-    }, error => this.alert.handleError(error))
-
+    this.usuarioService.logout().subscribe(
+      (data) => {
+        this.actual = null;
+        deleteCookie("connect.sid");
+        this.router.navigate(["login"]);
+      },
+      (error) => this.alert.handleError(error)
+    );
   }
 
   loginFacebook() {
-    this.usuarioService.loginFacebook().subscribe((data: any) => {
-      if (data) {
-        this.actual = data;
-        this.alert.hideLoading(`Bienvenido ${this.actual.Nombre}!`);
-        this.goHome();
-      }
-    },(error) => {
-      this.alert.handleError(error);
-    });
+    window.location.href = `${environment.apiUrl}/auth/facebook`;
+ 
   }
 }

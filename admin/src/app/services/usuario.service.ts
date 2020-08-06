@@ -70,14 +70,8 @@ export class UsuarioService extends CRUDService<Usuario> {
   }
 
   loginFacebook() {
-    return this.http.get(`${environment.apiUrl}/auth/facebook`, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-
-      },
-      withCredentials: true,
+        return this.http.get(`${environment.apiUrl}/auth/facebook`, {
+      withCredentials: true
     });
   }
 }
