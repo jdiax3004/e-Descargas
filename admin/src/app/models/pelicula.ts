@@ -7,6 +7,7 @@ export class Pelicula {
   Nombre?: string;
   Anno?: number;
   Actores?: string;
+  Precio?:number;
   Archivo_Descarga?: string;
   Archivo_Previsualizacion?: string;
 }
