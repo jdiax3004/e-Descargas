@@ -3,6 +3,7 @@ const { filtrar } = require("utils/array.utils")
 const bitacora = require('../log/bitacora.log')
 const consecutivo = require('./consecutivo.servicio')
 const pagos = require('./pagos-api.servicio')
+const descargas = require('./decargas.servicio')
 
 let servicio = {}
 
