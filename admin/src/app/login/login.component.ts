@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
 import { environment } from "src/environments/environment";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
