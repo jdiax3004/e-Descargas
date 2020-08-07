@@ -15,7 +15,7 @@ export class TransaccionesComponent implements OnInit {
   constructor(private service:TransaccionService, private alert:AlertService) { }
 
   objetos: Transaccion[] = [];
-  filtros: Transaccion = {};
+  filtros: Transaccion = {Tipo_Pago:""};
 
   ngOnInit() {
     this.cargar();
