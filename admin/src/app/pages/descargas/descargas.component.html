@@ -7,42 +7,46 @@
           </h3>
           <hr>
           <h4>Filtros</h4>
-          <div class="row">
-                <div class="col-md-4">
+          <form #form="ngForm" (ngSubmit)="submit()">
+            <div class="row">
+
+                <div class="col-md-6">
                     <div>
-                        <label for="checkbox1"> Fecha</label>
+                        <label for="checkbox2"> Fecha</label>
                     </div>
-                    <input type="text" class="form-control">
+                    <input type="text" placeholder="Año, Mes y Día: 2020-07-23" class="form-control" name="Fecha" [(ngModel)]="filtros.Fecha">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div>
-                        <label for="checkbox2"> Tipo de medio</label>
+                        <label for="checkbox3">Categoría</label>
                     </div>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <label for="checkbox3"> Género/Categoría</label>
-                    </div>
-                    <input type="text" class="form-control">
+                    <select class="form-control" name="Tipo" [(ngModel)]="filtros.Tipo">
+                        <option value="">Todos</option>
+                        <option value="Insertar">Musica</option>
+                        <option value="Modificar">Pelicula</option>
+                        <option value="Eliminar">Libro</option>
+                    </select>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-4">
-                    <button class="btn btn-primary">Buscar</button>
+                    <button class="btn btn-primary" type="submit">Buscar</button>
                 </div>
             </div>
+        </form>
           <hr>
           <table class="table table-bordered">
             <thead>
-                <tr *ngFor="let objeto of objetos">
-                    <th>Nombre Descarga</th>
-                    <th>Cantidad de Veces</th>
+                <tr>
+                    <th>Descarga</th>
+                    <th>Tipo</th>
                 </tr>
             </thead>
             <tbody>
-  
+                <tr  *ngFor="let objeto of objetos"  >
+                    <td>{{ objeto.Codigo_Referencia }}</td>
+                    <td>{{ objeto.Tipo }}</td>
             </tbody>
         </table>
         </div>

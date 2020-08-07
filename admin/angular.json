@@ -24,10 +24,12 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "./src/assets/css/colors/default.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./src/assets/js/custom.js",
+              "./src/assets/js/sidebarmenu.js"
+            ]
           },
           "configurations": {
             "production": {

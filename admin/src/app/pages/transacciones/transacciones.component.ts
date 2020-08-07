@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { Transaccion } from 'src/app/models/transaccion';
+import { Tarjeta } from 'src/app/models/tarjeta';
+import { EasyPay } from 'src/app/models/easypay';
 
 @Component({
   selector: 'app-transacciones',
@@ -13,7 +15,7 @@ export class TransaccionesComponent implements OnInit {
   constructor(private service:TransaccionService, private alert:AlertService) { }
 
   objetos: Transaccion[] = [];
-  //filtros: Transaccion = { Tipo: "" };
+  //filtros: Transaccion = { Metodo_Pago = new EasyPay };
 
   ngOnInit() {
     this.cargar();
@@ -23,4 +25,12 @@ export class TransaccionesComponent implements OnInit {
       this.objetos = data;
     })
   }
+
+  // submit() {
+  //   this.alert.showLoading()
+  //   this.service.obtener(this.filtros).subscribe(data => {
+  //     this.objetos = data;
+  //     this.alert.hideLoading();
+  //   })
+  // }
 }

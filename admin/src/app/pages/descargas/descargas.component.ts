@@ -12,7 +12,8 @@ export class DescargasComponent implements OnInit {
 
   constructor(private service:DescargasService, private alert:AlertService) { }
   objetos: Descarga[] = [];
-  
+  filtros: Descarga = { Tipo: "" };
+
   ngOnInit() {
     this.cargar();
   }
@@ -22,5 +23,11 @@ export class DescargasComponent implements OnInit {
       this.objetos = data;
     })
   }
-
+  submit() {
+    this.alert.showLoading()
+    this.service.obtener(this.filtros).subscribe(data => {
+      this.objetos = data;
+      this.alert.hideLoading();
+    })
+  }
 }
