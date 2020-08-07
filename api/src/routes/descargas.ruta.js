@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const servicio = require("../services/decargas.servicio")
-const { isAuth } = require('../security/auth')
+const { isAuth, ensureAuthenticated } = require('../security/auth')
 
 router.get("/descargas", isAuth([1, 5]), async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ router.get("/descargas/:Id", isAuth([1, 5]), async (req, res, next) => {
   }
 });
 
-router.post("/descargas", isAuth([1, 5]), async (req, res, next) => {
+router.post("/descargas", ensureAuthenticated, async (req, res, next) => {
   try {
     const data = await servicio.insertar(req.body);
     return res.json(data);

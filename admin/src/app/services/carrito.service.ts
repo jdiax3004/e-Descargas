@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TransaccionService } from './transaccion.service';
 import { Tarjeta } from '../models/tarjeta';
 import { EasyPay } from '../models/easypay';
+import { DescargasService } from './descargas.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { EasyPay } from '../models/easypay';
 export class CarritoService {
   private key = 'cart'
 
-  constructor(private service: TransaccionService, private alert: AlertService, private router: Router) { }
+  constructor(private service: TransaccionService, private descargas: DescargasService, private alert: AlertService, private router: Router) { }
 
   obtener(): any[] {
     let c = localStorage.getItem(this.key)
@@ -72,6 +73,13 @@ export class CarritoService {
       Metodo_Pago: metodoPago
     }).subscribe(response => {
       this.alert.success("Compra realizada con éxito!\n" + this.obtener()[0].Archivo_Descarga)
+      this.obtener().forEach(element => {
+        this.descargas.insertar({
+          Codigo_Referencia: element.Codigo,
+          Genero: element.Genero,
+          Tipo: element.Autor ? 'Libro' : element.Actores ? 'Pelicula' : 'Musica'
+        }).toPromise()
+      });
       this.limpiar()
       this.router.navigate([''])
     }, err => this.alert.handleError(err))
