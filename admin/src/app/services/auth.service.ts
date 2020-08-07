@@ -14,7 +14,7 @@ export class AuthService {
     private usuarioService: UsuarioService,
     private router: Router,
     private alert: AlertService
-  ) {}
+  ) { }
   auth_cookie = "connect.sid";
   cookie_id = "uid";
 
@@ -25,8 +25,8 @@ export class AuthService {
 
   obtenerActual() {
     if (window.location.hash && window.location.hash == '#_=_') {
-      window.location.hash = '';
-  }    return new Promise((resolve, reject) => {
+      this.goHome();
+    } return new Promise((resolve, reject) => {
       this.usuarioService.actual().subscribe((data: any) => {
         this.actual = data ? data : null;
         resolve();
@@ -95,6 +95,6 @@ export class AuthService {
 
   loginFacebook() {
     window.location.href = `${environment.apiUrl}/auth/facebook`;
- 
+
   }
 }

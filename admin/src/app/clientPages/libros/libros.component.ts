@@ -4,6 +4,7 @@ import { GeneroLibroService } from 'src/app/services/genero-libro.service';
 import { IdiomaService } from '../../services/idioma.service';
 import { Libro } from 'src/app/models/libro';
 import { AlertService } from '../../services/alert.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { AlertService } from '../../services/alert.service';
 export class LibrosComponent implements OnInit {
 
   constructor(private libroService: LibrosService, private generoService: GeneroLibroService,
-              private idiomasService: IdiomaService, private alert: AlertService) { }
+              private idiomasService: IdiomaService, private alert: AlertService, private carrito: CarritoService) { }
 
   objetos: Libro[] = [];
   filtros: any = {};
@@ -57,5 +58,14 @@ export class LibrosComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  agregarAlCarrito(item: Libro) {
+    this.carrito.agregar(item)
+  }
+
+  comprar(item: Libro) {
+    this.agregarAlCarrito(item)
+    this.carrito.checkout()
   }
 }

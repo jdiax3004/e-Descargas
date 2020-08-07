@@ -4,6 +4,7 @@ import { IdiomaService } from '../../services/idioma.service';
 import { AlertService } from '../../services/alert.service';
 import { Musica } from '../../models/musica';
 import { MusicaService } from '../../services/musica.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-musica',
@@ -13,7 +14,7 @@ import { MusicaService } from '../../services/musica.service';
 export class MusicaComponent implements OnInit {
 
   constructor(private generoService: GeneroMusicaService, private idiomasService: IdiomaService, private alert: AlertService,
-               private musica: MusicaService) { }
+               private musica: MusicaService, private carrito: CarritoService) { }
   objetos: Musica[] = [];
   filtros: any = {};
   generos: any[] = [];
@@ -56,5 +57,14 @@ export class MusicaComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  agregarAlCarrito(item: Musica) {
+    this.carrito.agregar(item)
+  }
+
+  comprar(item: Musica) {
+    this.agregarAlCarrito(item)
+    this.carrito.checkout()
   }
 }

@@ -93,6 +93,7 @@
                             <th>Album</th>
                             <th>Genero</th>
                             <th>Vista Previa</th>
+                            <th>Compra</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -115,6 +116,9 @@
                                     <source [src]="item.Archivo_Previsualizacion" type="audio/ogg">
                                   Your browser does not support the audio element.
                                   </audio>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" (click)="comprar(item)">Comprar</button>
                             </td>
                         </tr>
                     </tbody>

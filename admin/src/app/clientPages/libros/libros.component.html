@@ -79,6 +79,7 @@
                             <th>Nombre</th>
                             <th>Genero</th>
                             <th>Vista Previa</th>
+                            <th>Compra</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,6 +92,9 @@
                                 {{item.Genero}}
                             </td>
                             <td><a [href]="item.Archivo_Previsualizacion" target="_blank">Ver</a></td>
+                            <td>
+                                <button class="btn btn-success" (click)="comprar(item)">Comprar</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
