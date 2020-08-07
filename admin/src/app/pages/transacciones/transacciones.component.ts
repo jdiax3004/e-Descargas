@@ -15,7 +15,7 @@ export class TransaccionesComponent implements OnInit {
   constructor(private service:TransaccionService, private alert:AlertService) { }
 
   objetos: Transaccion[] = [];
-  //filtros: Transaccion = { Metodo_Pago = new EasyPay };
+  filtros: Transaccion = {Tipo_Pago:""};
 
   ngOnInit() {
     this.cargar();
@@ -26,11 +26,11 @@ export class TransaccionesComponent implements OnInit {
     })
   }
 
-  // submit() {
-  //   this.alert.showLoading()
-  //   this.service.obtener(this.filtros).subscribe(data => {
-  //     this.objetos = data;
-  //     this.alert.hideLoading();
-  //   })
-  // }
+  submit() {
+    this.alert.showLoading()
+    this.service.obtener(this.filtros).subscribe(data => {
+      this.objetos = data;
+      this.alert.hideLoading();
+    })
+  }
 }
