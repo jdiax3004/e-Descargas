@@ -15,6 +15,7 @@ servicio.obtenerUno = async (id) => {
 };
 
 servicio.insertar = async (objeto) => {
+  objeto.Fecha = new Date()
   const data = await storeProcedure("InsertarDescargas", objeto);
   bitacora.log(bitacora.INSERTAR, data);
   return data;
