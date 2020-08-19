@@ -8,13 +8,15 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class DashboardComponent {
   constructor(private auth: AuthService) {}
+  // Donas
   labels1 = ["Pan", "Tacos", "Salsa"];
   data = [[100, 450, 100]];
+
+  // Barras
 
   dataBar = [
     { data: [28, 48, 40, 19, 86, 27, 90, 100, 100], label: "Información" },
   ];
-
   labelsBar = [
     "2006",
     "2007",
@@ -27,6 +29,7 @@ export class DashboardComponent {
     "2014",
   ];
 
+  // Pie
   pieLabels = [["Download", "Sales"], ["In", "Store", "Sales"], "Mail Sales"];
 
   dataPie = [500, 500, 100];
