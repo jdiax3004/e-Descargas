@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { AlertService } from '../services/alert.service';
 import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-password-recovery',
@@ -21,7 +21,7 @@ export class PasswordRecoveryComponent implements OnInit {
   ngOnInit() {
   }
 
-  recuperar(form: FormGroup) {
+  recuperar(form: NgForm) {
     const { Username } = form.value
     this.usuario.recoverPassword(Username).subscribe(data => {
       this.getUsername = false;
@@ -30,7 +30,7 @@ export class PasswordRecoveryComponent implements OnInit {
     });
   }
 
-  enviarRespuesta(form: FormGroup) {
+  enviarRespuesta(form: NgForm) {
     const { SecurityAnswer } = form.value
     this.usuario.enviarRespuestaSeguridad(this.pregunta.Codigo,this.pregunta.Pregunta_Seguridad,SecurityAnswer).subscribe(data => {
       if(data) {
@@ -42,7 +42,7 @@ export class PasswordRecoveryComponent implements OnInit {
     });
   }
 
-  cambiarContrasenna(form: FormGroup){
+  cambiarContrasenna(form: NgForm){
     const { newPassword } = form.value
     this.usuario.cambiarPass(this.pregunta.Codigo,newPassword).subscribe(data => {
       this.router.navigate(['/login']);

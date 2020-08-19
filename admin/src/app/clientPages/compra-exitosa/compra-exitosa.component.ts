@@ -10,7 +10,7 @@ import { DescargasService } from 'src/app/services/descargas.service';
 })
 export class CompraExitosaComponent implements OnInit {
 
-  constructor(private carrito: CarritoService, private auth: AuthService, private descargas: DescargasService) { }
+  constructor(public carrito: CarritoService, public auth: AuthService, private descargas: DescargasService) { }
 
   ngOnInit() {
     if(!this.carrito.objetosComprados || this.carrito.objetosComprados.length == 0) {

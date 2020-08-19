@@ -1,0 +1,24 @@
+variable "token" {
+  description = "Digital Ocean Auth Token"
+  type        = string
+}
+
+variable "domain" {
+  description = "Domain name"
+  type        = string
+}
+
+variable "droplet_name" {
+  description = "Name of the droplet"
+  type        = string
+}
+
+variable "project_name" {
+  description = "Name of the project"
+  type        = string
+}
+
+variable "app_port" {
+  description = "TCP port of the aplication"
+  type        = number
+}

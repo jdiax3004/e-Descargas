@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
 import { environment } from "src/environments/environment";
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  ingresar(form: FormGroup) {
+  ingresar(form: NgForm) {
     const { Usuario, Contrasenna } = form.value;
     this.auth.login(Usuario, Contrasenna);
   }

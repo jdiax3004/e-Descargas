@@ -51,6 +51,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Static Files
+app.use(express.static(path.join(__dirname, "..", "public")))
+
 app.use(
   multer({ dest: path.join(__dirname, "..", "public/temp/") }).single("file")
 );
@@ -74,7 +77,12 @@ app.use(process.env.API_PATH, require("./routes/bitacora.ruta"));
 app.use(process.env.API_PATH, require("./routes/errores.ruta"));
 app.use(process.env.API_PATH, require("./routes/tarjetas.ruta"));
 app.use(process.env.API_PATH, require("./routes/easypay.ruta"));
-
+// Frontend route
+app.use("*", (req, res, next) => {
+  if (!req.originalUrl.includes(process.env.API_PATH))
+    res.sendFile(path.join(__dirname, "..", "public", "index.html"))
+  else next()
+})
 
 
 // Manejo de Errores
