@@ -40,6 +40,8 @@ export class CarritoService {
 
   agregar(item: Pelicula | Libro | Musica) {
     var items = this.obtener()
+    // validate if already exist
+    if(items.some(i => i.Codigo == item.Codigo)) return
     items.push(item)
     this._actualizar(items)
     this.alert.success("Producto agregado correctamente!")
@@ -48,10 +50,9 @@ export class CarritoService {
   eliminar(codigo: string) {
     var items = this.obtener()
     items = items.filter(i => {
-      i.Codigo != codigo
+      return i.Codigo != codigo
     })
     this._actualizar(items)
-    this.alert.success("Producto eliminado correctamente!")
   }
 
   limpiar() {
