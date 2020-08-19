@@ -17,13 +17,15 @@ export class PagoTarjetaComponent implements OnInit {
   items: Tarjeta[] = []
   metodoPago: Tarjeta = {}
   siteKey: string;
+  recaptcha:any[];
 
   constructor(private service: TarjetaService, private alert: AlertService, private auth: AuthService, private carrito: CarritoService) {
     this.siteKey = environment.captcha_site_key;
    }
 
   ngOnInit() {
-    this.cargar()
+    this.cargar();
+    this.addScript();
   }
 
   cargar() {
@@ -63,4 +65,17 @@ export class PagoTarjetaComponent implements OnInit {
     this.carrito.procesar(TARJETA, this.metodoPago)
   }
 
-}
+  resolved(captchaResponse:any[]){
+    this.recaptcha = captchaResponse;
+    console.log(this.recaptcha)
+  }
+
+  addScript() {
+    let script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js`;
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
+ }

@@ -48,7 +48,10 @@
                         </div>
                     </div>
 
-                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey"></ngx-recaptcha2>
+                    <!--<ngx-recaptcha2 #captchaElem [siteKey]="siteKey"></ngx-recaptcha2>-->
+                    <div class="recaptcha">
+                        <re-captcha (resolved)="resolved($event)" siteKey="6LeeUcAZAAAAAFCb4Nr7V3d9vXEfB0pS0P6S7inz"></re-captcha>
+                    </div>
 
 
                     <br>

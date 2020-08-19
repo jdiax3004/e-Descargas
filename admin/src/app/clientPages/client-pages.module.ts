@@ -18,12 +18,13 @@ import { AuthGuardService } from '../services/auth-guard.service';
 import { CompraExitosaComponent } from './compra-exitosa/compra-exitosa.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 @NgModule({
   declarations: [ClientPagesComponent, PerfilComponent, PeliculasComponent, LibrosComponent, MusicaComponent, MetodosPagoComponent, PagoTarjetaComponent, PagoEasypayComponent, ClientSidebarComponent, CompraExitosaComponent, DashboardComponent],
   imports: [
-    CommonModule,HttpClientModule,FormsModule,SharedModule,CLIENT_PAGES_ROUTES,ModalModule.forRoot(),NgxCaptchaModule
+    CommonModule,HttpClientModule,FormsModule,SharedModule,CLIENT_PAGES_ROUTES,ModalModule.forRoot(),NgxCaptchaModule,RecaptchaModule
   ],
   providers: [AuthGuardService]
 })
