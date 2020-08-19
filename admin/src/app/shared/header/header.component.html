@@ -7,7 +7,7 @@
     <!-- Logo -->
     <!-- ============================================================== -->
     <div class="navbar-header">
-      <a  class="navbar-brand text-center text-info hide-menu" href="index.html">
+      <a class="navbar-brand text-center text-info hide-menu" href="index.html">
         ‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‎e-Descargas
       </a>
     </div>
@@ -21,18 +21,12 @@
       <ul class="navbar-nav mr-auto">
         <!-- This is  -->
         <li class="nav-item">
-          <a
-            class="nav-link nav-toggler hidden-md-up waves-effect waves-dark"
-            href="javascript:void(0)"
-            ><i class="ti-menu"></i
-          ></a>
+          <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i
+              class="ti-menu"></i></a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark"
-            href="javascript:void(0)"
-            ><i class="ti-menu"></i
-          ></a>
+          <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
+              class="ti-menu"></i></a>
         </li>
         <li class="nav-item hidden-sm-down"></li>
       </ul>
@@ -41,20 +35,58 @@
       <!-- ============================================================== -->
       <ul class="navbar-nav my-lg-0">
         <!-- ============================================================== -->
+        <!-- Messages -->
+        <!-- ============================================================== -->
+        <li class="nav-item dropdown" *ngIf="auth.actual.Id_Roles.length == 0">
+          <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="mdi mdi-cart"></i>
+            <div class="notify">
+              <span class="heartbit"></span><span class="point">{{ carrito.obtener().length }}</span>
+            </div>
+          </a>
+          <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown" aria-labelledby="2">
+            <ul>
+              <li>
+                <div class="drop-title">Tienes {{ carrito.obtener().length }} artículos en el carrito.</div>
+              </li>
+              <li>
+                <div class="message-center">
+
+                  <!-- Item -->
+                  <a href="javascript:void(0);" *ngFor="let item of carrito.obtener()">
+                    <div class="mail-contnet">
+                      <h5>{{ item.Nombre }}</h5>
+                      <span class="mail-desc">{{ item.Genero }}</span>
+                      <span class="time">₡{{ item.Precio }}</span>
+                    </div>
+                    <div class="user-img">
+                      <button class="btn btn-danger" (click)="carrito.eliminar(item.Codigo)">Borrar</button>
+                    </div>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <a class="nav-link text-center" href="javascript:void(0);" (click)="carrito.checkout()">
+                  <strong>Pagar ahora</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- ============================================================== -->
+        <!-- End Messages -->
+        <!-- ============================================================== -->
+
+
+        <!-- ============================================================== -->
         <!-- Profile -->
         <!-- ============================================================== -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle waves-effect waves-dark"
-            href=""
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            ><img
-              src="assets/images/users/user.png"
-              alt="user"
-              class="profile-pic"
-          /></a>
+          <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/user.png" alt="user"
+              class="profile-pic" /></a>
           <div class="dropdown-menu dropdown-menu-right animated flipInY">
             <ul class="dropdown-user">
               <li>

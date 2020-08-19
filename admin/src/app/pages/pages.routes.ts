@@ -30,7 +30,7 @@ const pagesRoutes: Routes = [
       {
         path: "",
         component: DashboardComponent,
-        data: { titulo: "Dashboard", Id_Roles: [ADMINISTRADOR] },
+        data: { titulo: "Dashboard" },
         canActivate: [AuthGuard]
       },
       {

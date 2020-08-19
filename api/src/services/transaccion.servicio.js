@@ -4,7 +4,6 @@ const bitacora = require("../log/bitacora.log");
 const consecutivo = require("./consecutivo.servicio");
 const pagos = require("./pagos-api.servicio");
 const descargas = require("./decargas.servicio");
-const dotenv = require("dotenv");
 const { request, response } = require("express");
 
 let servicio = {};

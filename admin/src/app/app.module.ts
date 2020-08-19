@@ -1,12 +1,12 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
+import { ChartsModule } from "ng2-charts";
 
 import { AppComponent } from "./app.component";
 import { RegisterComponent } from "./register/register.component";
 import { LoginComponent } from "./login/login.component";
 import { NopagefoundComponent } from "./shared/nopagefound/nopagefound.component";
-import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
+import { PasswordRecoveryComponent } from "./password-recovery/password-recovery.component";
 import { APP_ROUTES } from "./app.routes";
 import { PagesModule } from "./pages/pages.module";
 
@@ -41,8 +41,14 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     CommonModule,
     NgxCaptchaModule,
     ModalModule.forRoot()
+    ChartsModule,
   ],
-  providers: [LoginGuardService, AuthGuardService,Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],
+  providers: [
+    LoginGuardService,
+    AuthGuardService,
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

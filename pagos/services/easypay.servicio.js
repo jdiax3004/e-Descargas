@@ -18,10 +18,10 @@ console.log(data[0][0].Codigo_Seguridad)
           errors: 'No existe una cuenta con el número ' + numeroCuenta,
         };
       }
-
+      console.log(typeof(data[0][0].Codigo_Seguridad), typeof(codigo))
       if (
-        contrasena !== data[0][0].Contrasenna ||
-        codigo !== data[0][0].Codigo_Seguridad
+        contrasena != data[0][0].Contrasenna ||
+        codigo != data[0][0].Codigo_Seguridad
       ) {
         return {
           ok: false,
