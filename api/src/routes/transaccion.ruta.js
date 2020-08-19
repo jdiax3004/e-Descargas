@@ -21,6 +21,14 @@ router.get('/transacciones/:codigo',ensureAuthenticated, async (req, res, next) 
     }
 })
 
+router.post('/captcha', async (req, res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.post('/transacciones', ensureAuthenticated, async (req, res, next) => {
     try {
         req.body.Codigo_usuario = req.user.Codigo

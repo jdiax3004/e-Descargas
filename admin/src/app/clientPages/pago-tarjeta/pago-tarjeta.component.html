@@ -10,10 +10,9 @@
                     <div class="card-body collapse show waves-effect waves-light" style="background-color: cornsilk;">
                         <div class="row" *ngFor="let item of items" (click)="setMetodoPago(item)">
                             <div class="col">
-                                <img 
-                                height="50px"
-                                src="https://lh3.googleusercontent.com/proxy/2JoqTS9PwaTRCG_nJbDJfHbWmTUuOlkMztb4FB3dVdUJjUkyGrzwyQCnRBq5zRdbY_ClvUh96_a-RTkEm2eU50b9lECbqoIaR7Bw3MSwHiGvGhhYAA_SdA" 
-                                alt="visa">
+                                <img height="50px"
+                                    src="https://lh3.googleusercontent.com/proxy/2JoqTS9PwaTRCG_nJbDJfHbWmTUuOlkMztb4FB3dVdUJjUkyGrzwyQCnRBq5zRdbY_ClvUh96_a-RTkEm2eU50b9lECbqoIaR7Bw3MSwHiGvGhhYAA_SdA"
+                                    alt="visa">
                             </div>
                             <div class="col">
                                 {{ item.Numero }}
@@ -32,23 +31,30 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <input class="form-control" type="number" placeholder="Número tarjeta" name="Numero" [(ngModel)]="metodoPago.Numero">
+                            <input class="form-control" type="number" placeholder="Número tarjeta" name="Numero"
+                                [(ngModel)]="metodoPago.Numero">
                         </div>
                         <div class="col">
-                            <input class="form-control" type="number" placeholder="Mes Exp." name="Mes_Expiracion" [(ngModel)]="metodoPago.Mes_Expiracion">
+                            <input class="form-control" type="number" placeholder="Mes Exp." name="Mes_Expiracion"
+                                [(ngModel)]="metodoPago.Mes_Expiracion">
                         </div>
                         <div class="col">
-                            <input class="form-control" type="number" placeholder="Año   Exp." name="Anno_Expiracion" [(ngModel)]="metodoPago.Anno_Expiracion">
+                            <input class="form-control" type="number" placeholder="Año   Exp." name="Anno_Expiracion"
+                                [(ngModel)]="metodoPago.Anno_Expiracion">
                         </div>
                         <div class="col">
-                            <input class="form-control" type="number" placeholder="CVV" name="CVV" [(ngModel)]="metodoPago.CVV">
+                            <input class="form-control" type="number" placeholder="CVV" name="CVV"
+                                [(ngModel)]="metodoPago.CVV">
                         </div>
                     </div>
+
+                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey"></ngx-recaptcha2>
+
+
                     <br>
                     <button type="button" class="btn waves-effect waves-light btn-block btn-info" (click)="guardar()">
-                        Guardar método de pago</button>
+                        Guardar método de pago 2 </button>
                     <br>
-        
                     <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Procesar la
                         compra</button>
                 </form>

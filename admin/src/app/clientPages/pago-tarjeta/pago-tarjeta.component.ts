@@ -15,8 +15,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PagoTarjetaComponent implements OnInit {
   items: Tarjeta[] = []
   metodoPago: Tarjeta = {}
+  siteKey: string;
 
-  constructor(private service: TarjetaService, private alert: AlertService, private auth: AuthService, private carrito: CarritoService) { }
+  constructor(private service: TarjetaService, private alert: AlertService, private auth: AuthService, private carrito: CarritoService) {
+    this.siteKey = '6LeeUcAZAAAAAFCb4Nr7V3d9vXEfB0pS0P6S7inz';
+   }
 
   ngOnInit() {
     this.cargar()

@@ -18,6 +18,8 @@ import { CommonModule } from '@angular/common';
 import { ClientPagesModule } from './clientPages/client-pages.module';
 import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxCaptchaModule } from 'ngx-captcha';
+
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    NgxCaptchaModule,
     ModalModule.forRoot()
   ],
   providers: [LoginGuardService, AuthGuardService,Location, {provide: LocationStrategy, useClass: PathLocationStrategy}],

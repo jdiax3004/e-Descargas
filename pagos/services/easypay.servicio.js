@@ -8,7 +8,9 @@ const descontarSaldoCuenta = async (objeto) => {
     .query('dbo.ObtenerCuentaEasyPay @Numero = :numero', {
       replacements: { numero: numeroCuenta },
     })
-
+console.log(objeto)
+console.log(data[0][0].Contrasenna)
+console.log(data[0][0].Codigo_Seguridad)
       if (!data[0][0]) {
         return {
           ok: false,
