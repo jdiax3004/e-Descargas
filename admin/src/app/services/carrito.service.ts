@@ -14,6 +14,7 @@ import { DescargasService } from './descargas.service';
 })
 export class CarritoService {
   private key = 'cart'
+  public objetosComprados = []
 
   constructor(private service: TransaccionService, private descargas: DescargasService, private alert: AlertService, private router: Router) { }
 
@@ -73,18 +74,10 @@ export class CarritoService {
       Tipo_Pago: tipo,
       Metodo_Pago: metodoPago
     }).subscribe(response => {
-      this.alert.success("Compra realizada con éxito!\n" + this.obtener().reduce((text, i) => {
-        return text + i.Archivo_Descarga + "\n"
-      }, ""))
-      this.obtener().forEach(element => {
-        this.descargas.insertar({
-          Codigo_Referencia: element.Codigo,
-          Genero: element.Genero,
-          Tipo: element.Autor ? 'Libro' : element.Actores ? 'Pelicula' : 'Musica'
-        }).toPromise()
-      });
+      this.alert.success("Compra realizada con éxito!")
+      this.objetosComprados = this.obtener()
       this.limpiar()
-      this.router.navigate([''])
+      this.router.navigate(['compra-exitosa'])
     }, err => this.alert.handleError(err))
   }
 }

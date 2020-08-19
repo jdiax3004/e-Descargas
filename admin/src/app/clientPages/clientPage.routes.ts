@@ -47,7 +47,7 @@ const clientPagesRoutes: Routes = [
           component: PagoEasypayComponent,
         },
         {
-          path: "compra-exitosa/:id",
+          path: "compra-exitosa",
           component: CompraExitosaComponent,
         },
         {
