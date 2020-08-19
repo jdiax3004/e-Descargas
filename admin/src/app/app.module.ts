@@ -40,7 +40,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     HttpClientModule,
     CommonModule,
     NgxCaptchaModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
     ChartsModule,
   ],
   providers: [

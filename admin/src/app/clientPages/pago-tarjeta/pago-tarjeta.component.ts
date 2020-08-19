@@ -6,6 +6,7 @@ import { Tarjeta } from 'src/app/models/tarjeta';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { TarjetaService } from 'src/app/services/tarjeta.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pago-tarjeta',
@@ -18,7 +19,7 @@ export class PagoTarjetaComponent implements OnInit {
   siteKey: string;
 
   constructor(private service: TarjetaService, private alert: AlertService, private auth: AuthService, private carrito: CarritoService) {
-    this.siteKey = '6LeeUcAZAAAAAFCb4Nr7V3d9vXEfB0pS0P6S7inz';
+    this.siteKey = environment.captcha_site_key;
    }
 
   ngOnInit() {
