@@ -12,7 +12,14 @@ export class AuthGuardService implements CanActivate {
 
   async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     await this.auth.obtenerActual()
-    let roles = route.data.roles
+    let roles = route.data.Id_Roles
+    let onlyClient = route.data.onlyClient
+
+    if(onlyClient && this.auth.actual && this.auth.actual.Id_Roles.length > 0) {
+      this.auth.goHome()
+    }
+    
+    console.log(this.auth.isAuth(roles))
     
     if (this.auth.isAuth(roles)) return true
 

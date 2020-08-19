@@ -73,7 +73,9 @@ export class CarritoService {
       Tipo_Pago: tipo,
       Metodo_Pago: metodoPago
     }).subscribe(response => {
-      this.alert.success("Compra realizada con éxito!\n" + this.obtener()[0].Archivo_Descarga)
+      this.alert.success("Compra realizada con éxito!\n" + this.obtener().reduce((text, i) => {
+        return text + i.Archivo_Descarga + "\n"
+      }, ""))
       this.obtener().forEach(element => {
         this.descargas.insertar({
           Codigo_Referencia: element.Codigo,

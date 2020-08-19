@@ -12,12 +12,12 @@ export class LoginGuardService implements CanActivate {
   async canActivate(): Promise<boolean> {
     await this.auth.obtenerActual()
     if (this.auth.isAuth()) {
-      this.router.navigate([''])
+      this.auth.goHome()
       return false
     }
       
     else if (this.auth.isAuth()) {
-      this.router.navigate([''])
+      this.auth.goHome()
       return false
     }
     return true

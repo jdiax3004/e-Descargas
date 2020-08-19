@@ -16,6 +16,7 @@ const clientPagesRoutes: Routes = [
       path: "",
       component: ClientPagesComponent,
       canActivate: [AuthGuard],
+      data: { onlyClient: true },
       children: [
         {
             path: "perfil",

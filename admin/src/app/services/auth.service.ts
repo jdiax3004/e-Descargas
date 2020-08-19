@@ -36,7 +36,7 @@ export class AuthService {
 
   isAuth(roles?: number[]): boolean {
     if (this.actual) {
-      if (roles) {
+      if (roles && roles.length > 0) {
         for (let rol of roles) {
           if (this.actual.Id_Roles.includes(rol)) return true;
         }
