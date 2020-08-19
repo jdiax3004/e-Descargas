@@ -14,6 +14,7 @@ import { DescargasService } from './descargas.service';
 })
 export class CarritoService {
   private key = 'cart'
+  public objetosComprados = []
 
   constructor(private service: TransaccionService, private descargas: DescargasService, private alert: AlertService, private router: Router) { }
 
@@ -40,6 +41,8 @@ export class CarritoService {
 
   agregar(item: Pelicula | Libro | Musica) {
     var items = this.obtener()
+    // validate if already exist
+    if(items.some(i => i.Codigo == item.Codigo)) return
     items.push(item)
     this._actualizar(items)
     this.alert.success("Producto agregado correctamente!")
@@ -48,10 +51,9 @@ export class CarritoService {
   eliminar(codigo: string) {
     var items = this.obtener()
     items = items.filter(i => {
-      i.Codigo != codigo
+      return i.Codigo != codigo
     })
     this._actualizar(items)
-    this.alert.success("Producto eliminado correctamente!")
   }
 
   limpiar() {
@@ -72,16 +74,10 @@ export class CarritoService {
       Tipo_Pago: tipo,
       Metodo_Pago: metodoPago
     }).subscribe(response => {
-      this.alert.success("Compra realizada con éxito!\n" + this.obtener()[0].Archivo_Descarga)
-      this.obtener().forEach(element => {
-        this.descargas.insertar({
-          Codigo_Referencia: element.Codigo,
-          Genero: element.Genero,
-          Tipo: element.Autor ? 'Libro' : element.Actores ? 'Pelicula' : 'Musica'
-        }).toPromise()
-      });
+      this.alert.success("Compra realizada con éxito!")
+      this.objetosComprados = this.obtener()
       this.limpiar()
-      this.router.navigate([''])
+      this.router.navigate(['compra-exitosa'])
     }, err => this.alert.handleError(err))
   }
 }

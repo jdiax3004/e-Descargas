@@ -85,7 +85,12 @@
                             <td>{{ objeto.Precio }}</td>
                             <td><a (click)="openModal(template, objeto.Archivo_Previsualizacion)" class="btn btn-info">Ver...</a></td>
                             <td>
-                                <button class="btn btn-success" (click)="comprar(objeto)">Comprar</button>
+                                <div class="col">
+                                    <button class="btn btn-success" (click)="agregarAlCarrito(objeto)">Agregar al carrito</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-success" (click)="comprar(objeto)">Comprar</button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

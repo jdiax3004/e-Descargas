@@ -5,6 +5,7 @@ import { deleteCookie } from "../utils/cookie.util";
 import { UsuarioService } from "./usuario.service";
 import { Usuario } from "../models/usuario";
 import { AlertService } from "./alert.service";
+import { CarritoService } from './carrito.service';
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +14,8 @@ export class AuthService {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private alert: AlertService
+    private alert: AlertService,
+    private carrito: CarritoService
   ) { }
   auth_cookie = "connect.sid";
   cookie_id = "uid";
@@ -36,7 +38,7 @@ export class AuthService {
 
   isAuth(roles?: number[]): boolean {
     if (this.actual) {
-      if (roles) {
+      if (roles && roles.length > 0) {
         for (let rol of roles) {
           if (this.actual.Id_Roles.includes(rol)) return true;
         }
@@ -60,6 +62,7 @@ export class AuthService {
   }
 
   login(usuario: string, contrasenna: string) {
+    this.carrito.limpiar()
     this.alert.showLoading();
     this.usuarioService.login(usuario, contrasenna).subscribe(
       (data: any) => {
@@ -94,6 +97,7 @@ export class AuthService {
   }
 
   loginFacebook() {
+    this.carrito.limpiar()
     window.location.href = `${environment.apiUrl}/auth/facebook`;
 
   }

@@ -1,1 +1,36 @@
-<p>compra-exitosa works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-tittle">
+          Links de descarga
+        </h3>
+        <br>
+        <div class="row">
+          <div class="col">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of carrito.objetosComprados">
+                  <td>
+                    {{item.Nombre}}
+                  </td>
+                  <td>
+                    <div class="col">
+                      <a class="btn btn-info" [href]="item.Archivo_Descarga" target="blank" (click)="descargar(item)">Descargar</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

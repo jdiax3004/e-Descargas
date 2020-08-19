@@ -16,6 +16,7 @@ const clientPagesRoutes: Routes = [
       path: "",
       component: ClientPagesComponent,
       canActivate: [AuthGuard],
+      data: { onlyClient: true },
       children: [
         {
             path: "perfil",
@@ -46,7 +47,7 @@ const clientPagesRoutes: Routes = [
           component: PagoEasypayComponent,
         },
         {
-          path: "compra-exitosa/:id",
+          path: "compra-exitosa",
           component: CompraExitosaComponent,
         },
         {
