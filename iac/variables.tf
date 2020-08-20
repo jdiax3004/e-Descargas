@@ -13,6 +13,11 @@ variable "droplet_name" {
   type        = string
 }
 
+variable "droplet_size" {
+  description = "Slug of the droplet size"
+  type        = string
+}
+
 variable "project_name" {
   description = "Name of the project"
   type        = string
