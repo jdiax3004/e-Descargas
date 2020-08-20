@@ -4,8 +4,7 @@ data "template_file" "init" {
   vars = {
     app_port     = var.app_port
     domain       = var.domain
-    http_upgrade = "$http_upgrade"
-    host         = "$host"
+    email        = var.email
   }
 }
 

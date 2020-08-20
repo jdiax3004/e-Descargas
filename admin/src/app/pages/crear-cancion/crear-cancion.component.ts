@@ -56,6 +56,7 @@ export class CrearCancionComponent implements OnInit {
   onArchivoDescargaChange(file: File) {
     const ext = file.name.split('.').pop()
     if(!this.extencionesPermitidasDescarga.includes(ext)) {
+      (document.getElementById('Archivo_Descarga') as any).value = null
       this.alert.error(`El tipo de archivo ${ext} no es permitido.`)
     } else {
       this.archivoDescarga = file;
@@ -65,6 +66,7 @@ export class CrearCancionComponent implements OnInit {
   onArchivoVisualizacionChange(file: File) {
     const ext = file.name.split('.').pop()
     if(!this.extencionesPermitidasVisualizacion.includes(ext)) {
+      (document.getElementById('Archivo_Visualizacion') as any).value = null
       this.alert.error(`El tipo de archivo ${ext} no es permitido.`)
     } else {
       this.archivoVisualizacion = file;

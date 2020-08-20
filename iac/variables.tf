@@ -3,6 +3,12 @@ variable "token" {
   type        = string
 }
 
+variable "email" {
+  description = "Contact email for ssl cert"
+  type        = string
+}
+
+
 variable "domain" {
   description = "Domain name"
   type        = string

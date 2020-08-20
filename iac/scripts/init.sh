@@ -44,6 +44,10 @@ server {
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host \$host;
         proxy_cache_bypass \$http_upgrade;
+
+        if (\$scheme != "https") {
+            return 301 https://\$host\$request_uri;
+        }
     }
 }
 EOT
@@ -51,4 +55,4 @@ EOT
 sudo nginx -t
 sudo service nginx restart
 
-# yes | sudo certbot --nginx -d ${domain} -d www.${domain}
+sudo certbot --nginx -n --agree-tos --email=${email}  -d ${domain} -d www.${domain}

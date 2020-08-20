@@ -9,7 +9,7 @@ import { PagoTarjetaComponent } from './pago-tarjeta/pago-tarjeta.component';
 import { PagoEasypayComponent } from './pago-easypay/pago-easypay.component';
 import { AuthGuardService as AuthGuard } from '../services/auth-guard.service'
 import { CompraExitosaComponent } from './compra-exitosa/compra-exitosa.component';
-import { DashboardComponent } from '../pages/dashboard/dashboard.component';
+import { DashboardComponent } from '../clientPages/dashboard/dashboard.component';
 
 const clientPagesRoutes: Routes = [
     {
@@ -51,7 +51,7 @@ const clientPagesRoutes: Routes = [
           component: CompraExitosaComponent,
         },
         {
-          path: "dashboard",
+          path: "",
           component: DashboardComponent,
       },
       ]
