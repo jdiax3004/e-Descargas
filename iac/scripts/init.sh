@@ -17,7 +17,7 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install nodejs -y
 sudo apt install npm -y
 
-yes n | sudo npm install -g @angular/cli
+yes n | sudo npm install -g @angular/cli@9.0.3
 npm install -g pm2
 npm install -g yarn
 
@@ -31,17 +31,20 @@ rm /etc/nginx/sites-available/default
 
 cat <<EOT >> /etc/nginx/sites-available/default
 server {
-        server_name ${domain} www.${domain};
-        error_page 404 =200 /index.html;
+    listen 80;
+    listen [::]:80;
 
-        location / {
-                proxy_pass http://localhost:${app_port};
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection 'upgrade';
-                proxy_set_header Host $host;
-                proxy_cache_bypass $http_upgrade;
-        }
+    server_name ${domain} www.${domain};
+    error_page 404 =200 /index.html;
+
+    location / {
+        proxy_pass http://localhost:${app_port};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host \$host;
+        proxy_cache_bypass \$http_upgrade;
+    }
 }
 EOT
 
