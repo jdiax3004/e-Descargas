@@ -15,7 +15,7 @@ export class PagoEasypayComponent implements OnInit {
   items: EasyPay[] = []
   metodoPago: EasyPay = {}
 
-  constructor(private service: EasypayService, private alert: AlertService, private auth: AuthService, private carrito: CarritoService) { }
+  constructor(private service: EasypayService, private alert: AlertService, public auth: AuthService, public carrito: CarritoService) { }
 
   ngOnInit() {
     this.cargar()

@@ -8,6 +8,7 @@ declare function init_plugins();
   styleUrls: ["./breadcrumbs.component.css"],
 })
 export class BreadcrumbsComponent implements OnInit {
+  titulo: string = ""
   constructor() {}
 
   ngOnInit() {

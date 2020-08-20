@@ -7,7 +7,7 @@ import { AuthService } from "src/app/services/auth.service";
   styleUrls: ["./dashboard.component.css"],
 })
 export class DashboardComponent {
-  constructor(private auth: AuthService) {}
+  constructor(public auth: AuthService) {}
   // Donas
   labels1 = ["Pan", "Tacos", "Salsa"];
   data = [[100, 450, 100]];
