@@ -63,7 +63,7 @@ router.get(
   passport.authenticate("facebook"),
   (req, res) => {
     try {
-      return res.redirect('http://localhost:4200');
+      return res.redirect(process.env.CALLBACK_URL);
     } catch (error) {
       next(error);
     }
