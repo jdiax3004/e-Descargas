@@ -33,27 +33,19 @@ export class DashboardComponent {
   }
   // Donas
   labels1 = ["Musica", "Libros", "Peliculas"];
-  data = [[100, 450, 100]];
+  data = [[32, 23, 54]];
 
   // Barras
 
   dataBar = [
-    { data: [28, 48, 40, 19, 86, 27, 90, 100, 100], label: "Información" },
+    { data: [18, 68, 30, 98], label: "Música" },
+    { data: [18, 48, 10, 79], label: "Libros" },
+    { data: [68, 46, 10, 49], label: "Peliculas" },
   ];
-  labelsBar = [
-    "2006",
-    "2007",
-    "2008",
-    "2009",
-    "2010",
-    "2011",
-    "2012",
-    "2013",
-    "2014",
-  ];
+  labelsBar = ["Junio", "Julio", "Agosto", "Setiembre"];
 
   // Pie
-  pieLabels = [["Download", "Sales"], ["In", "Store", "Sales"], "Mail Sales"];
+  pieLabels = [["Easypay"], ["Tarjetas"]];
 
-  dataPie = [500, 500, 100];
+  dataPie = [500, 300];
 }
