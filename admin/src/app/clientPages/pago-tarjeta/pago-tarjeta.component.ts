@@ -37,7 +37,7 @@ export class PagoTarjetaComponent implements OnInit {
 
   guardar() {
     this.alert.showLoading()
-    this.metodoPago.Tipo = "visa" //TODO: esto esta quemado
+    this.metodoPago.Tipo = "visa"
     this.service.insertar(this.metodoPago).subscribe(data => {
       this.alert.success("Elemento guardado correctamente!")
       this.cargar()
@@ -61,7 +61,7 @@ export class PagoTarjetaComponent implements OnInit {
   }
 
   submit() {
-    this.metodoPago.Tipo = "visa" //TODO: esto esta quemado
+    this.metodoPago.Tipo = "visa"
     this.metodoPago.Captcha = this.recaptcha;
     this.carrito.procesar(TARJETA, this.metodoPago)
   }

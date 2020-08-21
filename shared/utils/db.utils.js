@@ -36,7 +36,7 @@ module.exports = ({ db }) => {
 
     if (data && data[0].length == 1) {
       let item = desencriptarObjeto(data[0][0])
-      return nombre.includes('Obtener') && (!parametros || (!parametros.Codigo && !parametros.Id)) ? [item] : item // TODO: esto es una idiotes
+      return nombre.includes('Obtener') && (!parametros || (!parametros.Codigo && !parametros.Id)) ? [item] : item
     } else {
       data[0].forEach(item => {
         item = desencriptarObjeto(item)
