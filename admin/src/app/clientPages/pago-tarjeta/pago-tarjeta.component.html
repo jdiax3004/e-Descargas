@@ -6,13 +6,11 @@
                     <h3 class="card-tittle">
                         Pago con tarjeta
                     </h3>
-                    <small>Tarjetas gurdadas</small>
+                    <small>Tarjetas gurdadas</small><br>
                     <div class="card-body collapse show waves-effect waves-light" style="background-color: cornsilk;">
                         <div class="row" *ngFor="let item of items" (click)="setMetodoPago(item)">
                             <div class="col">
-                                <img height="50px"
-                                    src="https://lh3.googleusercontent.com/proxy/2JoqTS9PwaTRCG_nJbDJfHbWmTUuOlkMztb4FB3dVdUJjUkyGrzwyQCnRBq5zRdbY_ClvUh96_a-RTkEm2eU50b9lECbqoIaR7Bw3MSwHiGvGhhYAA_SdA"
-                                    alt="visa">
+                                <i class="fa fa-cc-visa fa-3x" aria-hidden="true"></i>
                             </div>
                             <div class="col">
                                 {{ item.Numero }}
@@ -48,18 +46,21 @@
                         </div>
                     </div>
 
-                    <!--<ngx-recaptcha2 #captchaElem [siteKey]="siteKey"></ngx-recaptcha2>-->
+                    <!--<ngx-recaptcha2 #captchaElem [siteKey]="siteKey"></ngx-recaptcha2>-->                    <br>
+
                     <div class="recaptcha">
                         <re-captcha (resolved)="resolved($event)" siteKey="6LeeUcAZAAAAAFCb4Nr7V3d9vXEfB0pS0P6S7inz"></re-captcha>
                     </div>
 
 
                     <br>
-                    <button type="button" class="btn waves-effect waves-light btn-block btn-info" (click)="guardar()">
-                        Guardar método de pago 2 </button>
+                    <div class="row">
+                    <button type="button" class="btn waves-effect waves-light btn-block btn-secondary" (click)="guardar()">
+                        Guardar Método de Pago </button></div>
                     <br>
-                    <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Procesar la
-                        compra</button>
+                    <div class="row">
+                    <button type="submit" class="btn waves-effect waves-light btn-block btn-primary">Procesar la
+                        Compra</button></div>
                 </form>
             </div>
         </div>
