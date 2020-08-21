@@ -19,7 +19,7 @@ export class PagoTarjetaComponent implements OnInit {
   siteKey: string;
   recaptcha:any[];
 
-  constructor(private service: TarjetaService, private alert: AlertService, private auth: AuthService, private carrito: CarritoService) {
+  constructor(private service: TarjetaService, private alert: AlertService, private auth: AuthService, public carrito: CarritoService) {
     this.siteKey = environment.captcha_site_key;
    }
 

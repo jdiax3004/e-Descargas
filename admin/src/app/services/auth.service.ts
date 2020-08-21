@@ -57,7 +57,7 @@ export class AuthService {
     if (this.isAdmin()) {
       this.router.navigate(["admin"]);
     } else {
-      this.router.navigate(["dashboard"]);
+      this.router.navigate([""]);
     }
   }
 

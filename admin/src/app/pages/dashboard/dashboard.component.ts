@@ -1,5 +1,8 @@
 import { Component } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
+import { PeliculasService } from "../../services/peliculas.service";
+import { LibrosService } from "../../services/libros.service";
+import { MusicaService } from "../../services/musica.service";
 
 @Component({
   selector: "app-dashboard",
@@ -7,9 +10,29 @@ import { AuthService } from "src/app/services/auth.service";
   styleUrls: ["./dashboard.component.css"],
 })
 export class DashboardComponent {
-  constructor(private auth: AuthService) {}
+  totalPeliculas = 0;
+  totalLibros = 0;
+  totalCanciones = 0;
+  constructor(
+    public auth: AuthService,
+    peliculasServices: PeliculasService,
+    librosService: LibrosService,
+    musicaServices: MusicaService
+  ) {
+    peliculasServices.obtener().subscribe((data) => {
+      this.totalPeliculas = data.length;
+    });
+
+    librosService.obtener().subscribe((data) => {
+      this.totalLibros = data.length;
+    });
+
+    musicaServices.obtener().subscribe((data) => {
+      this.totalCanciones = data.length;
+    });
+  }
   // Donas
-  labels1 = ["Pan", "Tacos", "Salsa"];
+  labels1 = ["Musica", "Libros", "Peliculas"];
   data = [[100, 450, 100]];
 
   // Barras

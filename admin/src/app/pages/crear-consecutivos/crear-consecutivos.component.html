@@ -24,8 +24,13 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Posee Prefijo</label>
-                        <input type="text" class="form-control" name="Posee_Prefijo" [(ngModel)]="objeto.Posee_Prefijo">
+                        <label>Posee prefijo</label>
+                        <div class="checkbox checkbox-success">
+                            
+                            <input type="checkbox" [checked]="objeto.Posee_Prefijo" >
+                            <label (click)="objeto.Posee_Prefijo = !objeto.Posee_Prefijo"></label>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-3">
