@@ -3,6 +3,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { PeliculasService } from "../../services/peliculas.service";
 import { LibrosService } from "../../services/libros.service";
 import { MusicaService } from "../../services/musica.service";
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: "app-dashboard",
@@ -13,11 +14,13 @@ export class DashboardComponent {
   totalPeliculas = 0;
   totalLibros = 0;
   totalCanciones = 0;
+  totalUsuarios = 0;
   constructor(
     public auth: AuthService,
     peliculasServices: PeliculasService,
     librosService: LibrosService,
-    musicaServices: MusicaService
+    musicaServices: MusicaService,
+    usuarioService: UsuarioService
   ) {
     peliculasServices.obtener().subscribe((data) => {
       this.totalPeliculas = data.length;
@@ -29,6 +32,10 @@ export class DashboardComponent {
 
     musicaServices.obtener().subscribe((data) => {
       this.totalCanciones = data.length;
+    });
+
+    usuarioService.obtener().subscribe((data) => {
+      this.totalUsuarios = data.length;
     });
   }
   // Donas
