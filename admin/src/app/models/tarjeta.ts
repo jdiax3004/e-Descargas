@@ -6,5 +6,6 @@ export class Tarjeta {
     Tipo?: string;
     Mes_Expiracion?: number;
     Anno_Expiracion?: number;  
+    Captcha?: any;
   }
   

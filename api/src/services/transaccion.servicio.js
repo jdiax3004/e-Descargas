@@ -20,6 +20,14 @@ servicio.obtenerUno = async (codigo) => {
 };
 
 servicio.insertar = async (objeto, usuario) => {
+  const captchaResult = await servicio.captcha(objeto.Metodo_Pago.Captcha);
+
+  if (!captchaResult) {
+    throw new Error("Debe de resolver el captcha");
+  }
+
+  delete objeto.Metodo_Pago.Captcha;
+
   if (!objeto.Metodo_Pago)
     throw new Error("No se especificó el método de pago.");
 
@@ -39,7 +47,7 @@ servicio.insertar = async (objeto, usuario) => {
       });
   }
 
-  delete objeto.Metodo_Pago;
+  delete objeto.Metodo_Pago, objeto.Monto;
   objeto.Codigo = await consecutivo.generar(consecutivo.TRANSACCION);
   objeto.Fecha = new Date();
   const data = await storeProcedure("InsertarTransaccion", objeto);
@@ -61,35 +69,17 @@ servicio.eliminar = async (codigo, usuario) => {
   return true;
 };
 
-servicio.captcha = async (objeto) => {
+servicio.captcha = async (captcha) => {
   if (
-    objeto.captcha === undefined ||
-    objeto.captcha === "" ||
-    objeto.captcha === null
+    captcha === undefined ||
+    captcha === "" ||
+    captcha === null
   ) {
     console.log("Captcha Null");
-
     return false;
-  }
-
-  //Verify URL
-  const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${
-    process.env.CAPTCHA_SECRET_KEY
-  }&response=${objeto.captcha}&remoteip=${(objeto.connection, remoteAddress)}`;
-
-  //Make Request to the VerifyURL
-  request(verifyUrl, (err, response, body) => {
-    body = JSON.parse(body);
-
-    //If not successfull
-    if (body.success !== undefined && !body.success) {
-      console.log("Captcha Request Fail");
-      return false;
-    }
-
-    //If Success
+  }else {
     return true;
-  });
+  }
 };
 
 module.exports = servicio;

@@ -62,12 +62,12 @@ export class PagoTarjetaComponent implements OnInit {
 
   submit() {
     this.metodoPago.Tipo = "visa" //TODO: esto esta quemado
+    this.metodoPago.Captcha = this.recaptcha;
     this.carrito.procesar(TARJETA, this.metodoPago)
   }
 
   resolved(captchaResponse:any[]){
     this.recaptcha = captchaResponse;
-    console.log(this.recaptcha)
   }
 
   addScript() {
